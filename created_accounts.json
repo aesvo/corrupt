@@ -1,1 +1,25 @@
-[]
+[
+  {
+    "profile": "loser",
+    "created_by": "1268844772676730880",
+    "rich": "true"
+  },
+  {
+    "profile": "loser2",
+    "created_by": "1268844772676730880",
+    "rich": "true"
+  },
+  {
+    "profile": "loser3",
+    "created_by": "1268844772676730880",
+    "rich": "true"
+  },
+  {
+    "profile": "awkward",
+    "created_by": "1385192330025369611"
+  },
+  {
+    "profile": "discord",
+    "created_by": "1385196482289733652"
+  }
+]
