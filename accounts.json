@@ -14,5 +14,10 @@
   {
     "profile": "taz",
     "created_by": "1385192330025369611"
+  },
+  {
+    "profile": "spot",
+    "created_by": "1385192330025369611",
+    "rich": "true"
   }
 ]
