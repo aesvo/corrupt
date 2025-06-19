@@ -8,7 +8,6 @@
     * {
       box-sizing: border-box;
     }
-
     body {
       margin: 0;
       padding: 0;
@@ -19,9 +18,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
+      padding: 20px;
     }
-
     .container {
       background-color: #1a1a1a;
       border: 1px solid #333;
@@ -29,16 +28,32 @@
       padding: 30px 20px;
       text-align: center;
       width: 90%;
-      max-width: 400px;
+      max-width: 600px;
     }
-
     .banned-title {
       color: #ff0000;
       font-size: 28px;
       font-weight: bold;
+      margin-bottom: 30px;
+    }
+    .section {
+      margin-bottom: 25px;
+      text-align: left;
+    }
+    .section h3 {
+      color: #ff0000;
+      font-size: 20px;
+      font-weight: bold;
       margin-bottom: 10px;
     }
-
+    .section ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+    .section li {
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
     .discord-link {
       display: inline-block;
       color: #ffffff;
@@ -47,8 +62,8 @@
       position: relative;
       padding-bottom: 4px;
       transition: all 0.2s ease-in-out;
+      margin-top: 10px;
     }
-
     .discord-link:hover::after {
       content: '';
       position: absolute;
@@ -58,18 +73,92 @@
       width: 100%;
       background-color: #ffffff;
     }
-
     .discord-link:active {
       opacity: 0.7;
+    }
+    .nav-links {
+      margin-bottom: 20px;
+    }
+    .nav-link {
+      display: inline-block;
+      color: #ffffff;
+      text-decoration: none;
+      margin: 0 15px;
+      padding: 8px 16px;
+      border: 1px solid #333;
+      border-radius: 6px;
+      transition: all 0.2s ease-in-out;
+    }
+    .nav-link:hover {
+      background-color: #333;
+      border-color: #555;
+    }
+    .page {
+      display: none;
+    }
+    .page.active {
+      display: block;
     }
   </style>
 </head>
 <body>
-
   <div class="container">
-    <div class="banned-title">discord bot powered biolink site?!?!?</div>
-    <a class="discord-link" href="https://discord.gg/gtJ6eQynrN">join the Discord server</a>
+    <div class="banned-title">corrupt.im</div>
+    
+    <div class="nav-links">
+      <a href="#" class="nav-link" onclick="showPage('home')">Home</a>
+      <a href="#" class="nav-link" onclick="showPage('team')">Team</a>
+    </div>
+
+    <div id="home" class="page active">
+      <div class="section">
+        <h3>What is corrupt.im?</h3>
+        <ul>
+          <li>It is the first ever discord bot powered biolink site.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h3>What do you mean by discord bot powered?</h3>
+        <ul>
+          <li>This site is fully hosted on github only, and YOU can use our discord bot to create a profile > do changes</li>
+        </ul>
+      </div>
+
+      <a class="discord-link" href="https://discord.gg/gtJ6eQynrN">join the Discord server</a>
+    </div>
+
+    <div id="team" class="page">
+      <div class="section">
+        <h3>Our Team</h3>
+        <ul>
+          <li><strong>Founder:</strong> Building the future of biolink sites</li>
+          <li><strong>Developer:</strong> Creating the discord bot integration</li>
+          <li><strong>Community:</strong> Amazing users who make this possible</li>
+        </ul>
+      </div>
+      
+      <div class="section">
+        <h3>Want to join the team?</h3>
+        <ul>
+          <li>We're always looking for talented developers</li>
+          <li>Join our Discord and let us know your skills</li>
+        </ul>
+      </div>
+
+      <a class="discord-link" href="https://discord.gg/gtJ6eQynrN">join the Discord server</a>
+    </div>
   </div>
 
+  <script>
+    function showPage(pageId) {
+      // Hide all pages
+      const pages = document.querySelectorAll('.page');
+      pages.forEach(page => page.classList.remove('active'));
+      
+      // Show selected page
+      document.getElementById(pageId).classList.add('active');
+    }
+  </script>
 </body>
 </html>
