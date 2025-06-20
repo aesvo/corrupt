@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>NOTloser — Profile</title>
+      <link rel="icon" href="xray/favicon.ico" type="image/x-icon" />
+      <meta name="description" content="whats the point of living?" />
+      <meta property="og:title" content="im not loser!" />
+      <meta property="og:description" content="corrupt goverment" />
+      <meta property="og:image" content="https://i.pinimg.com/736x/88/0d/bf/880dbf279aeea6fc25f5125382c1bd06.jpg" />
+      <meta property="og:url" content="https://corrupt.im" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="meech — Profile" />
+      <meta name="twitter:description" content="whats the point of living?" />
+      <meta name="twitter:image" content="https://i.pinimg.com/736x/88/0d/bf/880dbf279aeea6fc25f5125382c1bd06.jpg" />
+    
+      <style>
+        * { box-sizing: border-box; }
+        body {
+          margin: 0;
+          background: #000;
+          color: #fff;
+          font-family: system-ui, sans-serif;
+          font-size: 14px;
+          line-height: 1.3;
+        }
+        .container {
+          max-width: 800px;
+          margin: 20px auto;
+          padding: 10px 14px;
+          border: 1px solid #2c2c2c;
+          background-image: url('https://i.pinimg.com/736x/55/3f/0c/553f0c67e5a9248698a21702402546fb.jpg');
+          background-size: cover;
+          background-position: center;
+          border-radius: 3px;
+        }
+        .profile-header {
+          display: flex;
+          gap: 10px;
+          align-items: flex-start;
+          padding: 8px 12px;
+          background: rgba(0, 0, 0, 0.5);
+          border-radius: 3px;
+        }
+        .avatar {
+          width: 132px;
+          height: 132px;
+          object-fit: cover;
+          border-radius: 3px;
+        }
+        .username-container {
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+          flex-grow: 1;
+        }
+        .name-row {
+          font-size: 22px;
+          font-weight: 700;
+          color: #fff;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          margin-bottom: 0;
+        }
+        .bio {
+          color: #ccc;
+          max-width: 600px;
+          font-size: 13px;
+        }
+        .badge-row {
+          display: flex;
+          justify-content: flex-start;
+          margin-top: 6px;
+          gap: 6px;
+        }
+        .badge-wrapper {
+          position: relative;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .badge {
+          width: 20px;
+          height: 20px;
+          fill: currentColor;
+          filter: drop-shadow(0 0 4px currentColor);
+        }
+        .badge.staff {
+          color: #e76357;
+        }
+        
+        .tooltip {
+          background: #111;
+          color: #fff;
+          text-align: center;
+          padding: 4px 6px;
+          border-radius: 3px;
+          font-size: 12px;
+          position: absolute;
+          top: 130%;
+          left: 50%;
+          transform: translateX(-50%);
+          white-space: nowrap;
+          border: 1px solid #2c2c2c;
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.3s, transform 0.3s;
+          max-width: 150px;
+        }
+        .badge-wrapper:hover .tooltip {
+          opacity: 1;
+          transform: translateX(-50%) translateY(0);
+        }
+        .section-header {
+          font-weight: 600;
+          font-size: 15px;
+          margin-bottom: 8px;
+          border-bottom: 1px solid #2c2c2c;
+          padding-bottom: 4px;
+        }
+        .song-entry {
+          display: flex;
+          gap: 12px;
+          align-items: center;
+          padding: 12px;
+          border-radius: 12px;
+          backdrop-filter: blur(10px);
+          margin-bottom: 8px;
+        }
+        .album-art {
+          width: 64px;
+          height: 64px;
+          border-radius: 8px;
+          object-fit: cover;
+          flex-shrink: 0;
+        }
+        .song-info {
+          flex-grow: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          padding-left: 8px;
+        }
+        .song-title {
+          font-weight: 700;
+          color: #ffffff;
+          font-size: 1.1rem;
+          cursor: pointer;
+          text-decoration: none;
+          transition: text-decoration 0.3s;
+          line-height: 1.2;
+        }
+        .song-title:hover {
+          text-decoration: underline solid #fff 2px;
+        }
+        .artist-names {
+          color: #cccccc;
+          font-size: 0.9rem;
+          margin-top: 2px;
+        }
+        #show-more-btn {
+          display: none;
+        }
+        #spotify-container {
+          opacity: 0;
+          transform: translateY(-6px);
+          transition: opacity 0.5s, transform 0.5s;
+        }
+        #spotify-container.visible {
+          opacity: 1;
+          transform: translateY(0);
+          margin-bottom: 10px;
+        }
+        .info-container {
+          max-width: 800px;
+          margin: 10px auto 14px auto;
+          padding: 9px 18px;
+          border: 1px solid #2c2c2c;
+          border-radius: 3px;
+          background: rgba(0, 0, 0, 0.5);
+        }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <div class="profile-header">
+          <img src="https://i.pinimg.com/736x/88/0d/bf/880dbf279aeea6fc25f5125382c1bd06.jpg" class="avatar" />
+          <div class="username-container">
+            <div class="name-row"><span>NOTloser</span></div>
+            <div class="bio">im kinda cool</div>
+            <div class="badge-row" id="badge-row"></div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="info-container">
+        <div class="section-header">About Me</div>
+        <div>fun</div>
+      </div>
+    
+      <div class="info-container" id="now-playing">
+        <div class="section-header">previously played song</div>
+        <div id="spotify-container"></div>
+        <div id="show-more-btn"></div>
+      </div>
+    
+      <div class="info-container">
+        <div class="section-header">Info</div>
+        <div>Created: Jun 20, 2025</div>
+      </div>
+    
+      <script>
+        async function getDominantColor(img){
+          const c=document.createElement('canvas'),ctx=c.getContext('2d');c.width=c.height=30;ctx.drawImage(img,0,0,30,30);
+          const d=ctx.getImageData(0,0,30,30).data;let r=0,g=0,b=0,cnt=0;
+          for(let i=0;i<d.length;i+=4)if(d[i+3]>125){r+=d[i];g+=d[i+1];b+=d[i+2];cnt++;}
+          return cnt?[r/cnt|0,g/cnt|0,b/cnt|0]:[60,60,60];
+        }
+        async function createSongElement(song){
+          const e=document.createElement('div');e.className='song-entry';
+          const img=document.createElement('img');img.className='album-art';img.crossOrigin='anonymous';img.src=song.album_art_url||'';e.appendChild(img);
+          const info=document.createElement('div');info.className='song-info';
+          const t=document.createElement('div');t.className='song-title';t.textContent=song.track||'';if(song.track_url)t.onclick=()=>window.open(song.track_url,'_blank');info.appendChild(t);
+          const a=document.createElement('div');a.className='artist-names';a.textContent=song.artist||'';info.appendChild(a);
+          e.appendChild(info);
+          await new Promise(r=>img.complete?r():img.onload=img.onerror=r);
+          const [r0,g0,b0]=await getDominantColor(img);
+          e.style.background='linear-gradient(180deg,rgba('+r0+','+g0+','+b0+',0.9) 0%,rgba('+r0+','+g0+','+b0+',0.4) 100%)';
+          return e;
+        }
+        async function fetchSongs(){
+          const c=document.getElementById('spotify-container');
+          const res=await fetch('https://raw.githubusercontent.com/aesvo/loseryard/main/872658221821726811.json');
+          if(!res.ok){c.textContent='Unable to load songs';c.classList.add('visible');return;}
+          const s=(await res.json()).songs||[];
+          c.innerHTML='';c.classList.remove('visible');
+          if(!s.length){c.textContent='No songs found';c.classList.add('visible');return;}
+          const recentSong=s[0];
+          if(recentSong){c.appendChild(await createSongElement(recentSong));c.classList.add('visible');}
+        }
+        fetchSongs();
+      </script>
+    </body>
+    </html>
