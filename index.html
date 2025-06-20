@@ -3,161 +3,74 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>home page</title>
+  <title>corrupt.im</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
     body {
       margin: 0;
-      padding: 0;
-      background-color: #0d0d0d;
+      font-family: Arial, sans-serif;
+      background: #000;
       color: #fff;
-      font-family: system-ui, sans-serif;
-      font-size: 16px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 20px;
-    }
-    .container {
-      background-color: #1a1a1a;
-      border: 1px solid #333;
-      border-radius: 12px;
-      padding: 30px 20px;
       text-align: center;
-      width: 90%;
-      max-width: 600px;
+      padding: 60px 20px;
     }
-    .banned-title {
-      color: #ff0000;
-      font-size: 28px;
-      font-weight: bold;
-      margin-bottom: 30px;
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 40px;
     }
+
     .section {
-      margin-bottom: 25px;
-      text-align: left;
+      margin-bottom: 40px;
     }
-    .section h3 {
-      color: #ff0000;
-      font-size: 20px;
-      font-weight: bold;
-      margin-bottom: 10px;
+
+    .section h2 {
+      font-size: 22px;
+      margin-bottom: 12px;
     }
-    .section ul {
-      margin: 0;
-      padding-left: 20px;
+
+    .section p {
+      color: #ccc;
+      font-size: 15px;
     }
-    .section li {
-      margin-bottom: 8px;
-      line-height: 1.5;
-    }
+
     .discord-link {
       display: inline-block;
-      color: #ffffff;
-      font-weight: bold;
+      font-size: 15px;
+      color: #fff;
+      background: transparent;
+      border: 1px solid #fff;
+      padding: 6px 14px;
+      border-radius: 2px;
       text-decoration: none;
-      position: relative;
-      padding-bottom: 4px;
-      transition: all 0.2s ease-in-out;
-      margin-top: 10px;
+      transition: background 0.2s, color 0.2s;
+      margin-top: 15px;
     }
-    .discord-link:hover::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      height: 2px;
-      width: 100%;
-      background-color: #ffffff;
-    }
-    .discord-link:active {
-      opacity: 0.7;
-    }
-    .nav-links {
-      margin-bottom: 20px;
-    }
-    .nav-link {
-      display: inline-block;
-      color: #ffffff;
-      text-decoration: none;
-      margin: 0 15px;
-      padding: 8px 16px;
-      border: 1px solid #333;
-      border-radius: 6px;
-      transition: all 0.2s ease-in-out;
-    }
-    .nav-link:hover {
-      background-color: #333;
-      border-color: #555;
-    }
-    .page {
-      display: none;
-    }
-    .page.active {
-      display: block;
+
+    .discord-link:hover {
+      background-color: #fff;
+      color: #000;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="banned-title">corrupt.im</div>
-    
-    <div class="nav-links">
-      <a href="#" class="nav-link" onclick="showPage('home')">Home</a>
-      <a href="#" class="nav-link" onclick="showPage('team')">Team</a>
-    </div>
+  <h1>-- corrupt.im --</h1>
 
-    <div id="home" class="page active">
-      <div class="section">
-        <h3>What is corrupt.im?</h3>
-        <ul>
-          <li>It is the first ever discord bot powered biolink site.</li>
-        </ul>
-      </div>
-
-      <div class="section">
-        <h3>What do you mean by discord bot powered?</h3>
-        <ul>
-          <li>This site is fully hosted on github only, and YOU can use our discord bot to create a profile > do changes</li>
-        </ul>
-      </div>
-
-      <a class="discord-link" href="https://discord.gg/gtJ6eQynrN">join the Discord server</a>
-    </div>
-
-    <div id="team" class="page">
-      <div class="section">
-        <h3>Our Team</h3>
-        <ul>
-          <li><strong>Founder: (gator)</strong> The owner of this fine website!</li>
-          <li><strong>Developer's: (gator, 3)</strong> Gator is our main dev but 3 is just a helper and gators friend</li>
-        </ul>
-      </div>
-      
-      <div class="section">
-        <h3>Want to join the team?</h3>
-        <ul>
-          <li>We're always looking for talented developers</li>
-          <li>Join our Discord and let us know your skills</li>
-        </ul>
-      </div>
-
-      <a class="discord-link" href="https://discord.gg/gtJ6eQynrN">join the Discord server</a>
-    </div>
+  <div class="section">
+    <h2>tf is corrupt.im?</h2>
+    <p>a biolink site that uses a discord bot as a 'dashboard' (ect)</p>
   </div>
 
-  <script>
-    function showPage(pageId) {
-      // Hide all pages
-      const pages = document.querySelectorAll('.page');
-      pages.forEach(page => page.classList.remove('active'));
-      
-      // Show selected page
-      document.getElementById(pageId).classList.add('active');
-    }
-  </script>
+  <div class="section">
+    <h2>wdym by 'uses discord bot'</h2>
+    <p>the entire site is hosted on github, and you use our discord bot to create/edit your profile</p>
+  </div>
+
+  <div class="section">
+    <h2>we are still in the early days</h2>
+    <p>corrupt.im is NOT out yet, we are still perfecting stuff.</p>
+  </div>
+
+  <a class="discord-link" href="https://discord.gg/gtJ6eQynrN" target="_blank">join the server to get started
+  </a>
 </body>
 </html>
