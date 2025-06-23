@@ -1,34 +1,24 @@
 [
   {
-    "profile": "loser",
-    "created_by": "1386330781458108496",
-    "uid": 1
-  },
-  {
     "profile": "3",
     "created_by": "872658221821726811",
-    "uid": 2
+    "uid": 1
   },
   {
     "profile": "cj",
     "created_by": "1379709311873187910",
-    "uid": 3,
+    "uid": 2,
     "rich": "true"
   },
   {
     "profile": "buck",
     "created_by": "1386330781458108496",
-    "uid": 4
+    "uid": 29329320390213913
   },
   {
     "profile": "DemonTime",
     "created_by": "1379709311873187910",
     "uid": 5,
     "rich": "true"
-  },
-  {
-    "profile": "transperancy",
-    "created_by": "1386330781458108496",
-    "uid": 6
   }
 ]
