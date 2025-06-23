@@ -15,32 +15,5 @@
     "uid": 3,
     "rich": "true"
   },
-  {
-    "profile": "premium",
-    "created_by": "1386330781458108496",
-    "uid": 4
-  },
-  {
-    "profile": "compy",
-    "created_by": "1379709311873187910",
-    "uid": 5,
-    "rich": "true"
-  },
-  {
-    "profile": "DemonTime",
-    "created_by": "1379709311873187910",
-    "uid": 6,
-    "rich": "true"
-  },
-  {
-    "profile": "vamp",
-    "created_by": "1379709311873187910",
-    "uid": 7,
-    "rich": "true"
-  },
-  {
-    "profile": "inter",
-    "created_by": "1386330781458108496",
-    "uid": 8
   }
 ]
