@@ -121,6 +121,15 @@ body, body * { user-select: none !important; -webkit-user-select: none !importan
       object-fit: cover;
       border-radius: 3px;
     }
+      .ghost-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150px;
+    height: 150px;
+    z-index: 2;
+    pointer-events: none;
+  }
     .username-container {
       display: flex;
       flex-direction: column;
