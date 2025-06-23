@@ -1,7 +1,7 @@
 [
   {
-    "profile": "b",
+    "profile": "banned",
     "created_by": "user_banned",
-    "uid": 1
+    "uid": "banned"
   }
 ]
