@@ -132,6 +132,15 @@ body, body * { user-select: none !important; -webkit-user-select: none !importan
       object-fit: cover;
       border-radius: 3px;
     }
+      .ghost-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150px;
+    height: 150px;
+    z-index: 2;
+    pointer-events: none;
+  }
     .username-container {
       display: flex;
       flex-direction: column;
@@ -271,7 +280,8 @@ body, body * { user-select: none !important; -webkit-user-select: none !importan
   
   <div class="container">
     <div class="profile-header">
-      <img src="uploads/pfp_511c99a6c5d1_872658221821726811.jpg" class="avatar" />
+      <img src="https://corrupt.im/xray/defaultpfp.jpg" class="avatar" />
+      <img src="decorations/" alt="decoration" style="position:absolute;top:0;left:0;width:150px;height:150px;z-index:2;pointer-events:none;" onerror="this.style.display='none'" onload="if(!this.src) this.style.display='none'"/>
       <div class="username-container">
         <div class="name-row">
           <span>3</span>
