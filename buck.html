@@ -137,6 +137,15 @@ body, body * { user-select: none !important; -webkit-user-select: none !importan
       object-fit: cover;
       border-radius: 3px;
     }
+      .ghost-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150px;
+    height: 150px;
+    z-index: 2;
+    pointer-events: none;
+  }
     .username-container {
       display: flex;
       flex-direction: column;
@@ -276,13 +285,14 @@ body, body * { user-select: none !important; -webkit-user-select: none !importan
   
   <div class="container">
     <div class="profile-header">
-      <img src="uploads/pfp_2e9e7e25c2ff_1386330781458108496.jpg" class="avatar" />
+      <img src="https://corrupt.im/xray/defaultpfp.jpg" class="avatar" />
+      <img src="decorations/" alt="decoration" style="position:absolute;top:0;left:0;width:150px;height:150px;z-index:2;pointer-events:none;" onerror="this.style.display='none'" onload="if(!this.src) this.style.display='none'"/>
       <div class="username-container">
         <div class="name-row">
           <span>buck</span>
         </div>
   
-        <div class="bio">i love corrupt.im</div>
+        <div class="bio">dev</div>
         <div class="badge-row" id="badge-row"></div>
       </div>
     </div>
@@ -291,7 +301,7 @@ body, body * { user-select: none !important; -webkit-user-select: none !importan
   <div class="info-container">
     <div class="section-header">
       <img src="xray/pen.png" alt="pen icon" style="height: 1em; vertical-align: middle; margin-right: 1px;">
-      About Me
+      abot da sigma buck
     </div>
     <div>i love corrupt.im</div>
   </div>  
