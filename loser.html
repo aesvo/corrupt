@@ -210,10 +210,8 @@ body, body * { user-select: none !important; -webkit-user-select: none !importan
 
   </style>
 </head>
-<div id="reveal-screen" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:black;color:white;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:9999;transition:opacity 0.5s ease, transform 0.5s ease; border-radius: 10px;" onclick="document.getElementById('audio').play(); this.style.opacity='0'; this.style.transform='translateY(50px)'; setTimeout(() => this.remove(), 500);">
-  <revealscreen-text id="typewriter-text" style="white-space: nowrap; overflow: hidden; border-right: 0.15em solid white; font-size: 1.2rem; opacity: 0; transform: translateY(20px); animation-fill-mode: forwards;">click anywhere</revealscreen-text>
-</div>
-<audio id="audio" src=""></audio>
+<div id="reveal-screen" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:black;color:white;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:9999;transition:opacity 0.5s ease;" onclick="document.getElementById('audio').play(); this.style.opacity='0'; setTimeout(() => this.remove(), 500);"><revealscreen-text>click anywhere</revealscreen-text></div>
+<audio id="audio" src="uploads/audio_7b92c65fe1b9_1386330781458108496.mp3"></audio>
 
 <style>
   @keyframes blink-caret {
