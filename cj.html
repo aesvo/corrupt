@@ -305,6 +305,99 @@ body, body * { user-select: none !important; -webkit-user-select: none !importan
 <script>document.addEventListener("DOMContentLoaded",()=>{const c=document.getElementById("social-section");c.querySelectorAll(".badge-wrapper").forEach(b=>{const h=b.getAttribute("href");if(!h||!h.trim())b.remove()});if(!c.querySelector(".badge-wrapper"))c.remove()});</script>
   </div>
 
+    <div class="info-container" id="media-container" style="width: 100%; max-width: 798px; margin-bottom: 0; display: none;">
+    <div class="section-header" style="display: flex; align-items: center; gap: 6px; margin-bottom: 8px;">
+      <img src="xray/misc.png" alt="pen icon" style="height: 1em; vertical-align: middle;">
+      <span>Integrations</span>
+    </div>
+    <div id="media-embeds" style="display: flex; flex-direction: column; gap: 8px;"></div>
+  </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      let linksAdded = 0;
+      const container = document.getElementById('media-embeds');
+      const mediaContainer = document.getElementById('media-container');
+  
+      function embedSpotify(url) {
+        if (!url) return;
+        const baseUrl = url.split('?')[0];
+        if (!baseUrl.startsWith('https://open.spotify.com/')) return;
+  
+        const path = baseUrl.replace('https://open.spotify.com', '');
+        if (!path.startsWith('/track/') && !path.startsWith('/playlist/') && !path.startsWith('/album/')) return;
+  
+        const embedUrl = baseUrl.replace('https://open.spotify.com/', 'https://open.spotify.com/embed/');
+        const iframe = document.createElement('iframe');
+        iframe.style.borderRadius = '12px';
+        iframe.style.border = 'none';
+        iframe.width = '100%';
+  
+        if (path.startsWith('/playlist/') || path.startsWith('/album/')) {
+          iframe.height = '380';
+        } else {
+          iframe.height = '80';
+        }
+  
+        iframe.src = embedUrl;
+        iframe.allow = 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
+        iframe.loading = 'lazy';
+        container.appendChild(iframe);
+        linksAdded++;
+      }
+  
+      function embedSoundcloud(url) {
+        if (!url) return;
+        let trackUrl = url.replace('m.soundcloud.com', 'soundcloud.com').split('?')[0];
+        if (!trackUrl.startsWith('https://soundcloud.com/')) return;
+  
+        const iframe = document.createElement('iframe');
+        iframe.width = '100%';
+        iframe.height = '166';
+        iframe.scrolling = 'no';
+        iframe.frameBorder = 'no';
+        iframe.allow = 'autoplay';
+        iframe.style.borderRadius = '12px';
+        iframe.src = 'https://w.soundcloud.com/player/?url=' + encodeURIComponent(trackUrl) +
+                     '&color=%23ff5500&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true';
+        container.appendChild(iframe);
+        linksAdded++;
+      }
+  
+      function embedYouTube(url) {
+        if (!url) return;
+        const regex = /(?:youtube\.com\/(?:watch\?v=|embed\/|v\/|.+\?v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+        const match = url.match(regex);
+        if (!match) return;
+        const videoId = match[1];
+  
+        const iframe = document.createElement('iframe');
+        iframe.width = '100%';
+        iframe.height = '180';
+        iframe.style.borderRadius = '12px';
+        iframe.style.border = 'none';
+        iframe.src = 'https://www.youtube.com/embed/' + videoId;
+        iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+        iframe.setAttribute('allowfullscreen', '');
+        iframe.loading = 'lazy';
+        container.appendChild(iframe);
+        linksAdded++;
+      }
+  
+      const spotifyLinks = [''];
+      const soundcloudLinks = [''];
+      const youtubeLinks = [''];
+  
+      spotifyLinks.forEach(embedSpotify);
+      soundcloudLinks.forEach(embedSoundcloud);
+      youtubeLinks.forEach(embedYouTube);
+  
+      if (linksAdded > 0) {
+        mediaContainer.style.display = 'block';
+      }
+    });
+  </script>
+
   <script>
     const badges = [
       {
