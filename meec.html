@@ -25,34 +25,6 @@
   <style>
 
 
-</style><style id="corrupt-cursor-style">
-  html, html *, 
-  body, body *,
-  div, span, p, h1, h2, h3, h4, h5, h6,
-  a, button, input, textarea, select, label,
-  [role="button"], 
-  input[type="submit"], 
-  input[type="button"], 
-  input[type="range"],
-  input[type="range"]::-webkit-slider-thumb,
-  input[type="range"]::-moz-range-thumb,
-  .cursor-pointer,
-  .btn, .link {
-    cursor: url("uploads/") 14 14, auto !important;
-  }
-  * {
-    cursor: url("uploads/") 14 14, auto !important;
-  }
-  a:hover, button:hover, [role="button"]:hover,
-  input[type="submit"]:hover, input[type="button"]:hover {
-    cursor: url("uploads/") 14 14, auto !important;
-  }
-  html {
-    cursor: url("uploads/") 14 14, auto !important;
-  }
-  body {
-    cursor: url("uploads/") 14 14, auto !important;
-  }
 </style>
 <style>
   * { box-sizing: border-box; }
@@ -117,7 +89,7 @@ body, body * { user-select: none !important; -webkit-user-select: none !importan
   content: "";
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background-image: url('https://corrupt.im/xray/defaultbanner.jpg');
+  background-image: url('');
   background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -329,7 +301,7 @@ body, body * { user-select: none !important; -webkit-user-select: none !importan
   
 <div class="container">
   <div class="profile-header" style="position:relative;">
-    <img src="https://corrupt.im/xray/defaultpfp.png" class="avatar" />
+    <img src="" class="avatar" />
     <img src="decorations/" alt="decoration" style="position:absolute;top:0;left:0;width:150px;height:150px;z-index:2;pointer-events:none;" onerror="this.style.display='none'" onload="if(!this.src) this.style.display='none'"/>
     <div class="username-container">
       <div class="name-row">
@@ -372,14 +344,14 @@ body, body * { user-select: none !important; -webkit-user-select: none !importan
 </div>  
 <audio id="audio" loop></audio>
 <video class="video-bg" autoplay loop playsinline style="display:none;"></video>
-<div id="background-image" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background-image:url('uploads/background_9e1428561d02_1386697671116591104.jpg');background-size:cover;background-position:center;z-index:-1;"></div>
+<div id="background-image" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background-image:url('');background-size:cover;background-position:center;z-index:-1;"></div>
 <script>
 function startMedia(revealScreen) {
   const audio = document.getElementById('audio');
   const video = document.querySelector('.video-bg');
 
-var audioSrc = "uploads/audio_10480aa56578_1386697671116591104.mp3"; 
-var videoSrc = "uploads/background_b7d039a1313e_1386697671116591104.mp4";
+var audioSrc = ""; 
+var videoSrc = "";
 
 video.innerHTML = '<source src="' + videoSrc + '" type="video/mp4">';
 video.load();
