@@ -6,26 +6,14 @@
     "rich": "true"
   },
   {
-    "profile": "ml",
-    "created_by": "1386697671116591104",
-    "uid": 2,
-    "rich": "true"
-  },
-  {
-    "profile": "banned",
-    "created_by": "1386697671116591104",
-    "uid": 3,
-    "rich": "true"
-  },
-  {
     "profile": "banned",
     "created_by": "banned",
-    "uid": 4
+    "uid": 2
   },
   {
     "profile": "syf",
     "created_by": "1386697671116591104",
-    "uid": 5,
+    "uid": 3,
     "rich": "true"
   }
 ]
