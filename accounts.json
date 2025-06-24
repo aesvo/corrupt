@@ -1,25 +1,8 @@
 [
   {
-    "profile": "3",
-    "created_by": "872658221821726811",
-    "uid": 1
-  },
-  {
-    "profile": "buck",
-    "created_by": "1386697671116591104",
-    "uid": 2,
-    "rich": "true"
-  },
-  {
-    "profile": "test",
-    "created_by": "1386697671116591104",
-    "uid": 3,
-    "rich": "true"
-  },
-  {
     "profile": "nat",
     "created_by": "1386697671116591104",
-    "uid": 4,
+    "uid": 1,
     "rich": "true"
   }
 ]
