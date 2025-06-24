@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>devop — corrupt.im</title>
+  <link rel="icon" href="xray/favicon.ico" type="image/x-icon" />
+  <meta name="description" content="corrupt.im" />
+  <meta property="og:title" content="corrupt.im!" />
+  <meta property="og:description" content="corrupt.im" />
+  <meta property="og:image" content="https://corrupt.im/xray/background.png" />
+  <meta property="og:url" content="https://corrupt.im" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="corrupt.im" />
+  <meta name="twitter:description" content="corrupt.im" />
+  <meta name="twitter:image" content="https://corrupt.im/xray/background.png" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZPRG8VDG0Z"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ZPRG8VDG0Z');
+</script>
+
+  <style>
+
+
+</style><style id="corrupt-cursor-style">
+  html, html *, 
+  body, body *,
+  div, span, p, h1, h2, h3, h4, h5, h6,
+  a, button, input, textarea, select, label,
+  [role="button"], 
+  input[type="submit"], 
+  input[type="button"], 
+  input[type="range"],
+  input[type="range"]::-webkit-slider-thumb,
+  input[type="range"]::-moz-range-thumb,
+  .cursor-pointer,
+  .btn, .link {
+    cursor: url("uploads/") 14 14, auto !important;
+  }
+  * {
+    cursor: url("uploads/") 14 14, auto !important;
+  }
+  a:hover, button:hover, [role="button"]:hover,
+  input[type="submit"]:hover, input[type="button"]:hover {
+    cursor: url("uploads/") 14 14, auto !important;
+  }
+  html {
+    cursor: url("uploads/") 14 14, auto !important;
+  }
+  body {
+    cursor: url("uploads/") 14 14, auto !important;
+  }
+</style>
+<style>
+  * { box-sizing: border-box; }
+  html, body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  padding-bottom: 2px; 
+}
+
+
+body {
+  background: #000000 url('xray/background.png') no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+  font-family: system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.3;
+  height: 100%;
+  width: 100%;
+}
+
+
+
+body, body * { user-select: none !important; -webkit-user-select: none !important; -moz-user-select: none !important; -ms-user-select: none !important; -webkit-touch-callout: none !important; }
+
+.container {
+  position: relative;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 10px 14px;
+  border: 1px solid #2c2c2c;
+  border-radius: 6px;
+  box-sizing: border-box;
+  background-color: transparent;
+  overflow: hidden;
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url('https://corrupt.im/xray/background.png');
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 1;
+  z-index: 0;
+}
+
+.container > * {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 600px) {
+  .container {
+    max-width: 100%;
+    margin: 10px;
+    padding: 12px 16px;
+    border-width: 1px;
+    border-radius: 12px;
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
+
+    .profile-header {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 8px 12px;
+}
+    .avatar {
+      width: 133px;
+      height: 133px;
+      object-fit: cover;
+      border-radius: 3px;
+    }
+    .ghost-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150px;
+    height: 150px;
+    z-index: 2;
+    pointer-events: none;
+  }
+    .username-container {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex-grow: 1;
+    }
+    .name-row {
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 0;
+    }
+    .bio {
+      color: #ccc;
+      max-width: 600px;
+      font-size: 13px;
+    }
+    .badge-row {
+      display: flex;
+      justify-content: flex-start;
+      margin-top: 6px;
+      gap: 6px;
+    }
+    .badge-wrapper {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .badge {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+      filter: drop-shadow(0 0 4px currentColor);
+    }
+    .badge.staff {
+      color: #e76357;
+    }
+    .section-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: bold;
+  font-size: 1em;
+}
+
+.spin-icon {
+  width: 1em;
+  height: 1em;
+  object-fit: contain;
+}
+
+.tooltip { background: rgba(17, 17, 17, 0.6); backdrop-filter: blur(6px); color: #fff; text-align: center; padding: 4px 6px; border-radius: 6px; font-size: 12px; position: absolute; top: 130%; left: 50%; transform: translateX(-50%); white-space: nowrap; border: 1px solid #2c2c2c; opacity: 0; pointer-events: none; transition: opacity 0.3s, transform 0.3s; max-width: 150px; }
+
+
+    .badge-wrapper:hover .tooltip {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    .section-header {
+      font-weight: 600;
+      font-size: 15px;
+      margin-bottom: 8px;
+      border-bottom: 1px solid #2c2c2c;
+      padding-bottom: 4px;
+    }
+    .info-container {
+  max-width: 800px;
+  margin: 10px auto 14px auto;
+  padding: 9px 18px;
+  border: 1px solid #2c2c2c;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  box-sizing: border-box;
+}
+@media (max-width: 600px) {
+  .info-container {
+    max-width: 100%;
+    margin: 8px 10px 14px 10px;
+    padding: 12px 16px;
+    border-radius: 12px;
+  }
+}
+
+  </style>
+</head>
+<div id="reveal-screen" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:black;color:white;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:9999;transition:opacity 0.5s ease, transform 0.5s ease; border-radius: 10px;" onclick="document.getElementById('audio').play(); this.style.opacity='0'; this.style.transform='translateY(50px)'; setTimeout(() => this.remove(), 500);">
+  <revealscreen-text id="typewriter-text" style="white-space: nowrap; overflow: hidden; border-right: 0.15em solid white; font-size: 1.2rem; opacity: 0; transform: translateY(20px); animation-fill-mode: forwards;">click anywhere</revealscreen-text>
+</div>
+<audio id="audio" src=""></audio>
+
+<style>
+  @keyframes blink-caret {
+    0%, 50% { border-color: white; }
+    51%, 100% { border-color: transparent; }
+  }
+  @keyframes fadeUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<script>
+  const typeeffect_enabled = true; 
+  const el = document.getElementById('typewriter-text'); 
+  const text = el.textContent; 
+  el.textContent = ''; 
+  if(typeeffect_enabled){
+    el.style.animation = 'blink-caret 1s step-start infinite, fadeUp 0.6s ease forwards'; 
+    let i=0; 
+    (function typeWriter(){ 
+      if(i < text.length){ 
+        el.textContent += text.charAt(i); 
+        i++; 
+        setTimeout(typeWriter, 100); 
+      } 
+    })(); 
+  } else { 
+    el.textContent = text; 
+    el.style.borderRight = 'none'; 
+    el.style.opacity = '1'; 
+    el.style.transform = 'translateY(0)'; 
+  }
+</script>
+
+  
+  <div class="container">
+    <div class="profile-header">
+      <img src="https://corrupt.im/xray/defaultpfp.jpg" class="avatar" />
+      <img src="decorations/" alt="decoration" style="position:absolute;top:0;left:0;width:150px;height:150px;z-index:2;pointer-events:none;" onerror="this.style.display='none'" onload="if(!this.src) this.style.display='none'"/>
+      <div class="username-container">
+        <div class="name-row">
+          <span>devop</span>
+        </div>
+  
+        <div class="bio">i love corrupt.im</div>
+        <div class="badge-row" id="badge-row"></div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="info-container">
+    <div class="section-header">
+      <img src="xray/pen.png" alt="pen icon" style="height: 1em; vertical-align: middle; margin-right: 1px;">
+      About Me
+    </div>
+    <div>i love corrupt.im</div>
+  </div>  
+
+  <div class="info-container">
+    <div class="section-header">
+      <img src="xray/info.png" alt="info icon" style="height: 1em; vertical-align: middle; margin-right: 0px;">
+      Info
+    </div>
+    <div>UID: 12</div>
+    <div>Created: Jun 24, 2025</div>
+    <div>Discord ID: 1386697671116591104</div>
+  </div>
+  
+
+  <div class="info-container" id="social-section">
+    <div class="section-header">
+      <img src="xray/share.png" alt="social" style="height:1em;margin-right:1px;">Socials
+  </div>
+
+    <a href="" class="badge-wrapper" title="discord" target="_blank" rel="noopener noreferrer" style="display:inline-block;transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"><svg viewBox="0 0 24 24" class="badge" xmlns="http://www.w3.org/2000/svg" style="color:white"><path fill="currentColor" d="M20.317 4.37a19.8 19.8 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.3 18.3 0 0 0-5.487 0a13 13 0 0 0-.617-1.25a.08.08 0 0 0-.079-.037A19.7 19.7 0 0 0 3.677 4.37a.1.1 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.08.08 0 0 0 .084-.028a14 14 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13 13 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10 10 0 0 0 .372-.292a.07.07 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.07.07 0 0 1 .078.01q.181.149.373.292a.077.077 0 0 1-.006.127a12.3 12.3 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.08.08 0 0 0 .084.028a19.8 19.8 0 0 0 6.002-3.03a.08.08 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 0 0-.031-.03M8.02 15.33c-1.182 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418m7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418"/></svg></a>
+    <a href="" class="badge-wrapper" title="instagram" target="_blank" rel="noopener noreferrer" style="display:inline-block;transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"><svg viewBox="0 0 24 24" class="badge" xmlns="http://www.w3.org/2000/svg" style="color:white"><path fill="currentColor" d="M7.03.084c-1.277.06-2.149.264-2.91.563a5.9 5.9 0 0 0-2.124 1.388a5.9 5.9 0 0 0-1.38 2.127C.321 4.926.12 5.8.064 7.076s-.069 1.688-.063 4.947s.021 3.667.083 4.947c.061 1.277.264 2.149.563 2.911c.308.789.72 1.457 1.388 2.123a5.9 5.9 0 0 0 2.129 1.38c.763.295 1.636.496 2.913.552c1.278.056 1.689.069 4.947.063s3.668-.021 4.947-.082c1.28-.06 2.147-.265 2.91-.563a5.9 5.9 0 0 0 2.123-1.388a5.9 5.9 0 0 0 1.38-2.129c.295-.763.496-1.636.551-2.912c.056-1.28.07-1.69.063-4.948c-.006-3.258-.02-3.667-.081-4.947c-.06-1.28-.264-2.148-.564-2.911a5.9 5.9 0 0 0-1.387-2.123a5.9 5.9 0 0 0-2.128-1.38c-.764-.294-1.636-.496-2.914-.55C15.647.009 15.236-.006 11.977 0S8.31.021 7.03.084m.14 21.693c-1.17-.05-1.805-.245-2.228-.408a3.7 3.7 0 0 1-1.382-.895a3.7 3.7 0 0 1-.9-1.378c-.165-.423-.363-1.058-.417-2.228c-.06-1.264-.072-1.644-.08-4.848c-.006-3.204.006-3.583.061-4.848c.05-1.169.246-1.805.408-2.228c.216-.561.477-.96.895-1.382a3.7 3.7 0 0 1 1.379-.9c.423-.165 1.057-.361 2.227-.417c1.265-.06 1.644-.072 4.848-.08c3.203-.006 3.583.006 4.85.062c1.168.05 1.804.244 2.227.408c.56.216.96.475 1.382.895s.681.817.9 1.378c.165.422.362 1.056.417 2.227c.06 1.265.074 1.645.08 4.848c.005 3.203-.006 3.583-.061 4.848c-.051 1.17-.245 1.805-.408 2.23c-.216.56-.477.96-.896 1.38a3.7 3.7 0 0 1-1.378.9c-.422.165-1.058.362-2.226.418c-1.266.06-1.645.072-4.85.079s-3.582-.006-4.848-.06m9.783-16.192a1.44 1.44 0 1 0 1.437-1.442a1.44 1.44 0 0 0-1.437 1.442M5.839 12.012a6.161 6.161 0 1 0 12.323-.024a6.162 6.162 0 0 0-12.323.024M8 12.008A4 4 0 1 1 12.008 16A4 4 0 0 1 8 12.008"/></svg></a>
+    <a href="" class="badge-wrapper" title="spotify" target="_blank" rel="noopener noreferrer" style="display:inline-block;transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"><svg viewBox="0 0 24 24" class="badge" xmlns="http://www.w3.org/2000/svg" style="color:white"><path fill="currentColor" d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12s12-5.4 12-12S18.66 0 12 0m5.521 17.34c-.24.359-.66.48-1.021.24c-2.82-1.74-6.36-2.101-10.561-1.141c-.418.122-.779-.179-.899-.539c-.12-.421.18-.78.54-.9c4.56-1.021 8.52-.6 11.64 1.32c.42.18.54.6.3.999m1.261-2.88c-.3.42-.839.6-1.319.36c-3.24-1.979-8.181-2.561-11.98-1.38c-.479.121-.899-.119-1.08-.479c-.18-.42 0-.839.42-1.08c4.26-1.26 9.54-.6 13.2 1.62c.479.3.6.839.18 1.319m.18-3.78c-4.02-2.52-10.74-2.7-14.94-1.44c-.6.18-1.2-.18-1.381-.779c-.18-.6.18-1.2.78-1.38c4.92-1.38 12.12-1.14 16.74 1.62c.659.359.899 1.261.539 1.859c-.3.601-1.2.779-1.74.141Z"/></svg></a>
+    <a href="" class="badge-wrapper" title="roblox" target="_blank" rel="noopener noreferrer" style="display:inline-block;transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"><svg viewBox="0 0 24 24" class="badge" xmlns="http://www.w3.org/2000/svg" style="color:white"><path fill="currentColor" d="M18.926 23.998L0 18.892L5.075.002L24 5.108ZM15.348 10.09l-5.282-1.453l-1.414 5.273l5.282 1.453z"/></svg></a>
+    <a href="" class="badge-wrapper" title="tiktok" target="_blank" rel="noopener noreferrer" style="display:inline-block;transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"><svg viewBox="0 0 24 24" class="badge" xmlns="http://www.w3.org/2000/svg" style="color:white"><path fill="currentColor" d="M12.525.02c1.31-.02 2.61-.01 3.91-.02c.08 1.53.63 3.09 1.75 4.17c1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97c-.57-.26-1.1-.59-1.62-.93c-.01 2.92.01 5.84-.02 8.75c-.08 1.4-.54 2.79-1.35 3.94c-1.31 1.92-3.58 3.17-5.91 3.21c-1.43.08-2.86-.31-4.08-1.03c-2.02-1.19-3.44-3.37-3.65-5.71c-.02-.5-.03-1-.01-1.49c.18-1.9 1.12-3.72 2.58-4.96c1.66-1.44 3.98-2.13 6.15-1.72c.02 1.48-.04 2.96-.04 4.44c-.99-.32-2.15-.23-3.02.37c-.63.41-1.11 1.04-1.36 1.75c-.21.51-.15 1.07-.14 1.61c.24 1.64 1.82 3.02 3.5 2.87c1.12-.01 2.19-.66 2.77-1.61c.19-.33.4-.67.41-1.06c.1-1.79.06-3.57.07-5.36c.01-4.03-.01-8.05.02-12.07"/></svg></a>
+    <a href="" class="badge-wrapper" title="paypal" target="_blank" rel="noopener noreferrer" style="display:inline-block;transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"><svg viewBox="0 0 24 24" class="badge" xmlns="http://www.w3.org/2000/svg" style="color:white"><path fill="currentColor" d="M7.016 19.198h-4.2a.562.562 0 0 1-.555-.65L5.093.584A.69.69 0 0 1 5.776 0h7.222c3.417 0 5.904 2.488 5.846 5.5q-.008.376-.066.747A6.794 6.794 0 0 1 12.071 12H8.743a.69.69 0 0 0-.682.583l-.325 2.056l-.013.083l-.692 4.39zM19.79 6.142c-.01.087-.01.175-.023.261a7.76 7.76 0 0 1-7.695 6.598H9.007l-.283 1.795l-.013.083l-.692 4.39l-.134.843l-.014.088H6.86l-.497 3.15a.562.562 0 0 0 .555.65h3.612c.34 0 .63-.249.683-.585l.952-6.031a.69.69 0 0 1 .683-.584h2.126a6.79 6.79 0 0 0 6.707-5.752c.306-1.95-.466-3.744-1.89-4.906z"/></svg></a>
+    <a href="" class="badge-wrapper" title="youtube" target="_blank" rel="noopener noreferrer" style="display:inline-block;transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"><svg viewBox="0 0 24 24" class="badge" xmlns="http://www.w3.org/2000/svg" style="color:white"><path fill="currentColor" d="M23.498 6.186a3.02 3.02 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.02 3.02 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.02 3.02 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.02 3.02 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814M9.545 15.568V8.432L15.818 12z"/></svg></a>
+    <a href="" class="badge-wrapper" title="github" target="_blank" rel="noopener noreferrer" style="display:inline-block;transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"><svg viewBox="0 0 24 24" class="badge" xmlns="http://www.w3.org/2000/svg" style="color:white"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12c0 5.303 3.438 9.8 8.205 11.385c.6.113.82-.258.82-.577c0-.285-.01-1.04-.015-2.04c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729c1.205.084 1.838 1.236 1.838 1.236c1.07 1.835 2.809 1.305 3.495.998c.108-.776.417-1.305.76-1.605c-2.665-.3-5.466-1.332-5.466-5.93c0-1.31.465-2.38 1.235-3.22c-.135-.303-.54-1.523.105-3.176c0 0 1.005-.322 3.3 1.23c.96-.267 1.98-.399 3-.405c1.02.006 2.04.138 3 .405c2.28-1.552 3.285-1.23 3.285-1.23c.645 1.653.24 2.873.12 3.176c.765.84 1.23 1.91 1.23 3.22c0 4.61-2.805 5.625-5.475 5.92c.42.36.81 1.096.81 2.22c0 1.606-.015 2.896-.015 3.286c0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+    <a href="" class="badge-wrapper" title="cashapp" target="_blank" rel="noopener noreferrer" style="display:inline-block;transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"><svg viewBox="0 0 24 24" class="badge" xmlns="http://www.w3.org/2000/svg" style="color:white"><path fill="currentColor" d="M23.59 3.475a5.1 5.1 0 0 0-3.05-3.05c-1.31-.42-2.5-.42-4.92-.42H8.36c-2.4 0-3.61 0-4.9.4a5.1 5.1 0 0 0-3.05 3.06C0 4.765 0 5.965 0 8.365v7.27c0 2.41 0 3.6.4 4.9a5.1 5.1 0 0 0 3.05 3.05c1.3.41 2.5.41 4.9.41h7.28c2.41 0 3.61 0 4.9-.4a5.1 5.1 0 0 0 3.06-3.06c.41-1.3.41-2.5.41-4.9v-7.25c0-2.41 0-3.61-.41-4.91m-6.17 4.63l-.93.93a.5.5 0 0 1-.67.01a5 5 0 0 0-3.22-1.18c-.97 0-1.94.32-1.94 1.21c0 .9 1.04 1.2 2.24 1.65c2.1.7 3.84 1.58 3.84 3.64c0 2.24-1.74 3.78-4.58 3.95l-.26 1.2a.49.49 0 0 1-.48.39H9.63l-.09-.01a.5.5 0 0 1-.38-.59l.28-1.27a6.54 6.54 0 0 1-2.88-1.57v-.01a.48.48 0 0 1 0-.68l1-.97a.49.49 0 0 1 .67 0c.91.86 2.13 1.34 3.39 1.32c1.3 0 2.17-.55 2.17-1.42s-.88-1.1-2.54-1.72c-1.76-.63-3.43-1.52-3.43-3.6c0-2.42 2.01-3.6 4.39-3.71l.25-1.23a.48.48 0 0 1 .48-.38h1.78l.1.01c.26.06.43.31.37.57l-.27 1.37c.9.3 1.75.77 2.48 1.39l.02.02c.19.2.19.5 0 .68"/></svg></a>
+    <a href="" class="badge-wrapper" title="custom" target="_blank" rel="noopener noreferrer" style="display:inline-block;transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"><svg viewBox="0 0 24 24" class="badge" xmlns="http://www.w3.org/2000/svg" style="color:white"><path fill="currentColor" d="M16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2m-5.15 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 0 1-4.33 3.56M14.34 14H9.66c-.1-.66-.16-1.32-.16-2s.06-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2M12 19.96c-.83-1.2-1.5-2.53-1.91-3.96h3.82c-.41 1.43-1.08 2.76-1.91 3.96M8 8H5.08A7.92 7.92 0 0 1 9.4 4.44C8.8 5.55 8.35 6.75 8 8m-2.92 8H8c.35 1.25.8 2.45 1.4 3.56A8 8 0 0 1 5.08 16m-.82-2C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2M12 4.03c.83 1.2 1.5 2.54 1.91 3.97h-3.82c.41-1.43 1.08-2.77 1.91-3.97M18.92 8h-2.95a15.7 15.7 0 0 0-1.38-3.56c1.84.63 3.37 1.9 4.33 3.56M12 2C6.47 2 2 6.5 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg></a>
+    <script>document.addEventListener("DOMContentLoaded",()=>{const c=document.getElementById("social-section");c.querySelectorAll(".badge-wrapper").forEach(b=>{const h=b.getAttribute("href");if(!h||!h.trim())b.remove()});if(!c.querySelector(".badge-wrapper"))c.remove()});</script>
+      </div>
+
+      <div class="info-container" id="media-container" style="width: 100%; max-width: 798px; margin-bottom: 0; display: none;">
+        <div class="section-header" style="display: flex; align-items: center; gap: 6px; margin-bottom: 8px;">
+          <img src="xray/misc.png" alt="pen icon" style="height: 1em; vertical-align: middle;">
+          <span>Integrations</span>
+        </div>
+        <div id="media-embeds" style="display: flex; flex-direction: column; gap: 8px;"></div>
+      </div>
+      
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          let linksAdded = 0;
+          const container = document.getElementById('media-embeds');
+          const mediaContainer = document.getElementById('media-container');
+      
+          function embedSpotify(url) {
+            if (!url) return;
+            const baseUrl = url.split('?')[0];
+            if (!baseUrl.startsWith('https://open.spotify.com/')) return;
+      
+            const path = baseUrl.replace('https://open.spotify.com', '');
+            if (!/^/(track|playlist|album)//.test(path)) return;
+      
+            const embedUrl = baseUrl.replace('https://open.spotify.com', 'https://open.spotify.com/embed');
+            const iframe = document.createElement('iframe');
+            iframe.style.borderRadius = '12px';
+            iframe.style.border = 'none';
+            iframe.width = '100%';
+            iframe.height = path.startsWith('/playlist/') || path.startsWith('/album/') ? '380' : '80';
+            iframe.src = embedUrl;
+            iframe.allow = 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
+            iframe.loading = 'lazy';
+            container.appendChild(iframe);
+            linksAdded++;
+          }
+      
+          function embedSoundcloud(url) {
+            if (!url) return;
+            const trackUrl = url.replace('m.soundcloud.com', 'soundcloud.com').split('?')[0];
+            if (!trackUrl.startsWith('https://soundcloud.com/')) return;
+      
+            const iframe = document.createElement('iframe');
+            iframe.width = '100%';
+            iframe.height = '166';
+            iframe.scrolling = 'no';
+            iframe.frameBorder = '0';
+            iframe.allow = 'autoplay';
+            iframe.style.borderRadius = '12px';
+            iframe.src = 'https://w.soundcloud.com/player/?url=' + encodeURIComponent(trackUrl) +
+                         '&color=%23ff5500&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true';
+            container.appendChild(iframe);
+            linksAdded++;
+          }
+      
+          function embedYouTube(url) {
+            if (!url) return;
+            const regex = /(?:youtube.com/(?:watch?v=|embed/|v/|.+?v=)|youtu.be/)([a-zA-Z0-9_-]{11})/;
+            const match = url.match(regex);
+            if (!match) return;
+            const videoId = match[1];
+      
+            const iframe = document.createElement('iframe');
+            iframe.width = '100%';
+            iframe.height = '180';
+            iframe.style.borderRadius = '12px';
+            iframe.style.border = 'none';
+            iframe.src = 'https://www.youtube.com/embed/' + videoId;
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+            iframe.allowFullscreen = true;
+            iframe.loading = 'lazy';
+            container.appendChild(iframe);
+            linksAdded++;
+          }
+          const spotifyLinks = [];
+          const soundcloudLinks = [];
+          const youtubeLinks = [];
+      
+          spotifyLinks.forEach(embedSpotify);
+          soundcloudLinks.forEach(embedSoundcloud);
+          youtubeLinks.forEach(embedYouTube);
+      
+          if (linksAdded > 0) {
+            mediaContainer.style.display = 'block';
+          }
+        });
+      </script>
+      
+  
+  <script>
+    const badges = [
+      {
+        name: 'OG',
+        hide: false,
+        color: '#f6a92d',
+        path: 'M333.2 322.8s0 0 0 0l-133.9-146s0 0 0 0L146 118.6c7.8-5.1 37-22.6 78-22.6s70.2 17.4 78 22.6L245.7 180l85.6 93.4 27.4-29.8c16.3-17.7 25.3-40.9 25.3-65l0-29.5c0-19-5.6-37.5-16.1-53.3L327.8 35.6C312.9 13.4 287.9 0 261.2 0l-76 0c-25.8 0-50.1 12.5-65.1 33.5L81.9 87C70.3 103.2 64 122.8 64 142.8L64 164c0 23.2 8.4 45.6 23.6 63.1l56 64.2s0 0 0 0l83.3 95.6s0 0 0 0l91.8 105.3c10 11.5 26.8 14.3 40 6.8l54.5-31.1c17.8-10.2 21.6-34.3 7.7-49.4l-87.7-95.7zM205.2 410.6l-83.3-95.6L27.1 418.5c-13.9 15.1-10.1 39.2 7.7 49.4l55.1 31.5c13 7.4 29.3 4.9 39.4-6.1l75.9-82.6z'
+      },
+      {
+        name: 'Staff',
+        hide: true,
+        path: 'M78.6 5C69.1-2.4 55.6-1.5 47 7L7 47c-8.5 8.5-9.4 22-2.1 31.6l80 104c4.5 5.9 11.6 9.4 19 9.4l54.1 0 109 109c-14.7 29-10 65.4 14.3 89.6l112 112c12.5 12.5 32.8 12.5 45.3 0l64-64c12.5-12.5 12.5-32.8 0-45.3l-112-112c-24.2-24.2-60.6-29-89.6-14.3l-109-109 0-54.1c0-7.5-3.5-14.5-9.4-19L78.6 5zM19.9 396.1C7.2 408.8 0 426.1 0 444.1C0 481.6 30.4 512 67.9 512c18 0 35.3-7.2 48-19.9L233.7 374.3c-7.8-20.9-9-43.6-3.6-65.1l-61.7-61.7L19.9 396.1zM512 144c0-10.5-1.1-20.7-3.2-30.5c-2.4-11.2-16.1-14.1-24.2-6l-63.9 63.9c-3 3-7.1 4.7-11.3 4.7L352 176c-8.8 0-16-7.2-16-16l0-57.4c0-4.2 1.7-8.3 4.7-11.3l63.9-63.9c8.1-8.1 5.2-21.8-6-24.2C388.7 1.1 378.5 0 368 0C288.5 0 224 64.5 224 144l0 .8 85.3 85.3c36-9.1 75.8 .5 104 28.7L429 274.5c49-23 83-72.8 83-130.5zM56 432a24 24 0 1 1 48 0 24 24 0 1 1 -48 0z'
+      },
+      {
+        name: 'Vip',
+        hide: true,
+        color: '#ad28d9',
+        path: 'M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z'
+      },
+      {
+        name: 'Innovator',
+        hide: true,
+        color: '#e3ac1e',
+        path: 'M327.5 85.2c-4.5 1.7-7.5 6-7.5 10.8s3 9.1 7.5 10.8L384 128l21.2 56.5c1.7 4.5 6 7.5 10.8 7.5s9.1-3 10.8-7.5L448 128l56.5-21.2c4.5-1.7 7.5-6 7.5-10.8s-3-9.1-7.5-10.8L448 64 426.8 7.5C425.1 3 420.8 0 416 0s-9.1 3-10.8 7.5L384 64 327.5 85.2zM205.1 73.3c-2.6-5.7-8.3-9.3-14.5-9.3s-11.9 3.6-14.5 9.3L123.3 187.3 9.3 240C3.6 242.6 0 248.3 0 254.6s3.6 11.9 9.3 14.5l114.1 52.7L176 435.8c2.6 5.7 8.3 9.3 14.5 9.3s11.9-3.6 14.5-9.3l52.7-114.1 114.1-52.7c5.7-2.6 9.3-8.3 9.3-14.5s-3.6-11.9-9.3-14.5L257.8 187.4 205.1 73.3zM384 384l-56.5 21.2c-4.5 1.7-7.5 6-7.5 10.8s3 9.1 7.5 10.8L384 448l21.2 56.5c1.7 4.5 6 7.5 10.8 7.5s9.1-3 10.8-7.5L448 448l56.5-21.2c4.5-1.7 7.5-6 7.5-10.8s-3-9.1-7.5-10.8L448 384l-21.2-56.5c-1.7-4.5-6-7.5-10.8-7.5s-9.1 3-10.8 7.5L384 384z'
+      },
+      {
+        name: 'Bug Hunter',
+        hide: true,
+        color: '#50f31e',
+        path: 'M256 0c53 0 96 43 96 96l0 3.6c0 15.7-12.7 28.4-28.4 28.4l-135.1 0c-15.7 0-28.4-12.7-28.4-28.4l0-3.6c0-53 43-96 96-96zM41.4 105.4c12.5-12.5 32.8-12.5 45.3 0l64 64c.7 .7 1.3 1.4 1.9 2.1c14.2-7.3 30.4-11.4 47.5-11.4l112 0c17.1 0 33.2 4.1 47.5 11.4c.6-.7 1.2-1.4 1.9-2.1l64-64c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3l-64 64c-.7 .7-1.4 1.3-2.1 1.9c6.2 12 10.1 25.3 11.1 39.5l64.3 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c0 24.6-5.5 47.8-15.4 68.6c2.2 1.3 4.2 2.9 6 4.8l64 64c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0l-63.1-63.1c-24.5 21.8-55.8 36.2-90.3 39.6L272 240c0-8.8-7.2-16-16-16s-16 7.2-16 16l0 239.2c-34.5-3.4-65.8-17.8-90.3-39.6L86.6 502.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l64-64c1.9-1.9 3.9-3.4 6-4.8C101.5 367.8 96 344.6 96 320l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64.3 0c1.1-14.1 5-27.5 11.1-39.5c-.7-.6-1.4-1.2-2.1-1.9l-64-64c-12.5-12.5-12.5-32.8 0-45.3z'
+      },
+      {
+        name: 'Contributor',
+        hide: true,
+        color: '#13dad0',
+        path: 'M80 104a24 24 0 1 0 0-48 24 24 0 1 0 0 48zm80-24c0 32.8-19.7 61-48 73.3l0 87.8c18.8-10.9 40.7-17.1 64-17.1l96 0c35.3 0 64-28.7 64-64l0-6.7C307.7 141 288 112.8 288 80c0-44.2 35.8-80 80-80s80 35.8 80 80c0 32.8-19.7 61-48 73.3l0 6.7c0 70.7-57.3 128-128 128l-96 0c-35.3 0-64 28.7-64 64l0 6.7c28.3 12.3 48 40.5 48 73.3c0 44.2-35.8 80-80 80s-80-35.8-80-80c0-32.8 19.7-61 48-73.3l0-6.7 0-198.7C19.7 141 0 112.8 0 80C0 35.8 35.8 0 80 0s80 35.8 80 80zm232 0a24 24 0 1 0 -48 0 24 24 0 1 0 48 0zM80 456a24 24 0 1 0 0-48 24 24 0 1 0 0 48z'
+      },
+      {
+        name: 'Admin',
+        hide: true,
+        color: '#196597',
+        path: 'M256 0c4.6 0 9.2 1 13.4 2.9L457.7 82.8c22 9.3 38.4 31 38.3 57.2c-.5 99.2-41.3 280.7-213.6 363.2c-16.7 8-36.1 8-52.8 0C57.3 420.7 16.5 239.2 16 140c-.1-26.2 16.3-47.9 38.3-57.2L242.7 2.9C246.8 1 251.4 0 256 0zm0 66.8l0 378.1C394 378 431.1 230.1 432 141.4L256 66.8s0 0 0 0z'
+      },
+      {
+        name: 'Verified',
+        hide: true,
+        color: '#00aeff',
+        path: 'M256 0c36.8 0 68.8 20.7 84.9 51.1C373.8 41 411 49 437 75s34 63.3 23.9 96.1C491.3 187.2 512 219.2 512 256s-20.7 68.8-51.1 84.9C471 373.8 463 411 437 437s-63.3 34-96.1 23.9C324.8 491.3 292.8 512 256 512s-68.8-20.7-84.9-51.1C138.2 471 101 463 75 437s-34-63.3-23.9-96.1C20.7 324.8 0 292.8 0 256s20.7-68.8 51.1-84.9C41 138.2 49 101 75 75s63.3-34 96.1-23.9C187.2 20.7 219.2 0 256 0zM369 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-111 111-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4 9.4 24.6 9.4 33.9 0L369 209z'
+      },
+      {
+        name: 'Friend',
+        hide: true,
+        color: '#f27d00',
+        path: 'M153.6 29.9l16-21.3C173.6 3.2 180 0 186.7 0C198.4 0 208 9.6 208 21.3V43.5c0 13.1 5.4 25.7 14.9 34.7L307.6 159C356.4 205.6 384 270.2 384 337.7C384 434 306 512 209.7 512H192C86 512 0 426 0 320v-3.8c0-48.8 19.4-95.6 53.9-130.1l3.5-3.5c4.2-4.2 10-6.6 16-6.6C85.9 176 96 186.1 96 198.6V288c0 35.3 28.7 64 64 64s64-28.7 64-64v-3.9c0-18-7.2-35.3-19.9-48l-38.6-38.6c-24-24-37.5-56.7-37.5-90.7c0-27.7 9-54.8 25.6-76.9z'
+      },
+      {
+        name: 'Creator',
+        hide: true,
+        color: '#fff',
+        path: 'M272 384c9.6-31.9 29.5-59.1 49.2-86.2c0 0 0 0 0 0c5.2-7.1 10.4-14.2 15.4-21.4c19.8-28.5 31.4-63 31.4-100.3C368 78.8 289.2 0 192 0S16 78.8 16 176c0 37.3 11.6 71.9 31.4 100.3c5 7.2 10.2 14.3 15.4 21.4c0 0 0 0 0 0c19.8 27.1 39.7 54.4 49.2 86.2l160 0zM192 512c44.2 0 80-35.8 80-80l0-16-160 0 0 16c0 44.2 35.8 80 80 80zM112 176c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-61.9 50.1-112 112-112c8.8 0 16 7.2 16 16s-7.2 16-16 16c-44.2 0-80 35.8-80 80z'
+      }
+    ];
+
+
+    
+    const badgeRow = document.getElementById('badge-row');
+    badges.forEach(badge => {
+      if (badge.hide) return;
+      const wrapper = document.createElement('div');
+      wrapper.className = 'badge-wrapper';
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('viewBox', '0 0 512 512');
+      svg.classList.add('badge');
+      svg.style.color = badge.color;
+      if (badge.name.toLowerCase() === 'staff') svg.classList.add('staff');
+      const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path.setAttribute('d', badge.path);
+      svg.appendChild(path);
+      const tooltip = document.createElement('div');
+      tooltip.className = 'tooltip';
+      tooltip.textContent = badge.name;
+      wrapper.appendChild(svg);
+      wrapper.appendChild(tooltip);
+      badgeRow.appendChild(wrapper);
+    });
+
+    
+    async function getDominantColor(img) {
+      const c = document.createElement('canvas'), ctx = c.getContext('2d');
+      c.width = c.height = 30;
+      ctx.drawImage(img, 0, 0, 30, 30);
+      const d = ctx.getImageData(0, 0, 30, 30).data;
+      let r = 0, g = 0, b = 0, cnt = 0;
+      for (let i = 0; i < d.length; i += 4)
+        if (d[i + 3] > 125) { r += d[i]; g += d[i + 1]; b += d[i + 2]; cnt++; }
+      return cnt ? [r / cnt | 0, g / cnt | 0, b / cnt | 0] : [60, 60, 60];
+    }
+    
+    fetchSongs();
+  </script>
+</body>
+</html>
