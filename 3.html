@@ -238,7 +238,7 @@ body, body * { user-select: none !important; -webkit-user-select: none !importan
   </style>
 </head>
 <div id="reveal-screen" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:black;color:white;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:9999;transition:opacity 0.5s ease;" onclick="document.getElementById('audio').play(); this.style.opacity='0'; setTimeout(() => this.remove(), 500);"><revealscreen-text>click anywhere</revealscreen-text></div>
-<audio id="audio" src="uploads/audio_c2c5bea11e42_872658221821726811.mov"></audio>
+<audio id="audio" src="uploads/audio_c2c5bea11e42_872658221821726811.mov" loop></audio>
 
 <style>
   @keyframes blink-caret {
@@ -603,7 +603,7 @@ body, body * { user-select: none !important; -webkit-user-select: none !importan
       tooltip.className = 'tooltip';
       tooltip.textContent = badge.name;
       wrapper.appendChild(svg);
-      wrapper.appendChild(tooltip);
+      wrapper.appendChild(tooltip);£¢
       badgeRow.appendChild(wrapper);
     });
 
