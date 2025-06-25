@@ -12,7 +12,7 @@
     
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-      background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+      background: #000;
       color: #fff;
       display: flex;
       align-items: center;
@@ -23,7 +23,6 @@
       position: relative;
       overflow: hidden;
     }
-    
     body::before {
       content: '';
       position: absolute;
@@ -117,7 +116,7 @@
       background: linear-gradient(45deg, #ff4444 0%, #cc3333 100%);
       border: none;
       padding: 14px 28px;
-      border-radius: 50px;
+      border-radius: 4px;
       text-decoration: none;
       transition: all 0.3s ease;
       font-weight: 600;
@@ -188,11 +187,11 @@
         transform: scale(1.2);
       }
     }
-
+    
     @media (max-width: 480px) {
       body {
         padding: 15px;
- }
+      }
       
       .container {
         max-width: 100%;
@@ -218,7 +217,7 @@
     
     @media (prefers-color-scheme: dark) {
       body {
-        background: linear-gradient(135deg, #000 0%, #111 100%);
+        background: #000;
       }
     }
   </style>
