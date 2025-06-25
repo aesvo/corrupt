@@ -425,6 +425,7 @@ setTimeout(function(){ revealScreen.remove(); }, 500);
     <div class="post-date">Posted June 25</div>
   </div> here-->
 
+
   <button id="show-more-btn" class="join-btn" style="margin-top: 4px;">- show more posts -</button>
 </div>
 
@@ -465,57 +466,44 @@ setTimeout(function(){ revealScreen.remove(); }, 500);
     color: #000;
   }
 </style>
-  
-  <div class="info-container">
-    <div class="section-header" style="display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 1.1em;">
-      <img src="xray/presence.png" alt="pen icon" style="height: 1.2em; vertical-align: middle;">
-      Discord Presence
-    </div>
-    <div id="presence-data"></div>
-  </div>
-  
-  <script>
-    async function fetchDiscordPresence() {
-      var userId = '1379709311873187910'; 
-      var url = 'https://raw.githubusercontent.com/aesvo/loseryard/refs/heads/main/' + userId + '.json';
-      try {
-        var response = await fetch(url);
-        var data = await response.json();
-        var user = data.discord_user || {};
-  
-        var avatar = user.avatar || '';
-        var globalName = user.global_name || 'N/A';
-        var username = user.username || 'N/A';
-        var discordStatus = user.discord_status || 'offline';
-  
-        var statusColors = {
-          online: '#43b581',
-          idle: '#faa61a',
-          dnd: '#f04747',
-          offline: '#747f8d'
-        };
-        var statusColor = statusColors[discordStatus] || '#747f8d';
-  
-        var container = document.getElementById('presence-data');
-        var html = '<div style="display: flex; align-items: center; gap: 16px; margin-top: 10px; font-size: 1.2em;">' +
-          '<div style="position: relative; width: 56px; height: 56px;">' +
-          '<img src="' + avatar + '" alt="Avatar" style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover;">' +
-          '<span style="position: absolute; bottom: 4px; right: 4px; width: 14px; height: 14px; background-color: ' + statusColor + '; border-radius: 50%; box-shadow: 0 0 4px ' + statusColor + ';"></span>' +
-          '</div>' +
-          '<div style="color: white;">' +
-          '<div style="font-weight: 600;">' + globalName + '</div>' +
-          '<div style="font-size: 0.9em; opacity: 0.8;">' + username + '</div>' +
-          '</div>' +
-          '</div>';
-  
-        container.innerHTML = html;
-      } catch (error) {
-        document.getElementById('presence-data').innerText = 'failed to load data';
+
+<script>
+  const whatsUpContainer = document.querySelector('.info-container.whats-up');
+  const posts = whatsUpContainer.querySelectorAll('.post');
+  const showMoreBtn = whatsUpContainer.querySelector('#show-more-btn');
+  const visibleCount = 2;
+
+  if (posts.length === 0) {
+    whatsUpContainer.style.display = 'none';
+  } else {
+    function hideExtraPosts() {
+      posts.forEach((post, i) => {
+        if(i >= visibleCount) {
+          post.classList.add('hidden');
+        } else {
+          post.classList.remove('hidden');
+        }
+      });
+      if(posts.length <= visibleCount) {
+        showMoreBtn.style.display = 'none';
       }
     }
   
-    fetchDiscordPresence();
-  </script>
+    hideExtraPosts();
+  
+    showMoreBtn.addEventListener('click', () => {
+      posts.forEach(post => {
+        post.classList.remove('hidden');
+        void post.offsetWidth;
+        post.style.opacity = '1';
+        post.style.transform = 'translateY(0)';
+        post.style.height = '';
+        post.style.marginBottom = '10px';
+      });
+      showMoreBtn.style.display = 'none';
+    });
+  }
+</script>
   
 
   <div class="info-container">
