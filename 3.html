@@ -418,95 +418,210 @@ setTimeout(function(){ revealScreen.remove(); }, 500);
   </div>  
 
 <div class="info-container whats-up">
-  <div class="section-header">
-    <img src="xray/wsp.png" alt="pen icon" style="height: 1em; vertical-align: middle; margin-right: 1px;">
-    What's up?
-  </div>
+    <div class="section-header">
+      <img src="xray/wsp.png" alt="pen icon" style="height: 1em; vertical-align: middle; margin-right: 1px;">
+      What's up?
+    </div>
   
-<!-- put the   <div class="post">
-    <div>school</div>
-    <div class="post-date">Posted June 25</div>
-  </div> here-->
+    <div class="info-container whats-up">
+      <div class="section-header">
+        <img src="xray/wsp.png" alt="pen icon" style="height: 1em; vertical-align: middle; margin-right: 1px;">
+        What's up?
+      </div>
+    
+      <!-- here -->
+    
+      <button id="show-more-btn" class="join-btn" style="margin-top: 4px;"></button>
+    </div>
+  
+  <style>
+    .post {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 10px 12px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      position: relative;
+    }
+  
+    .post img.post-image {
+  max-width: 420px;
+  width: 100%;
+  height: auto;
+  margin-top: 8px;
+  border-radius: 15px;
+  cursor: pointer;
+  display: block;
+  object-fit: contain;
+}
 
+@media (max-width: 480px) {
+  .post img.post-image {
+    max-width: 100%;
+    width: 100%;
+  }
+}
 
-  <button id="show-more-btn" class="join-btn" style="margin-top: 4px;">- show more posts -</button>
-</div>
-
-<style>
-  .post-date {
-    margin-top: -1px;
-    color: gray;
-    font-size: 0.9em;
-  }
-  .post {
-    margin-bottom: 10px;
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.5s ease, transform 0.5s ease;
-  }
-  .hidden {
-    opacity: 0;
-    transform: translateY(-10px);
-    height: 0;
-    overflow: hidden;
-    margin: 0;
-    padding: 0;
-    transition: opacity 0.5s ease, transform 0.5s ease, height 0.5s ease;
-  }
-  .join-btn {
-    font-size: 15px;
-    color: #fff;
-    background: transparent;
-    border: 1px solid #fff;
-    padding: 6px 14px;
-    border-radius: 2px;
-    text-decoration: none;
-    transition: background 0.2s, color 0.2s;
-    cursor: pointer;
-  }
-  .join-btn:hover {
-    background-color: #fff;
-    color: #000;
-  }
-</style>
-
-<script>
-  const whatsUpContainer = document.querySelector('.info-container.whats-up');
-  const posts = whatsUpContainer.querySelectorAll('.post');
-  const showMoreBtn = whatsUpContainer.querySelector('#show-more-btn');
-  const visibleCount = 2;
-
-  if (posts.length === 0) {
-    whatsUpContainer.style.display = 'none';
-  } else {
-    function hideExtraPosts() {
-      posts.forEach((post, i) => {
-        if(i >= visibleCount) {
-          post.classList.add('hidden');
-        } else {
-          post.classList.remove('hidden');
-        }
-      });
-      if(posts.length <= visibleCount) {
-        showMoreBtn.style.display = 'none';
+  
+    .post-content {
+      font-size: 1rem;
+      color: #f2f2f2;
+      margin-bottom: 4px;
+      white-space: pre-wrap;
+    }
+  
+    .post-date {
+      margin-top: -1px;
+      color: #aaa;
+      font-size: 0.85em;
+    }
+  
+    .hidden {
+      opacity: 0;
+      transform: translateY(-10px);
+      height: 0;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+      transition: opacity 0.5s ease, transform 0.5s ease, height 0.5s ease;
+    }
+  
+    .join-btn {
+      font-size: 15px;
+      color: #fff;
+      background: transparent;
+      border: 1px solid #fff;
+      padding: 6px 14px;
+      border-radius: 2px;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+      cursor: pointer;
+    }
+  
+    .join-btn:hover {
+      background-color: #fff;
+      color: #000;
+    }
+  
+    #image-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.85);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 1000;
+    }
+  
+    #image-overlay.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  
+    #image-overlay img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 12px;
+      animation: fadeUp 0.3s ease forwards;
+    }
+  
+    #image-overlay.closing img {
+      animation: fadeDown 0.3s ease forwards;
+    }
+  
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
     }
   
-    hideExtraPosts();
+    @keyframes fadeDown {
+      from {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      to {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+    }
+  </style>
   
-    showMoreBtn.addEventListener('click', () => {
-      posts.forEach(post => {
-        post.classList.remove('hidden');
-        void post.offsetWidth;
-        post.style.opacity = '1';
-        post.style.transform = 'translateY(0)';
-        post.style.height = '';
-        post.style.marginBottom = '10px';
+  <div id="image-overlay"></div>
+  
+  <script>
+    const whatsUpContainer = document.querySelector('.info-container.whats-up');
+    const showMoreBtn = whatsUpContainer.querySelector('#show-more-btn');
+    const imageOverlay = document.getElementById('image-overlay');
+    let visibleCount = 2;
+  
+    function updateVisibilityAndButton() {
+      const posts = Array.from(whatsUpContainer.querySelectorAll('.post'));
+      if (posts.length === 0) {
+        whatsUpContainer.style.display = 'none';
+        return;
+      } else {
+        whatsUpContainer.style.display = '';
+      }
+  
+      const pinnedPosts = posts.filter(post => post.dataset.pinned === "true");
+      const unpinnedPosts = posts.filter(post => post.dataset.pinned !== "true");
+  
+      pinnedPosts.forEach(post => post.classList.remove('hidden'));
+      unpinnedPosts.forEach((post, i) => {
+        if (i < visibleCount) post.classList.remove('hidden');
+        else post.classList.add('hidden');
       });
-      showMoreBtn.style.display = 'none';
+  
+      const hiddenUnpinned = unpinnedPosts.filter((_, i) => i >= visibleCount);
+      const count = hiddenUnpinned.length;
+      if (count > 0) {
+        showMoreBtn.style.display = 'inline-block';
+        showMoreBtn.textContent = count === 1 ? `- show 1 more post -` : `- show ${count} more posts -`;
+      } else {
+        showMoreBtn.style.display = 'none';
+      }
+  
+      showMoreBtn.onclick = () => {
+        visibleCount = unpinnedPosts.length;
+        pinnedPosts.forEach(post => post.classList.remove('hidden'));
+        unpinnedPosts.forEach(post => post.classList.remove('hidden'));
+        showMoreBtn.style.display = 'none';
+      };
+    }
+  
+    whatsUpContainer.querySelectorAll('.post img.post-image').forEach(img => {
+      img.addEventListener('click', () => {
+        imageOverlay.innerHTML = `<img src="${img.src}" alt="Full size image">`;
+        imageOverlay.classList.add('visible');
+        imageOverlay.classList.remove('closing');
+      });
     });
-  }
-</script>
+  
+    imageOverlay.addEventListener('click', () => {
+      imageOverlay.classList.add('closing');
+      setTimeout(() => {
+        imageOverlay.classList.remove('visible', 'closing');
+        imageOverlay.innerHTML = '';
+      }, 300);
+    });
+  
+    updateVisibilityAndButton();
+  </script>
   
   <div class="info-container">
     <div class="section-header" style="display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 1.1em;">
