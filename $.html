@@ -419,7 +419,7 @@ setTimeout(function(){ revealScreen.remove(); }, 500);
         <div>owner/developer corrupt.im</div>
   </div>  
 
-  <div class="info-container whats-up">
+<div class="info-container whats-up">
   <div class="section-header">
     <img src="xray/wsp.png" alt="pen icon" style="height: 1em; vertical-align: middle; margin-right: 1px;">
     What's up?
@@ -429,6 +429,7 @@ setTimeout(function(){ revealScreen.remove(); }, 500);
     <div>school</div>
     <div class="post-date">Posted June 25</div>
   </div> here-->
+
 
   <button id="show-more-btn" class="join-btn" style="margin-top: 4px;">- show more posts -</button>
 </div>
@@ -470,6 +471,44 @@ setTimeout(function(){ revealScreen.remove(); }, 500);
     color: #000;
   }
 </style>
+
+<script>
+  const whatsUpContainer = document.querySelector('.info-container.whats-up');
+  const posts = whatsUpContainer.querySelectorAll('.post');
+  const showMoreBtn = whatsUpContainer.querySelector('#show-more-btn');
+  const visibleCount = 2;
+
+  if (posts.length === 0) {
+    whatsUpContainer.style.display = 'none';
+  } else {
+    function hideExtraPosts() {
+      posts.forEach((post, i) => {
+        if(i >= visibleCount) {
+          post.classList.add('hidden');
+        } else {
+          post.classList.remove('hidden');
+        }
+      });
+      if(posts.length <= visibleCount) {
+        showMoreBtn.style.display = 'none';
+      }
+    }
+  
+    hideExtraPosts();
+  
+    showMoreBtn.addEventListener('click', () => {
+      posts.forEach(post => {
+        post.classList.remove('hidden');
+        void post.offsetWidth;
+        post.style.opacity = '1';
+        post.style.transform = 'translateY(0)';
+        post.style.height = '';
+        post.style.marginBottom = '10px';
+      });
+      showMoreBtn.style.display = 'none';
+    });
+  }
+</script>
 
   <div class="info-container">
     <div class="section-header" style="display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 1.1em;">
