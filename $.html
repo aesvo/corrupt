@@ -424,48 +424,77 @@ setTimeout(function(){ revealScreen.remove(); }, 500);
     <img src="xray/wsp.png" alt="pen icon" style="height: 1em; vertical-align: middle; margin-right: 1px;">
     What's up?
   </div>
+
+  <!-- here -->
+
+  <div class="post" data-pinned="false">
+    <div class="pinned-wrapper">
+      <div class="post-content">test</div>
+      <div class="pinned-badge">Pinned</div>
+    </div>
+    <div class="post-date">Posted June 25</div>
+  </div>
   
-<!-- put the   <div class="post">
-    <div>school</div>
-    <div class="post-date">Posted June 25</div>
-  </div> here-->
-
-  <div class="post">
-    <div>GET OFF MY PAGE YOU FUCKING IRLS</div>
+  <div class="post" data-pinned="false">
+    <div class="post-content">school boring without the ogs ;(</div>
     <div class="post-date">Posted June 25</div>
   </div>
 
-  <div class="post">
-    <div>hi for those whos wondering aya = ayami</div>
-    <div class="post-date">Posted June 25</div>
-  </div>
-
-  <div class="post">
-    <div>school boring without the ogs ;(</div>
-    <div class="post-date">Posted June 25</div>
-  </div>
-
-  <div class="post">
-    <div>i like this girl aya</div>
-    <div class="post-date">Posted June 25</div>
-  </div>
-
-
-  <button id="show-more-btn" class="join-btn" style="margin-top: 4px;">- show more posts -</button>
+  <button id="show-more-btn" class="join-btn" style="margin-top: 4px;"></button>
 </div>
 
 <style>
-  .post-date {
-    margin-top: -1px;
-    color: gray;
-    font-size: 0.9em;
-  }
   .post {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px 12px;
+    border-radius: 6px;
     margin-bottom: 10px;
     opacity: 1;
     transform: translateY(0);
     transition: opacity 0.5s ease, transform 0.5s ease;
+    position: relative;
   }
+
+  .post img.post-image {
+    max-width: 100%;
+    margin-top: 8px;
+    border-radius: 15px;
+  }
+
+  .pinned-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .pinned-badge {
+    font-size: 0.75em;
+    color: #ffd700;
+    background: rgba(255, 215, 0, 0.1);
+    border: 1px solid rgba(255, 215, 0, 0.5);
+    padding: 2px 6px;
+    border-radius: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    margin-left: 10px;
+  }
+
+  .post-content {
+    font-size: 1rem;
+    color: #f2f2f2;
+    margin-bottom: 4px;
+    white-space: pre-wrap;
+  }
+
+  .post-date {
+    margin-top: -1px;
+    color: #aaa;
+    font-size: 0.85em;
+  }
+
   .hidden {
     opacity: 0;
     transform: translateY(-10px);
@@ -475,6 +504,7 @@ setTimeout(function(){ revealScreen.remove(); }, 500);
     padding: 0;
     transition: opacity 0.5s ease, transform 0.5s ease, height 0.5s ease;
   }
+
   .join-btn {
     font-size: 15px;
     color: #fff;
@@ -486,6 +516,7 @@ setTimeout(function(){ revealScreen.remove(); }, 500);
     transition: background 0.2s, color 0.2s;
     cursor: pointer;
   }
+
   .join-btn:hover {
     background-color: #fff;
     color: #000;
@@ -494,40 +525,45 @@ setTimeout(function(){ revealScreen.remove(); }, 500);
 
 <script>
   const whatsUpContainer = document.querySelector('.info-container.whats-up');
-  const posts = whatsUpContainer.querySelectorAll('.post');
+  const posts = Array.from(whatsUpContainer.querySelectorAll('.post'));
   const showMoreBtn = whatsUpContainer.querySelector('#show-more-btn');
-  const visibleCount = 2;
+  let visibleCount = 2;
 
-  if (posts.length === 0) {
-    whatsUpContainer.style.display = 'none';
-  } else {
-    function hideExtraPosts() {
-      posts.forEach((post, i) => {
-        if(i >= visibleCount) {
-          post.classList.add('hidden');
-        } else {
-          post.classList.remove('hidden');
-        }
-      });
-      if(posts.length <= visibleCount) {
-        showMoreBtn.style.display = 'none';
-      }
-    }
-  
-    hideExtraPosts();
-  
-    showMoreBtn.addEventListener('click', () => {
-      posts.forEach(post => {
-        post.classList.remove('hidden');
-        void post.offsetWidth;
-        post.style.opacity = '1';
-        post.style.transform = 'translateY(0)';
-        post.style.height = '';
-        post.style.marginBottom = '10px';
-      });
+  function updateButtonText() {
+    const unpinnedPosts = posts.filter(post => post.dataset.pinned !== "true");
+    const hiddenUnpinned = unpinnedPosts.filter((_, i) => i >= visibleCount);
+    const count = hiddenUnpinned.length;
+    if (count > 0) {
+      showMoreBtn.style.display = 'inline-block';
+      showMoreBtn.textContent = count === 1
+        ? `- show 1 more post -`
+        : `- show ${count} more posts -`;
+    } else {
       showMoreBtn.style.display = 'none';
-    });
+    }
   }
+
+  function applyVisibility() {
+    const pinnedPosts = posts.filter(post => post.dataset.pinned === "true");
+    const unpinnedPosts = posts.filter(post => post.dataset.pinned !== "true");
+    pinnedPosts.forEach(post => post.classList.remove('hidden'));
+    unpinnedPosts.forEach((post, i) => {
+      if (i < visibleCount) {
+        post.classList.remove('hidden');
+      } else {
+        post.classList.add('hidden');
+      }
+    });
+    updateButtonText();
+  }
+
+  applyVisibility();
+
+  showMoreBtn.addEventListener('click', () => {
+    const unpinnedPosts = posts.filter(post => post.dataset.pinned !== "true");
+    visibleCount = unpinnedPosts.length;
+    applyVisibility();
+  });
 </script>
 
   <div class="info-container">
