@@ -1,1 +1,314 @@
+* {
+      box-sizing: border-box;
+    }
 
+    html, body {
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #000;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding-top: 60px;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background: rgba(0, 0, 0, 0.8);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      z-index: 1000;
+    }
+
+    .navbar .logo {
+      font-weight: bold;
+      font-size: 18px;
+      letter-spacing: 0.5px;
+      color: #fff;
+    }
+
+    .nav-items {
+      display: flex;
+      gap: 0.2rem;
+      align-items: center;
+      list-style: none;
+      margin: 0;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link {
+      color: #bbb;
+      font-size: 15px;
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: 0.3s ease;
+      cursor: pointer;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .hamburger i {
+      color: #fff;
+      font-size: 20px;
+    }
+
+    .container {
+      text-align: center;
+      max-width: 600px;
+      padding: 20px;
+    }
+
+    .page {
+      display: none;
+    }
+
+    .page.active {
+      display: block;
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    a.button {
+      background: #bbbbbb25;
+      color: #ffffff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 15px;
+      transition: background 0.3s;
+    }
+
+    a.button:hover {
+      background: #cccccc46;
+    }
+
+    /* MOBILE RESPONSIVE NAV FIX */
+    @media screen and (max-width: 600px) {
+      .nav-items {
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.85);
+        padding: 10px 0;
+        flex-direction: row;
+        justify-content: center;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .nav-items.show {
+        display: flex;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+    }
+
+    /* Updates filter container */
+    .update-filter {
+      margin-bottom: 1.2em;
+      text-align: center;
+      user-select: none;
+      position: relative;
+      display: inline-block;
+      font-size: 0.95em;
+      color: #ccc;
+      cursor: pointer;
+      width: 200px;
+      background: rgba(255 255 255 / 0.05);
+      border: 1px solid #666;
+      border-radius: 8px;
+      padding: 8px 12px;
+      transition: border-color 0.25s ease;
+    }
+    .update-filter:hover, .update-filter.open {
+      border-color: #aaa;
+      color: #eee;
+      background: rgba(255 255 255 / 0.1);
+    }
+
+    /* Selected text */
+    .update-filter .selected {
+      user-select: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Arrow */
+    .update-filter .arrow {
+      border: solid #ccc;
+      border-width: 0 2px 2px 0;
+      display: inline-block;
+      padding: 3px;
+      transform: rotate(45deg);
+      transition: transform 0.3s ease;
+      margin-left: auto;
+    }
+    .update-filter.open .arrow {
+      transform: rotate(-135deg);
+    }
+
+    /* Dropdown menu */
+    .update-filter .dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #111;
+      border: 1px solid #666;
+      border-radius: 0 0 8px 8px;
+      max-height: 150px;
+      overflow-y: auto;
+      margin-top: 2px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.5);
+      z-index: 10;
+      display: none;
+      user-select: none;
+    }
+    .update-filter.open .dropdown {
+      display: block;
+    }
+
+    /* Dropdown item */
+    .update-filter .dropdown div {
+      padding: 10px 12px;
+      cursor: pointer;
+      transition: background 0.25s;
+      color: #ccc;
+    }
+    .update-filter .dropdown div:hover, 
+    .update-filter .dropdown div.active {
+      background: #222;
+      color: #fff;
+    }
+
+    /* Scrollbar */
+    .update-filter .dropdown::-webkit-scrollbar {
+      width: 8px;
+    }
+    .update-filter .dropdown::-webkit-scrollbar-thumb {
+      background-color: #444;
+      border-radius: 4px;
+    }
+
+    /* Updates list */
+    .update-feed {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-height: 70vh;
+      overflow-y: auto;
+      padding-right: 10px;
+    }
+
+    .update-card.major .update-title {
+      color: #ff4444;
+      font-style: italic;
+    }
+
+    .update-card.minor .update-title {
+      color: #44ff44;
+      font-style: italic;
+    }
+
+    .update-title {
+      font-size: 1.05em;
+      margin: 0;
+      text-align: center;
+    }
+
+    .update-meta {
+      font-size: 0.85em;
+      opacity: 0.7;
+      margin-top: 2px;
+      text-align: center;
+    }
+
+    .update-label {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.75em;
+      margin-left: 10px;
+      text-transform: uppercase;
+    }
+
+    /* Team page improvements */
+    #team h2 {
+      font-weight: 700;
+      font-size: 2em;
+      margin-bottom: 0.3em;
+    }
+    #team p {
+      font-size: 1em;
+      margin-bottom: 1.5em;
+      color: #aaa;
+    }
+    .team-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.6em;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .team-member {
+      background: #111;
+      border-radius: 10px;
+      padding: 15px 20px;
+      box-shadow: 0 0 10px #222;
+      transition: box-shadow 0.3s ease;
+      text-align: left;
+    }
+    .team-member:hover {
+      box-shadow: 0 0 15px #ffffffaa;
+    }
+    .team-member strong {
+      font-size: 1.3em;
+      display: block;
+      margin-bottom: 0.15em;
+      color: #ffffff;
+    }
+    .team-member .role {
+      font-style: italic;
+      margin-bottom: 0.6em;
+      color: #8f8f8f;
+    }
+    .team-member .bio {
+      font-size: 0.9em;
+      color: #ccc;
+      line-height: 1.3;
+    }
