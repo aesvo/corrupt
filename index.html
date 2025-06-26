@@ -7,7 +7,6 @@
   <link rel="icon" href="xray/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
-    /* --- your full CSS as provided --- */
     * {
       box-sizing: border-box;
     }
@@ -146,8 +145,6 @@
       background: #ffffff65;
       box-shadow: 0 4px 16px rgba(59, 59, 59, 0.8);
     }
-
-    /* Updates Section */
 
     .update-filter {
       margin-bottom: 1.5em;
@@ -331,7 +328,6 @@
       letter-spacing: 0.03em;
     }
 
-    /* New style for the added by user info */
     .update-author {
       margin-top: 12px;
       font-size: 0.85rem;
@@ -351,8 +347,6 @@
       color: #ccc;
       outline: none;
     }
-
-    /* Team Section */
 
     #team h2 {
       font-weight: 700;
@@ -535,7 +529,6 @@
     option.classList.add('active');
     currentValue = option.getAttribute('data-value');
 
-    // Update only the text, keep the arrow element
     selectedLabel.childNodes[0].textContent = option.textContent;
 
     customSelect.classList.remove('open');
@@ -555,7 +548,6 @@
     });
   }
 
-  // Navbar logic
   function showPage(pageId, link) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById(pageId).classList.add('active');
