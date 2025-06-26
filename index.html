@@ -7,6 +7,7 @@
   <link rel="icon" href="xray/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
+    /* --- your full CSS as provided --- */
     * {
       box-sizing: border-box;
     }
@@ -16,12 +17,13 @@
       margin: 0;
       padding: 0;
       overflow: hidden;
-    }
-
-    body {
-      font-family: 'Segoe UI', sans-serif;
       background: #000;
       color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -35,25 +37,19 @@
       left: 0;
       width: 100%;
       height: 60px;
-      background: rgba(0, 0, 0, 0.8);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.85);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 20px;
       z-index: 1000;
-    }
-
-    .navbar .logo {
-      font-weight: bold;
-      font-size: 18px;
-      letter-spacing: 0.5px;
-      color: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.8);
     }
 
     .nav-items {
       display: flex;
-      gap: 0.2rem;
+      gap: 0.5rem;
       align-items: center;
       list-style: none;
       margin: 0;
@@ -64,32 +60,59 @@
       color: #bbb;
       font-size: 15px;
       text-decoration: none;
-      padding: 8px 12px;
+      padding: 10px 14px;
       border-radius: 6px;
-      transition: 0.3s ease;
+      transition: background 0.3s ease, color 0.3s ease;
       cursor: pointer;
+      font-weight: 600;
+      user-select: none;
     }
 
     .nav-link:hover, .nav-link.active {
-      background: rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.15);
       color: #fff;
     }
 
     .hamburger {
       display: none;
-      flex-direction: column;
       cursor: pointer;
     }
 
     .hamburger i {
       color: #fff;
-      font-size: 20px;
+      font-size: 22px;
+    }
+
+    @media screen and (max-width: 600px) {
+      .nav-items {
+        display: none;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        padding: 10px 0;
+        flex-direction: column;
+        gap: 8px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 0 0 8px 8px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      }
+
+      .nav-items.show {
+        display: flex;
+      }
+
+      .hamburger {
+        display: block;
+      }
     }
 
     .container {
+      max-width: 620px;
+      width: 90vw;
       text-align: center;
-      max-width: 600px;
-      padding: 20px;
+      padding-bottom: 40px;
     }
 
     .page {
@@ -107,104 +130,81 @@
     }
 
     a.button {
-      background: #bbbbbb25;
-      color: #ffffff;
-      padding: 10px 20px;
-      border-radius: 8px;
+      background: #ffffff;
+      color: #000000;
+      padding: 12px 28px;
+      border-radius: 2px;
       text-decoration: none;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(255, 255, 255, 0.6);
+      transition: background 0.3s ease, box-shadow 0.3s ease;
       display: inline-block;
-      margin-top: 15px;
-      transition: background 0.3s;
+      margin-top: 2px;
     }
 
     a.button:hover {
-      background: #cccccc46;
+      background: #ffffff65;
+      box-shadow: 0 4px 16px rgba(59, 59, 59, 0.8);
     }
 
-    /* MOBILE RESPONSIVE NAV FIX */
-    @media screen and (max-width: 600px) {
-      .nav-items {
-        display: none;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        width: 100%;
-        background: rgba(0, 0, 0, 0.85);
-        padding: 10px 0;
-        flex-direction: row;
-        justify-content: center;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-      }
+    /* Updates Section */
 
-      .nav-items.show {
-        display: flex;
-      }
-
-      .hamburger {
-        display: flex;
-      }
-    }
-
-    /* Updates filter container */
     .update-filter {
-      margin-bottom: 1.2em;
-      text-align: center;
-      user-select: none;
+      margin-bottom: 1.5em;
       position: relative;
       display: inline-block;
-      font-size: 0.95em;
+      font-size: 1em;
       color: #ccc;
       cursor: pointer;
-      width: 200px;
-      background: rgba(255 255 255 / 0.05);
-      border: 1px solid #666;
+      width: 180px;
+      background: #111;
+      border: 1.5px solid #444;
       border-radius: 8px;
-      padding: 8px 12px;
-      transition: border-color 0.25s ease;
+      padding: 8px 14px;
+      font-weight: 600;
+      user-select: none;
+      transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
     }
-    .update-filter:hover, .update-filter.open {
-      border-color: #aaa;
+    .update-filter:hover,
+    .update-filter.open {
+      background: #1e1e1e;
+      border-color: #666;
       color: #eee;
-      background: rgba(255 255 255 / 0.1);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.8);
     }
 
-    /* Selected text */
     .update-filter .selected {
-      user-select: none;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 10px;
     }
 
-    /* Arrow */
     .update-filter .arrow {
-      border: solid #ccc;
+      border: solid #888;
       border-width: 0 2px 2px 0;
-      display: inline-block;
-      padding: 3px;
+      padding: 4px;
       transform: rotate(45deg);
       transition: transform 0.3s ease;
-      margin-left: auto;
+      margin-left: 10px;
     }
     .update-filter.open .arrow {
       transform: rotate(-135deg);
     }
 
-    /* Dropdown menu */
     .update-filter .dropdown {
       position: absolute;
       top: 100%;
       left: 0;
       right: 0;
       background: #111;
-      border: 1px solid #666;
+      border: 1.5px solid #444;
       border-radius: 0 0 8px 8px;
-      max-height: 150px;
+      max-height: 160px;
       overflow-y: auto;
-      margin-top: 2px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.5);
-      z-index: 10;
+      margin-top: 4px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.7);
+      z-index: 20;
       display: none;
       user-select: none;
     }
@@ -212,36 +212,74 @@
       display: block;
     }
 
-    /* Dropdown item */
     .update-filter .dropdown div {
-      padding: 10px 12px;
+      padding: 12px 18px;
       cursor: pointer;
-      transition: background 0.25s;
+      transition: background 0.25s ease;
       color: #ccc;
+      font-size: 1em;
+      font-weight: 500;
     }
-    .update-filter .dropdown div:hover, 
+    .update-filter .dropdown div:hover,
     .update-filter .dropdown div.active {
       background: #222;
       color: #fff;
     }
 
-    /* Scrollbar */
     .update-filter .dropdown::-webkit-scrollbar {
-      width: 8px;
+      width: 7px;
     }
     .update-filter .dropdown::-webkit-scrollbar-thumb {
-      background-color: #444;
-      border-radius: 4px;
+      background-color: #555;
+      border-radius: 5px;
     }
 
-    /* Updates list */
     .update-feed {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      max-height: 70vh;
+      gap: 18px;
+      max-height: 72vh;
       overflow-y: auto;
-      padding-right: 10px;
+      padding-right: 14px;
+      scrollbar-width: thin;
+      scrollbar-color: #555 transparent;
+    }
+
+    .update-card {
+      border-radius: 12px;
+      padding: 20px 24px;
+      box-shadow: 0 3px 12px rgb(0 0 0 / 0.6);
+      background: #121212;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+      user-select: text;
+    }
+
+    .update-item {
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      color: #eee;
+      user-select: text;
+    }
+
+    .update-card.major {
+      border: 2.5px solid #ff5555;
+    }
+
+    .update-card.minor {
+      border: 2.5px solid #55ff55;
+    }
+
+    .update-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin: 0;
+      color: #eee;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
     }
 
     .update-card.major .update-title {
@@ -254,78 +292,103 @@
       font-style: italic;
     }
 
-    .update-title {
-      font-size: 1.05em;
-      margin: 0;
-      text-align: center;
+    .update-label {
+      background: rgba(255 255 255 / 0.15);
+      padding: 3px 10px;
+      border-radius: 14px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: inherit;
+      user-select: none;
+      white-space: nowrap;
     }
 
     .update-meta {
-      font-size: 0.85em;
-      opacity: 0.7;
-      margin-top: 2px;
-      text-align: center;
+      font-size: 0.9rem;
+      opacity: 0.65;
+      margin-top: 8px;
+      font-weight: 500;
+      font-family: monospace;
+      letter-spacing: 0.03em;
     }
 
-    .update-label {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-size: 0.75em;
-      margin-left: 10px;
-      text-transform: uppercase;
+    /* New style for the added by user info */
+    .update-author {
+      margin-top: 12px;
+      font-size: 0.85rem;
+      opacity: 0.6;
+      font-family: monospace;
+      font-weight: 500;
     }
 
-    /* Team page improvements */
+    .update-author a {
+      color: #888;
+      text-decoration: underline;
+      transition: color 0.3s ease;
+    }
+
+    .update-author a:hover,
+    .update-author a:focus {
+      color: #ccc;
+      outline: none;
+    }
+
+    /* Team Section */
+
     #team h2 {
       font-weight: 700;
       font-size: 2em;
       margin-bottom: 0.3em;
+      color: #fff;
     }
     #team p {
-      font-size: 1em;
+      font-size: 1.1em;
       margin-bottom: 1.5em;
       color: #aaa;
+      font-weight: 500;
     }
     .team-list {
       display: flex;
       flex-direction: column;
-      gap: 1.6em;
+      gap: 1.8em;
       max-width: 480px;
       margin: 0 auto;
     }
     .team-member {
       background: #111;
-      border-radius: 10px;
-      padding: 15px 20px;
-      box-shadow: 0 0 10px #222;
+      border-radius: 12px;
+      padding: 20px 28px;
+      box-shadow: 0 0 14px #222;
       transition: box-shadow 0.3s ease;
       text-align: left;
     }
     .team-member:hover {
-      box-shadow: 0 0 15px #ffffffaa;
+      box-shadow: 0 0 18px #ffffffcc;
     }
     .team-member strong {
-      font-size: 1.3em;
+      font-size: 1.4em;
       display: block;
-      margin-bottom: 0.15em;
-      color: #ffffff;
+      margin-bottom: 0.2em;
+      color: #fff;
     }
     .team-member .role {
       font-style: italic;
-      margin-bottom: 0.6em;
-      color: #8f8f8f;
+      margin-bottom: 0.75em;
+      color: #9f9f9f;
+      font-weight: 600;
     }
     .team-member .bio {
-      font-size: 0.9em;
+      font-size: 1em;
       color: #ccc;
-      line-height: 1.3;
+      line-height: 1.4;
+      font-weight: 400;
     }
   </style>
 </head>
 <body>
   <nav class="navbar">
-    <div class="logo">corrupt.im</div>
+    <img src="xray/favicon2.ico" alt="corrupt.im Logo" />
     <div class="nav-items" id="navItems">
       <a class="nav-link active" onclick="showPage('home', this)">Home</a>
       <a class="nav-link" onclick="showPage('team', this)">Team</a>
@@ -365,48 +428,46 @@
     <div id="updates" class="page">
       <h2>Latest Updates</h2>
 
-      <div class="update-filter" id="customSelect">
-        <div class="selected" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="selectedLabel">
-          <span id="selectedLabel">Show All</span>
+      <div class="update-filter" id="customSelect" role="combobox" aria-haspopup="listbox" aria-expanded="false" tabindex="0" aria-labelledby="selectedLabel">
+        <div class="selected" id="selectedLabel" aria-live="polite" aria-atomic="true" aria-relevant="text">
+          Show All
           <i class="arrow"></i>
         </div>
         <div class="dropdown" role="listbox" tabindex="-1" aria-activedescendant="option-all">
-          <div id="option-all" role="option" data-value="all" class="active">Show All</div>
-          <div id="option-major" role="option" data-value="major">Major Only</div>
-          <div id="option-minor" role="option" data-value="minor">Minor Only</div>
+          <div id="option-all" role="option" data-value="all" class="active" tabindex="0">Show All</div>
+          <div id="option-major" role="option" data-value="major" tabindex="0">Major Only</div>
+          <div id="option-minor" role="option" data-value="minor" tabindex="0">Minor Only</div>
         </div>
       </div>
 
-      <div class="update-feed">
+      <div class="update-feed" aria-live="polite" aria-relevant="additions">
 
-<article class="update-card major" tabindex="0" role="article" aria-label="Major update on June 26, 2025">
-  <div class="update-date">🔴 June 26, 2025</div>
-  <h3 class="update-title">Major Update</h3>
-  <p>TEST</p>
-  <div class="update-author">
-    Added by <a href="https://discord.com/users/872658221821726811" target="_blank" rel="noopener noreferrer">m3.ech#0</a>
-  </div>
-</article>
+        <article class="update-card major" tabindex="0" role="article" aria-label="Major update on June 26, 2025">
+          <div class="update-date">🔴 June 26, 2025</div>
+          <h3 class="update-title">Major Security and Patch Update</h3>
+          <p>Security Updates: Added Cookies Acceptance, Redone Login Back-end, Added Cloudflare Turnstile to login and reset-password routes, Implemented Bot Detections on site.</p>
+          <div class="update-author">
+            Added by <a href="https://discord.com/users/123456789012345678" target="_blank" rel="noopener noreferrer">Loser#1234</a>
+          </div>
+        </article>
 
-        <div class="update-card major">
-          <p class="update-title">Major Update Example <span class="update-label">Major</span></p>
-          <p class="update-meta">🔴 June 26, 2025</p>
-        </div>
+        <article class="update-card minor" tabindex="0" role="article" aria-label="Minor update on June 25, 2025">
+          <div class="update-date">🟢 June 25, 2025</div>
+          <h3 class="update-title">Profile Updates</h3>
+          <p>Views Counter is now Animated. Compact Layout now has Banner. New Audio Player for Audio Files. Fixed Type Writer Effect not properly working.</p>
+          <div class="update-author">
+            Added by <a href="https://discord.com/users/876543210987654321" target="_blank" rel="noopener noreferrer">Helper#5678</a>
+          </div>
+        </article>
 
-        <div class="update-card minor">
-          <p class="update-title">Bugs Fixed <span class="update-label">Minor</span></p>
-          <p class="update-meta">🟢 June 25, 2025</p>
-        </div>
-
-        <div class="update-card minor">
-          <p class="update-title">404 Page Redone <span class="update-label">Minor</span></p>
-          <p class="update-meta">🟢 June 25, 2025</p>
-        </div>
-
-        <div class="update-card minor">
-          <p class="update-title">Home Page Completed <span class="update-label">Minor</span></p>
-          <p class="update-meta">🟢 June 25, 2025</p>
-        </div>
+        <article class="update-card minor" tabindex="0" role="article" aria-label="Minor update on June 25, 2025">
+          <div class="update-date">🟢 June 25, 2025</div>
+          <h3 class="update-title">Admin Updates</h3>
+          <p>Has No Access to users Route.<br>PS: Hard Reset Your Browser For Changes To Effect.</p>
+          <div class="update-author">
+            Added by <a href="https://discord.com/users/123450987654321000" target="_blank" rel="noopener noreferrer">Admin#4321</a>
+          </div>
+        </article>
       </div>
     </div>
   </div>
@@ -416,32 +477,29 @@
   const selected = customSelect.querySelector('.selected');
   const dropdown = customSelect.querySelector('.dropdown');
   const options = dropdown.querySelectorAll('div');
-  const selectedLabel = selected.querySelector('#selectedLabel');
+  const selectedLabel = selected;
   let currentValue = 'all';
 
-  // Toggle dropdown
   selected.addEventListener('click', () => {
     customSelect.classList.toggle('open');
-    selected.setAttribute('aria-expanded', customSelect.classList.contains('open'));
+    customSelect.setAttribute('aria-expanded', customSelect.classList.contains('open'));
     if(customSelect.classList.contains('open')) {
       dropdown.focus();
     }
   });
 
-  // Close dropdown if click outside
   document.addEventListener('click', (e) => {
     if (!customSelect.contains(e.target)) {
       customSelect.classList.remove('open');
-      selected.setAttribute('aria-expanded', false);
+      customSelect.setAttribute('aria-expanded', false);
     }
   });
 
-  // Keyboard navigation
   selected.addEventListener('keydown', (e) => {
     if(e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowDown') {
       e.preventDefault();
       customSelect.classList.add('open');
-      selected.setAttribute('aria-expanded', true);
+      customSelect.setAttribute('aria-expanded', true);
       dropdown.focus();
       options[0].focus();
     }
@@ -459,57 +517,60 @@
       options[prevIndex].focus();
     } else if(e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
-      options[focusedIndex].click();
+      selectOption(document.activeElement);
     } else if(e.key === 'Escape') {
       customSelect.classList.remove('open');
-      selected.setAttribute('aria-expanded', false);
+      customSelect.setAttribute('aria-expanded', false);
       selected.focus();
     }
   });
 
-  // Selecting an option
   options.forEach(option => {
-    option.addEventListener('click', () => {
-      // Update label text
-      selectedLabel.textContent = option.textContent;
-      // Update active class
-      options.forEach(opt => opt.classList.remove('active'));
-      option.classList.add('active');
-      // Store value
-      currentValue = option.dataset.value;
-      // Close dropdown
-      customSelect.classList.remove('open');
-      selected.setAttribute('aria-expanded', false);
-      selected.focus();
-      // Filter updates
-      filterUpdates();
-    });
+    option.addEventListener('click', () => selectOption(option));
   });
 
-  function filterUpdates() {
+  function selectOption(option) {
+    options.forEach(opt => opt.classList.remove('active'));
+    option.classList.add('active');
+    currentValue = option.getAttribute('data-value');
+    selectedLabel.textContent = option.textContent;
+    customSelect.classList.remove('open');
+    customSelect.setAttribute('aria-expanded', false);
+    filterUpdates(currentValue);
+    selected.focus();
+  }
+
+  function filterUpdates(value) {
     const updates = document.querySelectorAll('.update-card');
     updates.forEach(update => {
-      if (currentValue === 'all') {
-        update.style.display = '';
+      if(value === 'all') {
+        update.style.display = 'block';
       } else {
-        update.style.display = update.classList.contains(currentValue) ? '' : 'none';
+        update.style.display = update.classList.contains(value) ? 'block' : 'none';
       }
     });
   }
 
-  function showPage(id, el) {
+  // Navbar logic
+  function showPage(pageId, link) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
+    document.getElementById(pageId).classList.add('active');
 
-    document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
-    el.classList.add('active');
+    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+    if(link) link.classList.add('active');
 
-    // Hide menu on mobile after selection
-    document.getElementById("navItems").classList.remove("show");
+    if(window.innerWidth <= 600) {
+      toggleMenu(false);
+    }
   }
 
-  function toggleMenu() {
-    document.getElementById("navItems").classList.toggle("show");
+  function toggleMenu(force) {
+    const navItems = document.getElementById('navItems');
+    if(typeof force === 'boolean') {
+      navItems.classList.toggle('show', force);
+    } else {
+      navItems.classList.toggle('show');
+    }
   }
 </script>
 </body>
