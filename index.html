@@ -7,7 +7,6 @@
   <link rel="icon" href="xray/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
-    /* --- your full CSS as provided --- */
     * {
       box-sizing: border-box;
     }
@@ -270,6 +269,24 @@
       border: 2.5px solid #55ff55;
     }
 
+    .update-card.patch {
+      border: 2.5px solid #ffa500;
+    }
+
+    .update-card.patch .update-title {
+      color: #ff9900;
+      font-style: italic;
+    }
+
+    .update-card.feature {
+      border: 2.5px solid #5555ff;
+    }
+
+    .update-card.feature .update-title {
+      color: #4444ff;
+      font-style: italic;
+    }
+
     .update-title {
       font-size: 1.2rem;
       font-weight: 700;
@@ -437,47 +454,13 @@
           <div id="option-all" role="option" data-value="all" class="active" tabindex="0">Show All</div>
           <div id="option-major" role="option" data-value="major" tabindex="0">Major Only</div>
           <div id="option-minor" role="option" data-value="minor" tabindex="0">Minor Only</div>
+          <div id="option-patch" role="option" data-value="patch" tabindex="0">Patch Only</div>
+          <div id="option-feature" role="option" data-value="feature" tabindex="0">Feature Only</div>
         </div>
       </div>
 
       <div class="update-feed" aria-live="polite" aria-relevant="additions">
 
-<article class="update-card minor" tabindex="0" role="article" aria-label="Minor update on June 26, 2025">
-  <div class="update-date">🟢 June 26, 2025</div>
-  <h3 class="update-title">Minor Update</h3>
-  <p>TEXT</p>
-  <div class="update-author">
-    Added by <a href="https://discord.com/users/872658221821726811" target="_blank" rel="noopener noreferrer">m3.ech#0</a>
-  </div>
-</article>
-
-
-        <article class="update-card major" tabindex="0" role="article" aria-label="Major update on June 26, 2025">
-          <div class="update-date">🔴 June 26, 2025</div>
-          <h3 class="update-title">Major Security and Patch Update</h3>
-          <p>Security Updates: Added Cookies Acceptance, Redone Login Back-end, Added Cloudflare Turnstile to login and reset-password routes, Implemented Bot Detections on site.</p>
-          <div class="update-author">
-            Added by <a href="https://discord.com/users/123456789012345678" target="_blank" rel="noopener noreferrer">Loser#1234</a>
-          </div>
-        </article>
-
-        <article class="update-card minor" tabindex="0" role="article" aria-label="Minor update on June 25, 2025">
-          <div class="update-date">🟢 June 25, 2025</div>
-          <h3 class="update-title">Profile Updates</h3>
-          <p>Views Counter is now Animated. Compact Layout now has Banner. New Audio Player for Audio Files. Fixed Type Writer Effect not properly working.</p>
-          <div class="update-author">
-            Added by <a href="https://discord.com/users/876543210987654321" target="_blank" rel="noopener noreferrer">Helper#5678</a>
-          </div>
-        </article>
-
-        <article class="update-card minor" tabindex="0" role="article" aria-label="Minor update on June 25, 2025">
-          <div class="update-date">🟢 June 25, 2025</div>
-          <h3 class="update-title">Admin Updates</h3>
-          <p>Has No Access to users Route.<br>PS: Hard Reset Your Browser For Changes To Effect.</p>
-          <div class="update-author">
-            Added by <a href="https://discord.com/users/123450987654321000" target="_blank" rel="noopener noreferrer">Admin#4321</a>
-          </div>
-        </article>
       </div>
     </div>
   </div>
