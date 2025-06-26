@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>corrupt.im</title>
-  <link rel="icon" href="xray/favicon.ico" type="image/x-icon" />
   <style>
     * {
       box-sizing: border-box;
@@ -58,7 +57,7 @@
       transform: translateX(-50%);
       display: flex;
       gap: 20px;
-      z-index: 10;
+      z-index: 15;
       background: rgba(255, 255, 255, 0.05);
       padding: 10px 20px;
       border-radius: 25px;
@@ -71,7 +70,7 @@
     .nav-item {
       color: #aaa;
       text-decoration: none;
-      padding: 8px 16px;
+      padding: 7px 16px;
       border-radius: 15px;
       transition: all 0.3s ease;
       font-size: 14px;
@@ -362,7 +361,7 @@
       bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
-      color: #666;
+      color: #ffffff;
       font-size: 12px;
       z-index: 10;
     }
@@ -399,28 +398,30 @@
       .nav {
         position: fixed;
         top: 15px;
-        left: 15px;
-        right: 15px;
-        transform: none;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         padding: 15px;
         border-radius: 15px;
-        max-width: none;
-        width: calc(100vw - 30px);
+        max-width: calc(100vw - 30px);
+        width: auto;
+        min-width: 200px;
       }
       
       .menu-toggle {
         display: block;
-        align-self: flex-end;
+        width: 100%;
+        align-self: center;
       }
       
       .nav ul {
         display: none;
         flex-direction: column;
         width: 100%;
-        gap: 10px;
-        margin-top: 15px;
+        gap: 3px;
+        margin-top: -14px;
         animation: slideDown 0.3s ease-out;
       }
       
@@ -435,7 +436,7 @@
       .nav-item {
         display: block;
         width: 100%;
-        text-align: left;
+        text-align: center;
         padding: 12px 16px;
       }
       
@@ -464,9 +465,12 @@
     @media (max-width: 480px) {
       .nav {
         top: 10px;
-        left: 10px;
-        right: 10px;
-        width: calc(100vw - 20px);
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        width: auto;
+        max-width: calc(100vw - 20px);
+        min-width: 180px;
         padding: 12px;
       }
       
@@ -515,7 +519,7 @@
   <div class="container">
     <div id="home" class="page active">
       <h1>corrupt.im</h1>
-      <p class="tagline"></p>
+      <p class="tagline">Welcome to the digital underground</p>
       
       <div class="discord-section">
         <a class="discord-link" href="https://discord.gg/gtJ6eQynrN" target="_blank">Join the Server</a>
@@ -524,11 +528,11 @@
       <div class="features">
         <div class="feature">
           <h3>Community</h3>
-          <p>Join our Discord above!</p>
+          <p>Connect with like-minded individuals in our active Discord community</p>
         </div>
         <div class="feature">
           <h3>Resources</h3>
-          <p>Coming Soon</p>
+          <p>Access exclusive tools, guides, and knowledge shared by our members</p>
         </div>
       </div>
     </div>
@@ -588,6 +592,7 @@
       
       event.target.classList.add('active');
       
+      // Close mobile menu after selection
       if (window.innerWidth <= 768) {
         document.querySelector('nav ul').classList.remove('active');
       }
@@ -597,6 +602,7 @@
       document.querySelector('nav ul').classList.toggle('active');
     });
 
+    // Close mobile menu when clicking outside
     document.addEventListener('click', function(e) {
       const nav = document.querySelector('.nav');
       const menuToggle = document.querySelector('.menu-toggle');
@@ -607,6 +613,7 @@
       }
     });
 
+    // Close mobile menu on window resize if it becomes desktop size
     window.addEventListener('resize', function() {
       if (window.innerWidth > 768) {
         document.querySelector('nav ul').classList.remove('active');
