@@ -6,233 +6,67 @@
   <title>404 - Page not found</title>
   <link rel="icon" href="xray/favicon.ico" type="image/x-icon" />
   <style>
-    * {
-      box-sizing: border-box;
-    }
-    
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-      background: #000;
+      font-family: Arial, sans-serif;
+      background-color: #000;
       color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
       min-height: 100vh;
       margin: 0;
-      padding: 20px;
-      position: relative;
-      overflow: hidden;
     }
-    
-    body::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
-      background-size: 50px 50px;
-      animation: float 20s infinite linear;
-      z-index: 0;
-    }
-    
-    @keyframes float {
-      0% { transform: translate(0, 0) rotate(0deg); }
-      100% { transform: translate(-50px, -50px) rotate(360deg); }
-    }
-    
+
     .container {
       text-align: center;
-      max-width: 500px;
-      width: 100%;
-      position: relative;
-      z-index: 1;
-      animation: fadeInUp 0.8s ease-out;
     }
-    
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+
+    .square {
+      margin: 0 auto 16px;
     }
-    
-    .error-code {
-      font-size: clamp(60px, 15vw, 120px);
-      font-weight: 900;
+
+    .number {
+      font-size: 80px;
+      font-weight: bold;
       color: #fff;
-      margin-bottom: 20px;
-      line-height: 1;
-      text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
     }
-    
-    @keyframes gradientShift {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-    }
-    
-    .chicken-text {
-      font-size: clamp(16px, 4vw, 24px);
-      font-weight: 600;
-      margin-bottom: 15px;
-      color: #fff;
-      text-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
-    }
-    
+
     h1 {
-      font-size: clamp(28px, 6vw, 36px);
-      margin: 0 0 15px 0;
-      font-weight: 700;
-      color: #fff;
+      font-size: 22px;
+      margin: 0 0 6px 0;
     }
-    
+
     p {
-      font-size: clamp(16px, 4vw, 18px);
-      color: #fff;
-      margin: 0 0 30px 0;
-      line-height: 1.6;
-      max-width: 400px;
-      margin-left: auto;
-      margin-right: auto;
+      font-size: 15px;
+      color: #ccc;
+      margin: 0 0 18px 0;
     }
-    
-    .button-container {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      align-items: center;
-    }
-    
+
     a {
-      font-size: 16px;
-      color: #000;
-      background: #fff;
-      border: none;
-      padding: 14px 28px;
-      border-radius: 4px;
+      font-size: 15px;
+      color: #fff;
+      background: transparent;
+      border: 1px solid #fff;
+      padding: 6px 14px;
+      border-radius: 2px;
       text-decoration: none;
-      transition: all 0.3s ease;
-      font-weight: 600;
-      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
-      position: relative;
-      overflow: hidden;
-      min-width: 160px;
+      transition: background 0.2s, color 0.2s;
     }
-    
-    a::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: left 0.5s;
-    }
-    
+
     a:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(255, 255, 255, 0.4);
-    }
-    
-    a:hover::before {
-      left: 100%;
-    }
-    
-    a:active {
-      transform: translateY(0);
-    }
-    
-    .decoration {
-      position: absolute;
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-      animation: pulse 4s ease-in-out infinite;
-    }
-    
-    .decoration:nth-child(1) {
-      top: 10%;
-      left: 10%;
-      animation-delay: 0s;
-    }
-    
-    .decoration:nth-child(2) {
-      top: 20%;
-      right: 15%;
-      animation-delay: 1s;
-    }
-    
-    .decoration:nth-child(3) {
-      bottom: 15%;
-      left: 20%;
-      animation-delay: 2s;
-    }
-    
-    @keyframes pulse {
-      0%, 100% {
-        opacity: 0.3;
-        transform: scale(1);
-      }
-      50% {
-        opacity: 0.1;
-        transform: scale(1.2);
-      }
-    }
-    
-    @media (max-width: 480px) {
-      body {
-        padding: 15px;
-      }
-      
-      .container {
-        max-width: 100%;
-      }
-      
-      .error-code {
-        margin-bottom: 15px;
-      }
-      
-      h1 {
-        margin-bottom: 12px;
-      }
-      
-      p {
-        margin-bottom: 25px;
-      }
-      
-      a {
-        width: 100%;
-        max-width: 280px;
-      }
-    }
-    
-    @media (prefers-color-scheme: dark) {
-      body {
-        background: #000;
-      }
+      background-color: #fff;
+      color: #000;
     }
   </style>
 </head>
 <body>
-  <div class="decoration"></div>
-  <div class="decoration"></div>
-  <div class="decoration"></div>
-  
   <div class="container">
-    <div class="error-code">404</div>
-    <div class="chicken-text">Nothing here but chickens!</div>
-    <h1>Page Not Found</h1>
-    <p>The profile or page you're looking for doesn't exist (yet). Don't worry, even the best explorers sometimes take a wrong turn.</p>
-    <div class="button-container">
-      <a href="https://corrupt.im">Go Home</a>
+    <div class="square">
+      <div class="number">Nothing here but chickens!</div>
     </div>
+    <h1>Page Not Found</h1>
+    <p>The profile or page you're looking for doesn't exist (yet)</p>
+    <a href="https://corrupt.im">Go Home</a>
   </div>
 </body>
 </html>
