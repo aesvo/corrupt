@@ -461,17 +461,6 @@
       </div>
 
       <div class="update-feed" aria-live="polite" aria-relevant="additions">
-
-<article class="update-card feature" tabindex="0" role="article" aria-label="Feature update on June 26, 2025">
-  <div class="update-date">🔵 June 26, 2025</div>
-  <h3 class="update-title">Feature Update</h3>
-  <p>test</p>
-  <div class="update-author">
-    Added by <a href="https://discord.com/users/872658221821726811" target="_blank" rel="noopener noreferrer">m3.ech</a>
-  </div>
-</article>
-
-
         <article class="update-card feature" tabindex="0" role="article" aria-label="Major update on June 26, 2025">
           <div class="update-date">🔵 June 26, 2025</div>
           <h3 class="update-title">New Feature</h3>
@@ -545,7 +534,10 @@
     options.forEach(opt => opt.classList.remove('active'));
     option.classList.add('active');
     currentValue = option.getAttribute('data-value');
-    selectedLabel.textContent = option.textContent;
+
+    // Update only the text, keep the arrow element
+    selectedLabel.childNodes[0].textContent = option.textContent;
+
     customSelect.classList.remove('open');
     customSelect.setAttribute('aria-expanded', false);
     filterUpdates(currentValue);
