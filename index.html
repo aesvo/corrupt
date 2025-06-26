@@ -5,56 +5,612 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>corrupt.im</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+    
+    html, body {
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
       background: #000;
       color: #fff;
       text-align: center;
-      padding: 60px 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      position: relative;
+      overflow-x: hidden;
     }
-
+    
+    body::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: float 25s infinite linear;
+      z-index: 0;
+    }
+    
+    @keyframes float {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      100% { transform: translate(-60px, -60px) rotate(360deg); }
+    }
+    
+    .nav {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 20px;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 10px 20px;
+      border-radius: 25px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      width: auto;
+      max-width: calc(100vw - 40px);
+    }
+    
+    .nav-item {
+      color: #aaa;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 15px;
+      transition: all 0.3s ease;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    
+    .nav-item:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    .nav-item.active {
+      color: #000;
+      background: #fff;
+    }
+    
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 600px;
+      width: 100%;
+      animation: fadeInUp 0.8s ease-out;
+      padding-bottom: 40px;
+      box-sizing: border-box;
+      max-height: calc(100vh - 120px);
+      overflow-y: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      margin-top: 80px;
+    }
+    
+    .container::-webkit-scrollbar {
+      display: none;
+    }
+    
+    .page {
+      display: none;
+      animation: fadeInUp 0.6s ease-out;
+    }
+    
+    .page.active {
+      display: block;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
     h1 {
-      font-size: 36px;
+      font-size: clamp(32px, 8vw, 48px);
+      font-weight: 900;
+      margin-bottom: 20px;
+      color: #fff;
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+      letter-spacing: -0.02em;
+      position: relative;
+    }
+    
+    h1::before {
+      content: '--';
+      position: absolute;
+      left: -30px;
+      color: #666;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    
+    h1::after {
+      content: '--';
+      position: absolute;
+      right: -30px;
+      color: #666;
+      animation: pulse 2s ease-in-out infinite 1s;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.8; }
+    }
+    
+    h2 {
+      font-size: clamp(24px, 6vw, 32px);
+      font-weight: 700;
+      margin-bottom: 30px;
+      color: #fff;
+      letter-spacing: -0.01em;
+    }
+    
+    .tagline {
+      font-size: clamp(16px, 4vw, 20px);
+      color: #aaa;
       margin-bottom: 40px;
+      line-height: 1.6;
+      font-weight: 300;
     }
-
-    .section {
-      margin-bottom: 40px;
+    
+    .discord-section {
+      margin-bottom: 60px;
     }
-
-    .section h2 {
-      font-size: 22px;
-      margin-bottom: 12px;
-    }
-
-    .section p {
-      color: #ccc;
-      font-size: 15px;
-    }
-
+    
     .discord-link {
       display: inline-block;
-      font-size: 15px;
-      color: #fff;
-      background: transparent;
-      border: 1px solid #fff;
-      padding: 6px 14px;
-      border-radius: 2px;
+      font-size: 18px;
+      color: #000;
+      background: #fff;
+      border: none;
+      padding: 16px 32px;
+      border-radius: 4px;
       text-decoration: none;
-      transition: background 0.2s, color 0.2s;
-      margin-top: 15px;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+      position: relative;
+      overflow: hidden;
+      min-width: 200px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .discord-link::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0,0,0,0.1), transparent);
+      transition: left 0.5s;
+    }
+    
+    .discord-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+      background: #f0f0f0;
+    }
+    
+    .discord-link:hover::before {
+      left: 100%;
+    }
+    
+    .discord-link:active {
+      transform: translateY(0);
+    }
+    
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 25px;
+      margin-top: 60px;
+      width: 100%;
+    }
+    
+    .feature {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 30px 20px;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+    
+    .feature:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    .feature h3 {
+      font-size: 20px;
+      margin-bottom: 15px;
+      color: #fff;
+      font-weight: 600;
+    }
+    
+    .feature p {
+      color: #bbb;
+      font-size: 14px;
+      line-height: 1.5;
+      margin: 0;
+    }
+    
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+    
+    .team-member {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 25px;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      text-align: center;
+    }
+    
+    .team-member:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    .team-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #666, #333);
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      font-weight: bold;
+      color: #fff;
+    }
+    
+    .team-name {
+      font-size: 18px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    
+    .team-role {
+      font-size: 14px;
+      color: #aaa;
+      margin-bottom: 15px;
+    }
+    
+    .team-bio {
+      font-size: 13px;
+      color: #bbb;
+      line-height: 1.4;
+    }
+    
+    .updates-list {
+      text-align: left;
+      margin-top: 40px;
+    }
+    
+    .update-item {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 25px;
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+    
+    .update-item:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    .update-date {
+      font-size: 12px;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+    
+    .update-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    
+    .update-content {
+      font-size: 14px;
+      color: #bbb;
+      line-height: 1.5;
+    }
+    
+    .footer {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #666;
+      font-size: 12px;
+      z-index: 10;
+    }
+    
+    .menu-toggle {
+      display: none;
+      color: #fff;
+      font-size: 20px;
+      cursor: pointer;
+      padding: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      transition: all 0.3s ease;
     }
 
-    .discord-link:hover {
-      background-color: #fff;
-      color: #000;
+    .menu-toggle:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .nav ul {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: 20px;
+    }
+
+    .nav ul li {
+      margin: 0;
+    }
+
+    /* Mobile styles */
+    @media (max-width: 768px) {
+      .nav {
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        right: 15px;
+        transform: none;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+        border-radius: 15px;
+        max-width: none;
+        width: calc(100vw - 30px);
+      }
+      
+      .menu-toggle {
+        display: block;
+        align-self: flex-end;
+      }
+      
+      .nav ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+        margin-top: 15px;
+        animation: slideDown 0.3s ease-out;
+      }
+      
+      .nav ul.active {
+        display: flex;
+      }
+      
+      .nav ul li {
+        width: 100%;
+      }
+      
+      .nav-item {
+        display: block;
+        width: 100%;
+        text-align: left;
+        padding: 12px 16px;
+      }
+      
+      .container {
+        margin-top: 100px;
+        padding: 0 10px;
+        max-width: 100%;
+      }
+      
+      h1::before,
+      h1::after {
+        display: none;
+      }
+      
+      .features {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      
+      .team-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav {
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        width: calc(100vw - 20px);
+        padding: 12px;
+      }
+      
+      .container {
+        margin-top: 90px;
+        padding: 0 5px;
+      }
+      
+      .discord-link {
+        min-width: auto;
+        width: 100%;
+        max-width: 280px;
+        font-size: 16px;
+        padding: 14px 24px;
+      }
+      
+      .feature,
+      .team-member,
+      .update-item {
+        padding: 20px 15px;
+      }
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
 <body>
-  <h1>-- corrupt.im --</h1>
-  <a class="discord-link" href="https://discord.gg/gtJ6eQynrN" target="_blank">join the server
-  </a>
+  <nav class="nav">
+    <span class="menu-toggle">&#9776;</span>
+    <ul>
+      <li><a class="nav-item active" onclick="showPage('home')">Home</a></li>
+      <li><a class="nav-item" onclick="showPage('team')">Team</a></li>
+      <li><a class="nav-item" onclick="showPage('updates')">Updates</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <div id="home" class="page active">
+      <h1>corrupt.im</h1>
+      <p class="tagline"></p>
+      
+      <div class="discord-section">
+        <a class="discord-link" href="https://discord.gg/gtJ6eQynrN" target="_blank">Join the Server</a>
+      </div>
+      
+      <div class="features">
+        <div class="feature">
+          <h3>Community</h3>
+          <p>Join our Discord above!</p>
+        </div>
+        <div class="feature">
+          <h3>Resources</h3>
+          <p>Coming Soon</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="team" class="page">
+      <h2>Our Team</h2>
+      <p class="tagline">Meet the people behind corrupt.im</p>
+      
+      <div class="team-grid">
+        <div class="team-member">
+          <div class="team-avatar">L</div>
+          <div class="team-name">Loser</div>
+          <div class="team-role">Founder & Lead Developer</div>
+          <div class="team-bio">Visionary behind corrupt.im, dedicated to building a biolink that is powered by github & discord.</div>
+        </div>
+        
+        <div class="team-member">
+          <div class="team-avatar">3</div>
+          <div class="team-name">m3.ech</div>
+          <div class="team-role">Founder / Helper / Stupid Dev</div>
+          <div class="team-bio">Keeps the peace and ensures our community remains a safe space for all members to share and learn.</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="updates" class="page">
+      <h2>Latest Updates</h2>
+      <p class="tagline">Stay informed about recent developments</p>
+      
+      <div class="updates-list">
+        <div class="update-item">
+          <div class="update-date">June 25, 2025</div>
+          <div class="update-title">New Home Page</div>
+          <div class="update-content">We've redesigned our home page to provide a more user friendly experience.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="footer">
+    © 2025 corrupt.im
+  </div>
+
+  <script>
+    function showPage(pageId) {
+      const pages = document.querySelectorAll('.page');
+      pages.forEach(page => {
+        page.classList.remove('active');
+      });
+      
+      const navItems = document.querySelectorAll('.nav-item');
+      navItems.forEach(item => {
+        item.classList.remove('active');
+      });
+      
+      document.getElementById(pageId).classList.add('active');
+      
+      event.target.classList.add('active');
+      
+      if (window.innerWidth <= 768) {
+        document.querySelector('nav ul').classList.remove('active');
+      }
+    }
+
+    document.querySelector('.menu-toggle').addEventListener('click', function() {
+      document.querySelector('nav ul').classList.toggle('active');
+    });
+
+    document.addEventListener('click', function(e) {
+      const nav = document.querySelector('.nav');
+      const menuToggle = document.querySelector('.menu-toggle');
+      const navMenu = document.querySelector('nav ul');
+      
+      if (!nav.contains(e.target) && navMenu.classList.contains('active')) {
+        navMenu.classList.remove('active');
+      }
+    });
+
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 768) {
+        document.querySelector('nav ul').classList.remove('active');
+      }
+    });
+  </script>
 </body>
 </html>
