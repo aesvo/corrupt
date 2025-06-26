@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>corrupt.im</title>
   <link rel="icon" href="xray/favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
     * {
       box-sizing: border-box;
@@ -120,6 +121,7 @@
       background: #cccccc46;
     }
 
+    /* MOBILE RESPONSIVE NAV FIX */
     @media screen and (max-width: 600px) {
       .nav-items {
         display: none;
@@ -143,6 +145,7 @@
       }
     }
 
+    /* Updates filter container */
     .update-filter {
       margin-bottom: 1.2em;
       text-align: center;
@@ -165,6 +168,7 @@
       background: rgba(255 255 255 / 0.1);
     }
 
+    /* Selected text */
     .update-filter .selected {
       user-select: none;
       display: flex;
@@ -173,6 +177,7 @@
       gap: 10px;
     }
 
+    /* Arrow */
     .update-filter .arrow {
       border: solid #ccc;
       border-width: 0 2px 2px 0;
@@ -186,6 +191,7 @@
       transform: rotate(-135deg);
     }
 
+    /* Dropdown menu */
     .update-filter .dropdown {
       position: absolute;
       top: 100%;
@@ -206,6 +212,7 @@
       display: block;
     }
 
+    /* Dropdown item */
     .update-filter .dropdown div {
       padding: 10px 12px;
       cursor: pointer;
@@ -218,6 +225,7 @@
       color: #fff;
     }
 
+    /* Scrollbar */
     .update-filter .dropdown::-webkit-scrollbar {
       width: 8px;
     }
@@ -226,6 +234,7 @@
       border-radius: 4px;
     }
 
+    /* Updates list */
     .update-feed {
       display: flex;
       flex-direction: column;
@@ -237,7 +246,7 @@
 
     .update-card.major .update-title {
       color: #ff4444;
-      font-weight: bold;
+      font-style: italic;
     }
 
     .update-card.minor .update-title {
@@ -266,6 +275,52 @@
       margin-left: 10px;
       text-transform: uppercase;
     }
+
+    /* Team page improvements */
+    #team h2 {
+      font-weight: 700;
+      font-size: 2em;
+      margin-bottom: 0.3em;
+    }
+    #team p {
+      font-size: 1em;
+      margin-bottom: 1.5em;
+      color: #aaa;
+    }
+    .team-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.6em;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .team-member {
+      background: #111;
+      border-radius: 10px;
+      padding: 15px 20px;
+      box-shadow: 0 0 10px #222;
+      transition: box-shadow 0.3s ease;
+      text-align: left;
+    }
+    .team-member:hover {
+      box-shadow: 0 0 15px #ffffffaa;
+    }
+    .team-member strong {
+      font-size: 1.3em;
+      display: block;
+      margin-bottom: 0.15em;
+      color: #ffffff;
+    }
+    .team-member .role {
+      font-style: italic;
+      margin-bottom: 0.6em;
+      color: #8f8f8f;
+    }
+    .team-member .bio {
+      font-size: 0.9em;
+      color: #ccc;
+      line-height: 1.3;
+    }
   </style>
 </head>
 <body>
@@ -291,15 +346,26 @@
     <div id="team" class="page">
       <h2>Our Team</h2>
       <p>Meet the people behind corrupt.im</p>
-      <p><strong>Loser</strong> — Founder & Lead Dev</p>
-      <p><strong>m3.ech</strong> — Co-Founder & Helper</p>
+
+      <div class="team-list">
+        <div class="team-member">
+          <strong>Loser</strong>
+          <div class="role">Founder & Lead Dev</div>
+          <div class="bio">The visionary behind corrupt.im, crafting the code and guiding the project.</div>
+        </div>
+
+        <div class="team-member">
+          <strong>m3.ech</strong>
+          <div class="role">Co-Founder & Helper</div>
+          <div class="bio">Supporting the team and keeping things running smoothly behind the scenes.</div>
+        </div>
+      </div>
     </div>
 
     <div id="updates" class="page">
       <h2>Latest Updates</h2>
 
-      <p class="update-item major">🔴 June 26, 2025 — Update Page <span class="update-label">[Major]</span></p>
-<div class="update-filter" id="customSelect">
+      <div class="update-filter" id="customSelect">
         <div class="selected" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="selectedLabel">
           <span id="selectedLabel">Show All</span>
           <i class="arrow"></i>
@@ -312,6 +378,11 @@
       </div>
 
       <div class="update-feed">
+        <div class="update-card major">
+          <p class="update-title">Major Update Example <span class="update-label">Major</span></p>
+          <p class="update-meta">🔴 June 26, 2025</p>
+        </div>
+
         <div class="update-card minor">
           <p class="update-title">Bugs Fixed <span class="update-label">Minor</span></p>
           <p class="update-meta">🟢 June 25, 2025</p>
@@ -338,6 +409,7 @@
   const selectedLabel = selected.querySelector('#selectedLabel');
   let currentValue = 'all';
 
+  // Toggle dropdown
   selected.addEventListener('click', () => {
     customSelect.classList.toggle('open');
     selected.setAttribute('aria-expanded', customSelect.classList.contains('open'));
@@ -346,6 +418,7 @@
     }
   });
 
+  // Close dropdown if click outside
   document.addEventListener('click', (e) => {
     if (!customSelect.contains(e.target)) {
       customSelect.classList.remove('open');
@@ -353,6 +426,7 @@
     }
   });
 
+  // Keyboard navigation
   selected.addEventListener('keydown', (e) => {
     if(e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowDown') {
       e.preventDefault();
@@ -383,15 +457,21 @@
     }
   });
 
+  // Selecting an option
   options.forEach(option => {
     option.addEventListener('click', () => {
+      // Update label text
       selectedLabel.textContent = option.textContent;
+      // Update active class
       options.forEach(opt => opt.classList.remove('active'));
       option.classList.add('active');
+      // Store value
       currentValue = option.dataset.value;
+      // Close dropdown
       customSelect.classList.remove('open');
       selected.setAttribute('aria-expanded', false);
       selected.focus();
+      // Filter updates
       filterUpdates();
     });
   });
@@ -414,6 +494,7 @@
     document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
     el.classList.add('active');
 
+    // Hide menu on mobile after selection
     document.getElementById("navItems").classList.remove("show");
   }
 
@@ -421,4 +502,5 @@
     document.getElementById("navItems").classList.toggle("show");
   }
 </script>
-</body
+</body>
+</html>
