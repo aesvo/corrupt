@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>corrupt.im</title>
   <link rel="icon" href="xray/favicon.ico" type="image/x-icon" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
@@ -121,7 +120,6 @@
       background: #cccccc46;
     }
 
-    /* MOBILE RESPONSIVE NAV FIX */
     @media screen and (max-width: 600px) {
       .nav-items {
         display: none;
@@ -145,38 +143,128 @@
       }
     }
 
-    .update-item.major {
+    .update-filter {
+      margin-bottom: 1.2em;
+      text-align: center;
+      user-select: none;
+      position: relative;
+      display: inline-block;
+      font-size: 0.95em;
+      color: #ccc;
+      cursor: pointer;
+      width: 200px;
+      background: rgba(255 255 255 / 0.05);
+      border: 1px solid #666;
+      border-radius: 8px;
+      padding: 8px 12px;
+      transition: border-color 0.25s ease;
+    }
+    .update-filter:hover, .update-filter.open {
+      border-color: #aaa;
+      color: #eee;
+      background: rgba(255 255 255 / 0.1);
+    }
+
+    .update-filter .selected {
+      user-select: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .update-filter .arrow {
+      border: solid #ccc;
+      border-width: 0 2px 2px 0;
+      display: inline-block;
+      padding: 3px;
+      transform: rotate(45deg);
+      transition: transform 0.3s ease;
+      margin-left: auto;
+    }
+    .update-filter.open .arrow {
+      transform: rotate(-135deg);
+    }
+
+    .update-filter .dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #111;
+      border: 1px solid #666;
+      border-radius: 0 0 8px 8px;
+      max-height: 150px;
+      overflow-y: auto;
+      margin-top: 2px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.5);
+      z-index: 10;
+      display: none;
+      user-select: none;
+    }
+    .update-filter.open .dropdown {
+      display: block;
+    }
+
+    .update-filter .dropdown div {
+      padding: 10px 12px;
+      cursor: pointer;
+      transition: background 0.25s;
+      color: #ccc;
+    }
+    .update-filter .dropdown div:hover, 
+    .update-filter .dropdown div.active {
+      background: #222;
+      color: #fff;
+    }
+
+    .update-filter .dropdown::-webkit-scrollbar {
+      width: 8px;
+    }
+    .update-filter .dropdown::-webkit-scrollbar-thumb {
+      background-color: #444;
+      border-radius: 4px;
+    }
+
+    .update-feed {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-height: 70vh;
+      overflow-y: auto;
+      padding-right: 10px;
+    }
+
+    .update-card.major .update-title {
       color: #ff4444;
       font-weight: bold;
     }
-    
-    .update-item.minor {
+
+    .update-card.minor .update-title {
       color: #44ff44;
       font-style: italic;
     }
 
-    .update-label {
-      font-weight: bold;
+    .update-title {
+      font-size: 1.05em;
+      margin: 0;
+      text-align: center;
+    }
+
+    .update-meta {
       font-size: 0.85em;
-      margin-left: 8px;
-      color: inherit;
       opacity: 0.7;
+      margin-top: 2px;
+      text-align: center;
     }
 
-    .update-filter {
-      margin-bottom: 1em;
-    }
-    
-    .update-filter select {
-      padding: 4px 8px;
-      font-size: 1em;
-      border-radius: 6px;
-    }
-
-    #updates {
-      max-height: 70vh;
-      overflow-y: auto;
-      padding-right: 10px;
+    .update-label {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.75em;
+      margin-left: 10px;
+      text-transform: uppercase;
     }
   </style>
 </head>
@@ -209,49 +297,127 @@
 
     <div id="updates" class="page">
       <h2>Latest Updates</h2>
-    
-      <div class="update-filter">
-        <label for="updateSearch">🔍 Filter Updates:</label>
-        <select id="updateSearch" onchange="filterUpdates()">
-          <option value="all">Show All</option>
-          <option value="major">Major Only</option>
-          <option value="minor">Minor Only</option>
-        </select>
+
+      <div class="update-filter" id="customSelect">
+        <div class="selected" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="selectedLabel">
+          <span id="selectedLabel">Show All</span>
+          <i class="arrow"></i>
+        </div>
+        <div class="dropdown" role="listbox" tabindex="-1" aria-activedescendant="option-all">
+          <div id="option-all" role="option" data-value="all" class="active">Show All</div>
+          <div id="option-major" role="option" data-value="major">Major Only</div>
+          <div id="option-minor" role="option" data-value="minor">Minor Only</div>
+        </div>
       </div>
-    
-      <p class="update-item minor">🟢 June 25, 2025 — Bugs <span class="update-label">[Minor]</span></p>
-      <p class="update-item minor">🟢 June 25, 2025 — 404 Page Redone <span class="update-label">[Minor]</span></p>
-      <p class="update-item minor">🟢 June 25, 2025 — Home Page <span class="update-label">[Minor]</span></p>
+
+      <div class="update-feed">
+        <div class="update-card minor">
+          <p class="update-title">Bugs Fixed <span class="update-label">Minor</span></p>
+          <p class="update-meta">🟢 June 25, 2025</p>
+        </div>
+
+        <div class="update-card minor">
+          <p class="update-title">404 Page Redone <span class="update-label">Minor</span></p>
+          <p class="update-meta">🟢 June 25, 2025</p>
+        </div>
+
+        <div class="update-card minor">
+          <p class="update-title">Home Page Completed <span class="update-label">Minor</span></p>
+          <p class="update-meta">🟢 June 25, 2025</p>
+        </div>
+      </div>
     </div>
+  </div>
 
-  <script>
-      function filterUpdates() {
-      const type = document.getElementById('updateSearch').value;
-      const updates = document.querySelectorAll('.update-item');
-  
-      updates.forEach(update => {
-        if (type === 'all') {
-          update.style.display = '';
-        } else {
-          update.style.display = update.classList.contains(type) ? '' : 'none';
-        }
-      });
+<script>
+  const customSelect = document.getElementById('customSelect');
+  const selected = customSelect.querySelector('.selected');
+  const dropdown = customSelect.querySelector('.dropdown');
+  const options = dropdown.querySelectorAll('div');
+  const selectedLabel = selected.querySelector('#selectedLabel');
+  let currentValue = 'all';
+
+  selected.addEventListener('click', () => {
+    customSelect.classList.toggle('open');
+    selected.setAttribute('aria-expanded', customSelect.classList.contains('open'));
+    if(customSelect.classList.contains('open')) {
+      dropdown.focus();
     }
-    
-    function showPage(id, el) {
-      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
+  });
 
-      document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
-      el.classList.add('active');
-
-      // Hide menu after selecting on mobile
-      document.getElementById("navItems").classList.remove("show");
+  document.addEventListener('click', (e) => {
+    if (!customSelect.contains(e.target)) {
+      customSelect.classList.remove('open');
+      selected.setAttribute('aria-expanded', false);
     }
+  });
 
-    function toggleMenu() {
-      document.getElementById("navItems").classList.toggle("show");
+  selected.addEventListener('keydown', (e) => {
+    if(e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      customSelect.classList.add('open');
+      selected.setAttribute('aria-expanded', true);
+      dropdown.focus();
+      options[0].focus();
     }
-  </script>
-</body>
-</html>
+  });
+
+  dropdown.addEventListener('keydown', (e) => {
+    let focusedIndex = Array.from(options).findIndex(opt => document.activeElement === opt);
+    if(e.key === 'ArrowDown') {
+      e.preventDefault();
+      const nextIndex = (focusedIndex + 1) % options.length;
+      options[nextIndex].focus();
+    } else if(e.key === 'ArrowUp') {
+      e.preventDefault();
+      const prevIndex = (focusedIndex - 1 + options.length) % options.length;
+      options[prevIndex].focus();
+    } else if(e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      options[focusedIndex].click();
+    } else if(e.key === 'Escape') {
+      customSelect.classList.remove('open');
+      selected.setAttribute('aria-expanded', false);
+      selected.focus();
+    }
+  });
+
+  options.forEach(option => {
+    option.addEventListener('click', () => {
+      selectedLabel.textContent = option.textContent;
+      options.forEach(opt => opt.classList.remove('active'));
+      option.classList.add('active');
+      currentValue = option.dataset.value;
+      customSelect.classList.remove('open');
+      selected.setAttribute('aria-expanded', false);
+      selected.focus();
+      filterUpdates();
+    });
+  });
+
+  function filterUpdates() {
+    const updates = document.querySelectorAll('.update-card');
+    updates.forEach(update => {
+      if (currentValue === 'all') {
+        update.style.display = '';
+      } else {
+        update.style.display = update.classList.contains(currentValue) ? '' : 'none';
+      }
+    });
+  }
+
+  function showPage(id, el) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+
+    document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
+    el.classList.add('active');
+
+    document.getElementById("navItems").classList.remove("show");
+  }
+
+  function toggleMenu() {
+    document.getElementById("navItems").classList.toggle("show");
+  }
+</script>
+</body
