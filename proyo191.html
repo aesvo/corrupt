@@ -494,48 +494,56 @@ body {
       <div id="discord-widget"></div>
     </div>
     
-    <script>
-      const inviteCode = 'https://discord.gg/E7avzBP7J2';
-      const w = document.getElementById('discord-widget');
-      const discordSection = document.getElementById('discord-section');
-    
-      if (!inviteCode) {
-        discordSection.style.display = 'none';
-      } else {
-        discordSection.style.display = 'block';
-        fetch('https://discord.com/api/invites/' + inviteCode + '?with_counts=true')
-          .then(function (r) {
-            return r.ok ? r.json() : Promise.reject();
-          })
-          .then(function (d) {
-            const g = d.guild;
-            let content = '';
-            
-            if (g.banner) {
-              content += '<img src="https://cdn.discordapp.com/banners/' + g.id + '/' + g.banner + '.png?size=512" style="width:100%; max-height:150px; border-radius:8px 8px 0 0; object-fit:cover; margin-bottom:15px;">';
-            }
-            
-            content += '<div style="display:flex; align-items:center; padding: 0 10px; ' + (g.banner ? 'margin-top: -50px;' : 'margin-top: 10px;') + '">';
-            content += '<img src="' + (g.icon ? 'https://cdn.discordapp.com/icons/' + g.id + '/' + g.icon + '.png?size=128' : 'https://discord.com/assets/6debd47ed13483642cf09e832ed0bc1b.png') + '" style="width:80px; height:80px; border-radius:20%; object-fit:cover;">';
-            content += '<div style="margin-left:15px; color:#fff;">';
-            content += '<h2 style="margin:0 0 6px 0; font-size:24px;">' + g.name + '</h2>';
-            content += '<div style="font-size:14px; line-height:1.4; color:#ccc;">';
-            content += d.approximate_presence_count + ' online / ' + d.approximate_member_count + ' members';
-            content += '</div>';
-            content += '<a href="https://discord.gg/' + d.code + '" target="_blank" class="join-btn" style="margin-top:10px; display:inline-block;">';
-            content += 'Join Server';
-            content += '</a>';
-            content += '</div>';
-            content += '</div>';
-    
-            w.innerHTML = content;
-          })
-          .catch(function () {
-            w.textContent = '- failed to load server info';
-          });
-      }
-    </script>
-    
+<script>
+  const inviteInput = 'https://discord.gg/E7avzBP7J2'; 
+  
+  function extractInviteCode(invite) {
+    const regex = /discord(?:app)?\.com\/invite\/([a-zA-Z0-9-]+)|discord\.gg\/([a-zA-Z0-9-]+)|^([a-zA-Z0-9-]+)$/;
+    const match = invite.match(regex);
+    return (match && (match[1] || match[2] || match[3])) || null;
+  }
+
+  const inviteCode = extractInviteCode(inviteInput);
+  const w = document.getElementById('discord-widget');
+  const discordSection = document.getElementById('discord-section');
+
+  if (!inviteCode) {
+    discordSection.style.display = 'none';
+  } else {
+    discordSection.style.display = 'block';
+    fetch('https://discord.com/api/invites/' + inviteCode + '?with_counts=true')
+      .then(function (r) {
+        return r.ok ? r.json() : Promise.reject();
+      })
+      .then(function (d) {
+        const g = d.guild;
+        let content = '';
+
+        if (g.banner) {
+          content += '<img src="https://cdn.discordapp.com/banners/' + g.id + '/' + g.banner + '.png?size=512" style="width:100%; max-height:150px; border-radius:8px 8px 0 0; object-fit:cover; margin-bottom:15px;">';
+        }
+
+        content += '<div style="display:flex; align-items:center; padding: 0 10px; ' + (g.banner ? 'margin-top: -50px;' : 'margin-top: 10px;') + '">';
+        content += '<img src="' + (g.icon ? 'https://cdn.discordapp.com/icons/' + g.id + '/' + g.icon + '.png?size=128' : 'https://discord.com/assets/6debd47ed13483642cf09e832ed0bc1b.png') + '" style="width:80px; height:80px; border-radius:20%; object-fit:cover;">';
+        content += '<div style="margin-left:15px; color:#fff;">';
+        content += '<h2 style="margin:0 0 6px 0; font-size:24px;">' + g.name + '</h2>';
+        content += '<div style="font-size:14px; line-height:1.4; color:#ccc;">';
+        content += d.approximate_presence_count + ' online / ' + d.approximate_member_count + ' members';
+        content += '</div>';
+        content += '<a href="https://discord.gg/' + d.code + '" target="_blank" class="join-btn" style="margin-top:10px; display:inline-block;">';
+        content += 'Join Server';
+        content += '</a>';
+        content += '</div>';
+        content += '</div>';
+
+        w.innerHTML = content;
+      })
+      .catch(function () {
+        w.textContent = '- failed to load server info';
+      });
+  }
+</script>
+
     <style>
       .join-btn {
         font-size: 15px;
