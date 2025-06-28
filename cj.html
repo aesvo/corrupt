@@ -784,70 +784,10 @@ body {
       color: #000;
       transform: scale(1.04);
     }
-
-    #image-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0,0,0,0.85);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-      z-index: 1000;
-    }
-
-    #image-overlay.visible {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    #image-overlay img,
-    #image-overlay video {
-      max-width: 90vw;
-      max-height: 90vh;
-      border-radius: 12px;
-      animation: fadeUp 0.3s ease forwards;
-      box-shadow: 0 0 24px rgba(255, 255, 255, 0.15);
-    }
-
-    #image-overlay.closing img,
-    #image-overlay.closing video {
-      animation: fadeDown 0.3s ease forwards;
-    }
-
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(15px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes fadeDown {
-      from {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      to {
-        opacity: 0;
-        transform: translateY(15px);
-      }
-    }
   </style>
-
-  <div id="image-overlay"></div>
 
   <script>
     const whatsUpContainer = document.querySelector('.info-container.whats-up');
-    const imageOverlay = document.getElementById('image-overlay');
 
     function updateVisibilityAndButton() {
       const posts = Array.from(whatsUpContainer.querySelectorAll('.post'));
@@ -860,30 +800,6 @@ body {
 
       posts.forEach(post => post.classList.remove('hidden'));
     }
-
-    whatsUpContainer.querySelectorAll('.post img.post-image').forEach(img => {
-      img.addEventListener('click', () => {
-        imageOverlay.innerHTML = '<img src="' + img.src + '" alt="Full size image">';
-        imageOverlay.classList.add('visible');
-        imageOverlay.classList.remove('closing');
-      });
-    });
-
-    whatsUpContainer.querySelectorAll('.post video.post-video').forEach(video => {
-      video.addEventListener('click', () => {
-        imageOverlay.innerHTML = '<video src="' + video.src + '" controls autoplay class="post-video"></video>';
-        imageOverlay.classList.add('visible');
-        imageOverlay.classList.remove('closing');
-      });
-    });
-
-    imageOverlay.addEventListener('click', () => {
-      imageOverlay.classList.add('closing');
-      setTimeout(() => {
-        imageOverlay.classList.remove('visible', 'closing');
-        imageOverlay.innerHTML = '';
-      }, 300);
-    });
 
     updateVisibilityAndButton();
   </script>
