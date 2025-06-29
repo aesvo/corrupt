@@ -1,0 +1,11 @@
+<div id="view-count">Loading views...</div>
+<script>
+  fetch("https://your-worker-url.workers.dev")
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("view-count").textContent = `Views: ${data.views}`;
+    })
+    .catch(() => {
+      document.getElementById("view-count").textContent = "Could not load views";
+    });
+</script>
