@@ -366,41 +366,92 @@ body {
 </body>
 </html>
 
+<div id="reveal-screen" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:black;color:white;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;z-index:9999;transition:opacity 0.5s ease, transform 0.5s ease; border-radius:0;" onclick="startMedia(this)">
+  <revealscreen-text id="typewriter-text" style="white-space: nowrap; overflow: hidden; font-size: 1.2rem; opacity: 1; transform: translateY(0); animation-fill-mode: forwards;">click anywhere</revealscreen-text>
+  <div id="icon-container" style="margin-top: 10px; display: flex; align-items: center; overflow: visible; position: relative; width: 24px; justify-content: center; transition: width 0.3s ease;">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;">
+      <path d="M9 18V5l12-2v13"></path>
+      <circle cx="6" cy="18" r="3"></circle>
+      <circle cx="18" cy="16" r="3"></circle>
+    </svg>
+    <input id="volume-bar" type="range" min="0" max="1" step="0.01" value="1" style="
+      width: 0;
+      opacity: 0;
+      margin-left: 10px;
+      cursor: pointer;
+      background: white;
+      height: 4px;
+      border-radius: 2px;
+      accent-color: white;
+      transition: width 0.3s ease, opacity 0.3s ease;
+    ">
+  </div>
+</div>  
 
-  <div id="reveal-screen" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:black;color:white;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:9999;transition:opacity 0.5s ease, transform 0.5s ease; border-radius:0;" onclick="startMedia(this)">
-    <revealscreen-text id="typewriter-text" style="white-space: nowrap; overflow: hidden; font-size: 1.2rem; opacity: 1; transform: translateY(0); animation-fill-mode: forwards;">i need it right now, i wanna get out.</revealscreen-text>
-  </div>  
-  <audio id="audio" loop></audio>
-  <video class="video-bg" autoplay loop playsinline style="display:none;"></video>
-  <div id="background-image" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background-image:url('');background-size:cover;background-position:center;z-index:-1;"></div>
-  <script>
-  function startMedia(revealScreen) {
-    const audio = document.getElementById('audio');
-    const video = document.querySelector('.video-bg');
+<audio id="audio" loop></audio>
+<video class="video-bg" autoplay loop playsinline style="display:none;"></video>
+<div id="background-image" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background-image:url('');background-size:cover;background-position:center;z-index:-1;"></div>
 
-  var audioSrc = "uploads/audio_9ba4d3d968d4_1388052097181810758.mp3"; 
-  var videoSrc = "uploads/background_5e547e2ad56b_1388052097181810758.mp4";
-  video.innerHTML = '<source src="' + videoSrc + '" type="video/mp4">';
+<script>
+const iconContainer = document.getElementById('icon-container');
+const volumeBar = document.getElementById('volume-bar');
+const audio = document.getElementById('audio');
+
+var audioSrc = "uploads/audio_9ba4d3d968d4_1388052097181810758.mp3"; 
+var videoSrc = "uploads/background_5e547e2ad56b_1388052097181810758.mp4";
+
+function updateVolumeControlVisibility() {
+  if (audioSrc.trim() !== "" || videoSrc.trim() !== "") {
+    iconContainer.style.display = 'flex';
+    iconContainer.style.width = '24px';
+    volumeBar.style.width = '0';
+    volumeBar.style.opacity = '0';
+
+    iconContainer.addEventListener('mouseenter', () => {
+      iconContainer.style.width = '124px';
+      volumeBar.style.width = '100px';
+      volumeBar.style.opacity = '1';
+    });
+    iconContainer.addEventListener('mouseleave', () => {
+      iconContainer.style.width = '24px';
+      volumeBar.style.width = '0';
+      volumeBar.style.opacity = '0';
+    });
+
+    volumeBar.addEventListener('input', () => {
+      audio.volume = volumeBar.value;
+    });
+  } else {
+    iconContainer.style.display = 'none';
+  }
+}
+
+updateVolumeControlVisibility();
+
+function startMedia(revealScreen) {
+  const video = document.querySelector('.video-bg');
+  video.innerHTML = videoSrc.trim() ? '<source src="' + videoSrc + '" type="video/mp4">' : '';
   video.load();
 
   if (audioSrc.trim() !== "") {
-  audio.src = audioSrc;
-  audio.play().catch(function(){});
-  video.muted = true;
+    audio.src = audioSrc;
+    audio.volume = volumeBar.value;
+    audio.play();
   } else {
-  audio.src = "";
-  video.muted = false;
+    audio.src = "";
   }
 
-  video.style.display = 'block';
-  video.play().catch(function(){});
+  if(videoSrc.trim() !== ""){
+    video.style.display = 'block';
+  }
 
   revealScreen.style.opacity = '0';
   revealScreen.style.transform = 'translateY(50px)';
-  setTimeout(function(){ revealScreen.remove(); }, 500);
-  } </script>
-
-
+  setTimeout(function() {
+    revealScreen.remove();
+  }, 500);
+}
+</script>
 
     
     <div class="info-container">
