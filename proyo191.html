@@ -411,113 +411,87 @@ body {
         <div>private life</div>
     </div>  
 
-    <div class="info-container" id="infoContainer" style="display: none;">
-      <div class="section-header">
-        <img src="xray/presence.png" alt="pen icon" style="height: 1em; vertical-align: middle; margin-right: 1px;">
+ <div class="info-container" id="roblox-presence-container">
+      <div class="section-header" style="display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 1.1em;">
+        <img src="xray/presence.png" alt="pen icon" style="height: 1.2em; vertical-align: middle;">
         Roblox Presence
       </div>
-    
-      <div class="card" id="profileCard" style="margin-top: 10px; padding: 10px 25px; width: 450px;">
-        <div style="display: flex; align-items: flex-start; gap: 15px;">
-          <img id="avatar" class="avatar" src="" alt="Avatar" style="width: 90px; height: 90px; border-radius: 0; margin-top: 2px;">
-          <div style="flex: 1;">
-            <h2 id="displayName" style="font-size: 20px; margin: 0 0 6px 0;">Loading...</h2>
-            <div class="stats-container" style="font-size: 14px; gap: 10px; margin-bottom: 4px;">
-              <div class="stat-item friends-icon" style="gap: 5px;">
-                <img src="xray/friends.png" alt="friends icon" style="width: 20px; height: 20px; vertical-align: middle;">
-                <span id="friendsCount">0</span>
-              </div>
-              <span class="dot-separator" style="font-size: 16px;">·</span>
-              <div class="stat-item followers-text">
-                <span id="followersCount">0 Followers</span>
-              </div>
-            </div>
-            <a href="#" id="profileBtn" class="join-btn" target="_blank" rel="noopener noreferrer" style="font-size: 16px; padding: 6px 16px; white-space: nowrap;">Go to Profile</a>
-          </div>
-        </div>
-      </div>
+      <div id="roblox-presence-data"></div>
     </div>
     
     <style>
-      body {
-        background: transparent;
-      }
-      .card {
-        background: transparent;
-        border-radius: 10px;
-        box-shadow: none;
-        text-align: left;
-        color: rgba(255, 255, 255, 0.85);
-        margin-bottom: 2px;
-      }
-      #displayName {
-        color: rgba(255, 255, 255, 0.9);
-        font-weight: bold;
-      }
-      .stats-container {
-        display: flex;
-        align-items: center;
-        color: rgba(255, 255, 255, 0.7);
-      }
-      .stat-item {
-        display: flex;
-        align-items: center;
-      }
-      .join-btn {
-        color: #fff;
-        background: transparent;
-        border: 1px solid #fff;
-        border-radius: 2px;
+      .roblox-presence-card-wrapper {
+        display: block;
+        width: 100%;
+        margin-top: 6px;
+        border-radius: 6px;
         text-decoration: none;
-        transition: background 0.2s, color 0.2s;
-        display: inline-block;
-        white-space: nowrap;
+        color: white;
+        transition: background-color 0.2s;
       }
-      .join-btn:hover {
-        background-color: #fff;
-        color: #000;
+    
+      .roblox-presence-card-wrapper:hover {
+        background-color: rgba(255, 255, 255, 0.1);
       }
     </style>
     
     <script>
-      const userId = '5040205276';
+      const userId = '5040205276'; 
     
-      if (!userId) {
-        document.getElementById("infoContainer").style.display = "none";
-      } else {
-        document.getElementById("infoContainer").style.display = "block";
+      async function fetchRobloxPresence() {
+        const containerWrapper = document.getElementById('roblox-presence-container');
+        if (!userId) {
+          containerWrapper.style.display = 'none';
+          return;
+        }
     
-        fetch("https://corsproxy.io/?https://users.roblox.com/v1/users/" + userId)
-          .then(res => res.json())
-          .then(user => {
-            document.getElementById("displayName").textContent = user.displayName;
-            document.getElementById("profileBtn").href = "https://www.roblox.com/users/" + userId + "/profile";
-          });
+        const profileUrl = `https://www.roblox.com/users/${userId}/profile`;
     
-        fetch("https://corsproxy.io/?https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=" + userId + "&size=150x150&format=Png&isCircular=false")
-          .then(res => res.json())
-          .then(data => {
-            document.getElementById("avatar").src = data.data[0].imageUrl;
-          });
+        try {
+          const [userRes, avatarRes, friendsRes, followersRes] = await Promise.all([
+            fetch(`https://corsproxy.io/?https://users.roblox.com/v1/users/${userId}`),
+            fetch(`https://corsproxy.io/?https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${userId}&size=150x150&format=Png&isCircular=false`),
+            fetch(`https://corsproxy.io/?https://friends.roblox.com/v1/users/${userId}/friends/count`),
+            fetch(`https://corsproxy.io/?https://friends.roblox.com/v1/users/${userId}/followers/count`)
+          ]);
     
-        fetch("https://corsproxy.io/?https://friends.roblox.com/v1/users/" + userId + "/friends/count")
-          .then(res => res.json())
-          .then(data => {
-            document.getElementById("friendsCount").textContent = data.count;
-          })
-          .catch(() => {
-            document.getElementById("friendsCount").textContent = "N/A";
-          });
+          const user = await userRes.json();
+          const avatarData = await avatarRes.json();
+          const friendsData = await friendsRes.json();
+          const followersData = await followersRes.json();
     
-        fetch("https://corsproxy.io/?https://friends.roblox.com/v1/users/" + userId + "/followers/count")
-          .then(res => res.json())
-          .then(data => {
-            document.getElementById("followersCount").textContent = data.count + " Followers";
-          })
-          .catch(() => {
-            document.getElementById("followersCount").textContent = "N/A Followers";
-          });
+          const avatarUrl = avatarData.data[0].imageUrl || '';
+          const displayName = user.displayName || 'N/A';
+          const friendsCount = typeof friendsData.count === 'number' ? friendsData.count : 'N/A';
+          const followersCount = typeof followersData.count === 'number' ? followersData.count + ' Followers' : 'N/A Followers';
+    
+          const container = document.getElementById('roblox-presence-data');
+          container.innerHTML = `
+            <a href="${profileUrl}" target="_blank" rel="noopener noreferrer" class="roblox-presence-card-wrapper">
+              <div style="display: flex; align-items: center; gap: 14px; padding: 6px 0;">
+                <div style="width: 44px; height: 44px;">
+                  <img src="${avatarUrl}" alt="Avatar" style="width: 44px; height: 44px; object-fit: cover;">
+                </div>
+                <div style="display: flex; flex-direction: column; justify-content: center;">
+                  <div style="font-weight: 600; font-size: 1.05em; line-height: 1.2;">${displayName}</div>
+                  <div style="display: flex; align-items: center; font-size: 0.9em; color: rgba(255,255,255,0.7); gap: 8px;">
+                    <div style="display: flex; align-items: center; gap: 4px;">
+                      <img src="xray/friends.png" alt="friends icon" style="width: 16px; height: 16px;">
+                      <span>${friendsCount}</span>
+                    </div>
+                    <span style="font-size: 14px;">·</span>
+                    <div>${followersCount}</div>
+                  </div>
+                </div>
+              </div>
+            </a>
+          `;
+        } catch (error) {
+          document.getElementById('roblox-presence-data').innerText = 'failed to load data';
+        }
       }
+    
+      fetchRobloxPresence();
     </script>
 
 <presence-show hide="false">
