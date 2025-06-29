@@ -1,7 +1,7 @@
 <p>Unique Visitors: <span id="visitorCount">Loading...</span></p>
 
 <script>
-fetch("https://fastidious-dusk-bb4394.netlify.app/.netlify/functions/log-ip")
+fetch("https://fastidious-dusk-bb4394.netlify.app/log-ip.js")
   .then(res => res.json())
   .then(data => {
     document.getElementById("visitorCount").textContent = data.uniqueViews || "1";
