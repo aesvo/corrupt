@@ -1024,70 +1024,97 @@ function startMedia(revealScreen) {
 
 <div class="info-container whats-up">
   <div class="section-header">
-    Posts
+Posts
   </div>
 
-
   <!-- here -->
-<div class="post" data-pinned="false">
-<div class="post-content">cat</div>
-<img src="uploads/post_974fcd428ad3_1280431571291078707.jpg" alt="Posted image" class="post-image">
-<div class="post-date">Posted 7/2/2025, 1:02:51 PM</div>
-</div>
-
-
+   
   <style>
     .post {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
       border: 1px solid rgba(255, 255, 255, 0.1);
       padding: 14px 16px;
       border-radius: 12px;
-      margin-bottom: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      margin-bottom: 12px;
+      opacity: 1;
+      transform: translateY(0);
       transition: opacity 0.5s ease, transform 0.5s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     }
 
-    .post:last-child {
-      margin-bottom: 4px;
+    .post img.post-image,
+    .post video.post-video {
+      max-width: 420px;
+      width: 100%;
+      height: auto;
+      margin-top: 10px;
+      border-radius: 16px;
+      cursor: pointer;
+      display: block;
+      object-fit: contain;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    @media (max-width: 480px) {
+      .post img.post-image,
+      .post video.post-video {
+        max-width: 100%;
+        width: 100%;
+      }
     }
 
     .post-content {
       font-size: 1.05rem;
       color: #f2f2f2;
-      line-height: 1.5;
+      margin-bottom: 6px;
       white-space: pre-wrap;
-      flex-grow: 1;
-      margin-right: 16px;
+      line-height: 1.5;
+    }
+
+    .post-content a {
+      color: #3a78ff;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.3s ease, text-decoration 0.3s ease;
+    }
+
+    .post-content a:hover {
+      color: #6096ff;
+      text-decoration: underline;
     }
 
     .post-date {
+      margin-top: 6px;
       color: #bbb;
       font-size: 0.85em;
       font-style: italic;
-      white-space: nowrap;
-      user-select: none;
-      flex-shrink: 0;
-      min-width: 160px;
-      text-align: right;
     }
 
-    @media (max-width: 480px) {
-      .post {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+    .hidden {
+      opacity: 0;
+      transform: translateY(-10px);
+      height: 0;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+      transition: opacity 0.5s ease, transform 0.5s ease, height 0.5s ease;
+    }
 
-      .post-content {
-        margin-right: 0;
-        margin-bottom: 8px;
-      }
+    .join-btn {
+      font-size: 15px;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid #fff;
+      padding: 7px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+      cursor: pointer;
+    }
 
-      .post-date {
-        min-width: auto;
-        text-align: left;
-      }
+    .join-btn:hover {
+      background-color: #fff;
+      color: #000;
+      transform: scale(1.04);
     }
   </style>
 
