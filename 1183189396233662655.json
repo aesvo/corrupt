@@ -1,0 +1,50 @@
+{
+  "discord_user": {
+    "id": "1183189396233662655",
+    "username": "cameron0484",
+    "avatar": "https://cdn.discordapp.com/avatars/1183189396233662655/f7ffaea4b387d85eaf93f07dd5a36e03.png",
+    "discord_status": "dnd",
+    "activities": [
+      {
+        "id": "custom",
+        "name": "Custom Status",
+        "type": 4,
+        "state": "Jesus will always be there for you",
+        "timestamps": {},
+        "created_at": 1752615858068
+      },
+      {
+        "name": "Medal",
+        "type": 0,
+        "state": "with Medal.tv",
+        "timestamps": {
+          "start": "2025-07-15T15:50:09.945Z",
+          "end": null
+        },
+        "created_at": 1752599146327
+      },
+      {
+        "name": "FiveM",
+        "type": 0,
+        "state": "Evarose LLM | Semi Serious XL RP 18+  |🔫 Custom Gangs 🔫 | 🚓 Active PD, EMS, DOJ 🚑 | 🎞️ Stream...",
+        "timestamps": {
+          "start": "2025-07-15T15:51:13.000Z",
+          "end": null
+        },
+        "created_at": 1752615324769
+      },
+      {
+        "name": "Grand Theft Auto V",
+        "type": 0,
+        "state": null,
+        "timestamps": {
+          "start": "2025-07-15T15:49:55.238Z",
+          "end": null
+        },
+        "created_at": 1752594588740
+      }
+    ],
+    "global_name": "Hiitツ",
+    "display_name": "Hiitツ"
+  }
+}
