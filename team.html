@@ -2,65 +2,86 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Team - corrupt.im</title>
-  <link rel="icon" href="xray/favicon.ico" type="image/x-icon" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="css/homepage.css" />
+  <style>
+    /* Minimal styling for avatars inside team */
+    .discord-avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+      border: 2px solid #eee;
+      object-fit: cover;
+      box-shadow: 0 0 8px rgba(255 255 255 / 0.15);
+    }
+    .member {
+      text-align: center;
+      padding: 1rem;
+    }
+  </style>
 </head>
 <body>
-  <nav class="navbar">
-    <div class="navbar-left">
-      <span class="navbar-title">corrupt.im</span>
-    </div>
-    <div class="nav-items" id="navItems">
-      <a class="nav-link" href="https://corrupt.im/"><i class="fa fa-home"></i> Home</a>
-      <a class="nav-link active" href="https://corrupt.im/team"><i class="fa fa-users"></i> Team</a>
-      <a class="nav-link" href="https://corrupt.im/faq"><i class="fa fa-question-circle"></i> FAQ</a>
-      <a class="nav-link" href="https://corrupt.im/updates"><i class="fa fa-bolt"></i> Updates</a>
-      <a class="nav-link" href="https://corrupt.im/tosandpp"><i class="fa fa-file-alt"></i> PP & TOS</a>
-    </div>
-    <div class="hamburger" onclick="toggleMenu()" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); z-index: 2100;">
-      <i class="fas fa-bars"></i>
-    </div>
-  </nav>
-
-  <div class="container">
-    <div class="global-hero-bg"></div>
-    <div id="team" class="page active">
-      <h2>Our Team</h2>
-      <p>Meet the people behind corrupt.im</p>
-      <div class="team-list">
-        <a class="team-member" href="https://discord.com/users/1387423490357067838" target="_blank" rel="noopener noreferrer">
-          <div class="team-avatar-wrap">
-            <img class="team-avatar" src="https://cdn.discordapp.com/avatars/1280431571291078707/b8e90bbe3ba7e6505a1908388819e9e5.webp?size=1024" alt="Avatar" />
-          </div>
-          <div class="team-info">
-            <strong>mokyo</strong>
-            <div class="role">Founder & Lead Dev</div>
-            <div class="bio">The visionary behind corrupt.im, crafting the code and guiding the project.</div>
-            <div class="team-social">
-              <span><i class="fab fa-discord"></i> <span class="team-id">191shn</span></span>
-            </div>
-          </div>
-        </a>
-        <a class="team-member" href="https://discord.com/users/872658221821726811" target="_blank" rel="noopener noreferrer">
-          <div class="team-avatar-wrap">
-            <img class="team-avatar" src="https://cdn.discordapp.com/avatars/872658221821726811/8918f8e66320bce01862744c48f1439a.webp?size=1024" alt="Avatar" />
-          </div>
-          <div class="team-info">
-            <strong>m</strong>
-            <div class="role">Co-Founder & Dev</div>
-            <div class="bio">The Co Founder and sometimes helps with coding</div>
-            <div class="team-social">
-              <span><i class="fab fa-discord"></i> <span class="team-id">me.ech</span></span>
-            </div>
-          </div>
-        </a>
-      </div>
-    </div>
+  <div id="preloader">
+    <div class="spinner"></div>
   </div>
+  <main class="container">
+    <h1>Meet the Team</h1>
+    <p>Here are the amazing people behind <strong>corrupt.im</strong>.</p>
 
-  <script src="homepage.js"></script>
+    <div class="team-grid" id="teamGrid">
+      <!-- Dynamic team members will be inserted here -->
+    </div>
+
+    <footer>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="team.html">Team</a>
+        <a href="tos.html">ToS</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="updates.html">Updates</a>
+      </nav>
+      <p>&copy; 2025 corrupt.im</p>
+    </footer>
+  </main>
+
+  <script>
+    window.addEventListener('load', () => {
+      const preloader = document.getElementById('preloader');
+      preloader.classList.add('hide');
+      setTimeout(() => preloader.remove(), 600);
+    });
+
+    async function loadTeam() {
+      try {
+        const res = await fetch('https://raw.githubusercontent.com/aesvo/corrupt/main/teamData.json');
+        if (!res.ok) throw new Error('Failed to fetch team data');
+        const team = await res.json();
+        const container = document.getElementById('teamGrid');
+        container.innerHTML = '';
+
+        team.forEach(member => {
+          const avatarUrl = member.avatar
+            ? `https://cdn.discordapp.com/avatars/${member.id}/${member.avatar}.png?size=128`
+            : `https://cdn.discordapp.com/embed/avatars/${member.discriminator % 5}.png`;
+
+          const div = document.createElement('div');
+          div.classList.add('member');
+          div.innerHTML = `
+            <img src="${avatarUrl}" alt="${member.name}'s avatar" class="discord-avatar" />
+            <h2>${member.name}</h2>
+            <p>${member.role}</p>
+          `;
+          container.appendChild(div);
+        });
+      } catch (error) {
+        console.error('Error loading team:', error);
+        document.getElementById('teamGrid').innerHTML = '<p>Failed to load team data.</p>';
+      }
+    }
+
+    loadTeam();
+  </script>
 </body>
 </html>
