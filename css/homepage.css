@@ -1,4 +1,3 @@
-/* Reset & base */
 * {
   margin: 0;
   padding: 0;
@@ -28,23 +27,15 @@ body {
   box-shadow: 0 8px 24px rgba(255 255 255 / 0.1);
   user-select: none;
   transition: background 0.3s ease;
+  overflow-x: hidden; /* prevent horizontal overflow */
 }
 
-/* Profile section */
-.avatar {
-  width: 140px;
-  height: 140px;
+.homeavatar {
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
-  border: 3px solid #fff;
-  margin-bottom: 1.25rem;
   object-fit: cover;
-  box-shadow: 0 4px 12px rgba(255 255 255 / 0.15);
-  transition: transform 0.3s ease;
-}
-
-.avatar:hover {
-  transform: scale(1.05);
-  border-color: #ccc;
+  margin-bottom: 10px;
 }
 
 .profile h1 {
@@ -52,6 +43,7 @@ body {
   margin-bottom: 0.5rem;
   letter-spacing: 0.05em;
   font-weight: 700;
+  word-break: break-word; /* prevent long names from breaking layout */
 }
 
 .profile p {
@@ -59,6 +51,7 @@ body {
   font-size: 1.1rem;
   margin-bottom: 2rem;
   line-height: 1.5;
+  word-break: break-word;
 }
 
 /* Links */
@@ -67,6 +60,14 @@ body {
   flex-direction: column;
   gap: 1.2rem;
   margin-bottom: 2rem;
+  max-height: 240px;
+  overflow-y: auto;
+  scrollbar-width: none;    /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.links::-webkit-scrollbar {
+  display: none;
 }
 
 .link {
@@ -78,12 +79,13 @@ body {
   font-weight: 600;
   text-decoration: none;
   box-shadow: inset 0 0 0 2px #444;
-  transition: 
+  transition:
     background 0.3s ease,
     border-color 0.3s ease,
     box-shadow 0.3s ease,
     color 0.3s ease;
   user-select: none;
+  word-break: break-word; /* handle long link text */
 }
 
 .link:hover,
@@ -101,10 +103,15 @@ footer {
   font-size: 0.9rem;
   color: #777;
   user-select: none;
+  word-break: break-word;
 }
 
 footer nav {
   margin-bottom: 0.6rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 footer a {
@@ -112,6 +119,7 @@ footer a {
   text-decoration: none;
   margin: 0 0.5rem;
   transition: color 0.25s ease;
+  word-break: break-word;
 }
 
 footer a:hover,
@@ -120,13 +128,15 @@ footer a:focus {
   outline: none;
 }
 
-/* Team page */
 .team-grid {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: row;
   justify-content: center;
   gap: 2rem;
   margin: 2rem 0 3rem;
+  flex-wrap: wrap;          /* wrap on small screens */
+  overflow-x: hidden;       /* prevent horizontal scroll */
+  max-width: 100%;
 }
 
 .member {
@@ -135,10 +145,12 @@ footer a:focus {
   border-radius: 14px;
   padding: 1.5rem 2rem;
   width: 220px;
+  max-width: 100%;
   text-align: center;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
   user-select: none;
   box-shadow: 0 0 5px rgba(255 255 255 / 0.05);
+  word-break: break-word;
 }
 
 .member:hover,
@@ -151,19 +163,35 @@ footer a:focus {
   margin-bottom: 0.5rem;
   font-weight: 700;
   color: #ddd;
+  word-break: break-word;
 }
 
-/* Content sections (ToS, Privacy, Updates) */
+.avatarpfp {
+  width: 100px;
+  height: 100px;
+  max-width: 100%;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  border: 2px solid #eee;
+  object-fit: cover;
+  box-shadow: 0 0 8px rgba(255 255 255 / 0.15);
+}
+
 .content {
   margin-top: 1.5rem;
   text-align: left;
   color: #ccc;
+  max-height: 400px;      /* smaller max-height on small screens */
+  overflow-y: auto;
+  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  position: relative;
+  word-break: break-word;
 }
 
-.content ul {
-  margin-left: 1.5rem;
-  list-style: disc;
-  margin-bottom: 2rem;
+.content::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
 }
 
 .update {
@@ -199,41 +227,68 @@ footer a:focus {
   animation: spin 1s linear infinite;
 }
 
-/* Spin animation */
 @keyframes spin {
   to {
     transform: rotate(360deg);
   }
 }
 
-/* Hide preloader */
 #preloader.hide {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
 }
 
-
 /* Responsive */
 @media (max-width: 520px) {
+  body {
+    padding: 1rem;
+  }
+
   .container {
     padding: 1.5rem 1.5rem;
     border-radius: 12px;
+    max-width: 100%;
   }
-  .avatar {
-    width: 110px;
-    height: 110px;
+
+  .homeavatar,
+  .avatarpfp {
+    width: 80px;
+    height: 80px;
   }
+
   .profile h1 {
     font-size: 1.75rem;
   }
+
+  .profile p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
   .link {
     font-size: 1rem;
+    padding: 0.8rem 1.2rem;
   }
+
   .team-grid {
     gap: 1rem;
+    flex-wrap: wrap;
+    overflow-x: hidden;
   }
+
   .member {
     width: 100%;
+    max-width: 100%;
+    padding: 1rem 1.5rem;
+  }
+
+  .content {
+    max-height: 300px; /* smaller max-height on small screens */
+  }
+
+  footer nav {
+    gap: 0.3rem;
+    margin-bottom: 0.8rem;
   }
 }
