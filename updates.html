@@ -2,43 +2,155 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>@updates - corrupt.im</title>
   <link rel="icon" href="xray/favicon.ico" type="image/x-icon" />
-  <title>@updates</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="css/homepage.css" />
 </head>
 <body>
-  <div id="preloader">
-  <div class="spinner"></div>
+  <nav class="navbar">
+    <div class="navbar-left">
+      <span class="navbar-title">corrupt.im</span>
+    </div>
+    <div class="nav-items" id="navItems">
+      <a class="nav-link" href="index.html"><i class="fa fa-home"></i> Home</a>
+      <a class="nav-link" href="team.html"><i class="fa fa-users"></i> Team</a>
+      <a class="nav-link" href="faq.html"><i class="fa fa-question-circle"></i> FAQ</a>
+      <a class="nav-link active" href="updates.html"><i class="fa fa-bolt"></i> Updates</a>
+      <a class="nav-link" href="tosandpp.html"><i class="fa fa-file-alt"></i> PP & TOS</a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); z-index: 2100;">
+      <i class="fas fa-bars"></i>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="global-hero-bg"></div>
+    <div id="updates" class="page active">
+      <h2>Latest Updates</h2>
+      <div class="update-filter" id="customSelect">
+        <div class="filter-block active" data-value="all" tabindex="0">All</div>
+        <div class="filter-block" data-value="major" tabindex="0">Major</div>
+        <div class="filter-block" data-value="minor" tabindex="0">Minor</div>
+        <div class="filter-block" data-value="patch" tabindex="0">Patch</div>
+        <div class="filter-block" data-value="feature" tabindex="0">Feature</div>
+      </div>
+      <div class="update-feed" aria-live="polite" aria-relevant="additions">
+          <article class="update-card major" tabindex="0" role="article" aria-label="Feature update on June 27, 2025">
+          <div class="update-date">🔴 July 16, 2025</div>
+          <h3 class="update-title">Major Update</h3>
+          <p>
+            [+] 404 page fixed [Redirects to https://corrupt.im/ now]<br>
+            [+] UID changes [Tooltip for UID is repositioned to the right of the username]<br>
+            [+] Badges fixed [You can tell what I changed]<br>
+            [+] Audio fixes [Button Centered]<br>
+            [+] Roles [Free & Rich roles fixed]<br>
+            [+] avatar & banner changes [Changed to our logos now]<br>
+            [+] Few bugs fixed 
+          </p>
+          <div class="update-author">
+            Added by <a href="https://discord.com/users/872658221821726811" target="_blank" rel="noopener noreferrer">me.ech</a>
+          </div>
+        </article>
+        <article class="update-card major" tabindex="0" role="article" aria-label="Feature update on June 27, 2025">
+          <div class="update-date">🔴 June 27, 2025</div>
+          <h3 class="update-title">Major Update</h3>
+          <p>
+            [+] posts are now at the bottom of the page<br>
+            [+] if you try posting a link (ex: <a href="https://roblox.com/" target="_blank" rel="noopener noreferrer">https://roblox.com/</a>), on the site it'll also be a clickable link<br>
+            [-] show more button (on posts) removed<br>
+            [+] all posts will now show in one go (faster loading)<br>
+            [-] removed bigger image preview (when clicking on images nothing will happen now)<br>
+            [+] redesigned /create it is now /register<br>
+            Instead of just doing /create (username) You just send /register and set it up from there.<br>
+            [+] redisgned /name-effect, it should now be more user friendly(?)<br>
+            [+] fixed /dashboard discord-invite<br>
+            invites that starts with https://discord.gg/ etc works now<br>
+            [-] deleted old 404 page<br>
+            [+] new 404 page <a href="https://corrupt.im/404" target="_blank" rel="noopener noreferrer">https://corrupt.im/404</a><br>
+            [-] removed limit from /integrations<br>
+          </p>
+          <div class="update-author">
+            Added by <a href="https://discord.com/users/1280431571291078707" target="_blank" rel="noopener noreferrer">191shn</a>
+          </div>
+        </article>
+        <article class="update-card major" tabindex="0" role="article" aria-label="Feature update on June 26, 2025">
+          <div class="update-date">🔴 June 27, 2025</div>
+          <h3 class="update-title">Major Update</h3>
+          <p>Home Page Index Redone Again <br>- Updates Tab Redone<br>- FAQ Tab Added<br>- Team Page Redone<br>- Homepage More Opti<br><br>Extras<br>- Updated every command we have to respond with Embeds<br>- New scroll bar<br>- Can't highlight anymore</p>
+          <div class="update-author">
+            Added by <a href="https://discord.com/users/872658221821726811" target="_blank" rel="noopener noreferrer">m3.ech</a>
+          </div>
+        </article>
+        <article class="update-card feature" tabindex="0" role="article" aria-label="Feature update on June 26, 2025">
+          <div class="update-date">🔵 June 26, 2025</div>
+          <h3 class="update-title">Feature Update</h3>
+          <p>/update remove added for developers.</p>
+          <div class="update-author">
+            Added by <a href="https://discord.com/users/872658221821726811" target="_blank" rel="noopener noreferrer">m3.ech</a>
+          </div>
+        </article>
+        <article class="update-card minor" tabindex="0" role="article" aria-label="Minor update on June 26, 2025">
+          <div class="update-date">🟢 June 26, 2025</div>
+          <h3 class="update-title">Minor Update</h3>
+          <p>Make embeds look better on some commands.</p>
+          <div class="update-author">
+            Added by <a href="https://discord.com/users/872658221821726811" target="_blank" rel="noopener noreferrer">m3.ech</a>
+          </div>
+        </article>
+        <article class="update-card minor" tabindex="0" role="article" aria-label="Minor update on June 26, 2025">
+          <div class="update-date">🟢 June 26, 2025</div>
+          <h3 class="update-title">Minor Update</h3>
+          <p>Brought back Old 404 page</p>
+          <div class="update-author">
+            Added by <a href="https://discord.com/users/1387423490357067838" target="_blank" rel="noopener noreferrer">191shn</a>
+          </div>
+        </article>
+        <article class="update-card patch" tabindex="0" role="article" aria-label="Patch update on June 26, 2025">
+          <div class="update-date">🟠 June 26, 2025</div>
+          <h3 class="update-title">Patch Update</h3>
+          <p>Fixed scrollbar not scrolling</p>
+          <div class="update-author">
+            Added by <a href="https://discord.com/users/1387423490357067838" target="_blank" rel="noopener noreferrer">191shn</a>
+          </div>
+        </article>
+        <article class="update-card feature" tabindex="0" role="article" aria-label="Feature update on June 26, 2025">
+          <div class="update-date">🔵 June 26, 2025</div>
+          <h3 class="update-title">Feature Update</h3>
+          <p>Made it so you can now /post videos</p>
+          <div class="update-author">
+            Added by <a href="https://discord.com/users/1387423490357067838" target="_blank" rel="noopener noreferrer">191shn</a>
+          </div>
+        </article>
+        <article class="update-card patch" tabindex="0" role="article" aria-label="Patch update on June 26, 2025">
+          <div class="update-date">🟠 June 26, 2025</div>
+          <h3 class="update-title">Patch Update</h3>
+          <p>Badge Bug</p>
+          <div class="update-author">
+            Added by <a href="https://discord.com/users/872658221821726811" target="_blank" rel="noopener noreferrer">m3.ech</a>
+          </div>
+        </article>
+        <article class="update-card minor" tabindex="0" role="article" aria-label="Minor update on June 26, 2025">
+          <div class="update-date">🟢 June 26, 2025</div>
+          <h3 class="update-title">Minor Update</h3>
+          <p>404 Page Revamped</p>
+          <div class="update-author">
+            Added by <a href="https://discord.com/users/872658221821726811" target="_blank" rel="noopener noreferrer">m3.ech</a>
+          </div>
+        </article>
+        <article class="update-card feature" tabindex="0" role="article" aria-label="Major update on June 26, 2025">
+          <div class="update-date">🔵 June 26, 2025</div>
+          <h3 class="update-title">New Feature</h3>
+          <p>Home Page Revamped</p>
+          <div class="update-author">
+            Added by <a href="https://discord.com/users/872658221821726811" target="_blank" rel="noopener noreferrer">m3.ech</a>
+          </div>
+        </article>
+      </div>
+    </div>
   </div>
-  <main class="container">
-    <h1>Latest Updates</h1>
 
-    <section class="content">
-      <article class="update">
-        <h3>July 21, 2025 <b>[MAJOR]</b></h3>
-        <p>Redo @homepage since it doesnt matter what this do it just shows our discord ykyk</p>
-      </article>
-    </section>
-
-    <footer>
-      <nav>
-        <a href="https://corrupt.im/">Home</a>
-        <a href="https://corrupt.im/team">Team</a>
-        <a href="https://corrupt.im/tos">ToS</a>
-        <a href="https://corrupt.im/privacy">Privacy</a>
-        <a href="https://corrupt.im/updates">Updates</a>
-      </nav>
-      <p>&copy; 2025 corrupt.im</p>
-    </footer>
-  </main>
-    <script>
-  window.addEventListener('load', () => {
-    const preloader = document.getElementById('preloader');
-    preloader.classList.add('hide');
-    // Optional: remove from DOM after fade out
-    setTimeout(() => preloader.remove(), 600);
-  });
-  </script>
+  <script src="homepage.js"></script>
 </body>
 </html>
