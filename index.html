@@ -2,46 +2,50 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>@corrupt.im</title>
   <link rel="icon" href="xray/favicon.ico" type="image/x-icon" />
-  <title>@homepage</title>
+  <meta property="og:title" content="corrupt.im" />
+  <meta property="og:description" content="@homepage" />
+  <meta name="description" content="corrupt.im" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="css/homepage.css" />
 </head>
 <body>
+  <nav class="navbar">
+    <div class="navbar-left">
+      <span class="navbar-title">corrupt.im</span>
+    </div>
+    <div class="nav-items" id="navItems">
+      <a class="nav-link active" href="https://corrupt.im/"><i class="fa fa-home"></i> Home</a>
+      <a class="nav-link" href="https://corrupt.im/team"><i class="fa fa-users"></i> Team</a>
+      <a class="nav-link" href="https://corrupt.im/faq"><i class="fa fa-question-circle"></i> FAQ</a>
+      <a class="nav-link" href="https://corrupt.im/updates"><i class="fa fa-bolt"></i> Updates</a>
+      <a class="nav-link" href="https://corrupt.im/tosandpp"><i class="fa fa-file-alt"></i> PP & TOS</a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); z-index: 2100;">
+      <i class="fas fa-bars"></i>
+    </div>
+  </nav>
 
-  <div id="preloader">
-  <div class="spinner"></div>
+  <div class="container">
+    <div class="global-hero-bg"></div>
+    <div id="home" class="page active">
+      <div class="home-hero-bg"></div>
+      <div class="home-card home-hero" style="background: #000000; border: 2px solid #fff;">
+        <h1 class="home-title" style="background: none; color: #fff; -webkit-text-fill-color: unset;">corrupt.im</h1>
+        <a href="https://discord.gg/eX6zCp8rXu" target="_blank" class="button home-discord-btn" style="background: #fff; color: #111; border: 2px solid #fff; text-decoration: none;">
+          <i class="fab fa-discord" style="margin-right:8px;font-size:1.2em;color:#111;"></i>
+          Join our Discord
+        </a>
+        <div style="display: flex; justify-content: center; width: 100%;">
+          <ul class="home-features" style="color:#fff; margin-top: 18px; margin-bottom: 0; align-items: center; text-align: center;">
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <main class="container">
-    <div class="profile">
-      <h1>corurpt.im</h1>
-      <p>A link-in-bio site completely powered using a Discord Bot</p>
-    </div>
-
-    <div class="links">
-      <a href="https://discord.gg/qdXSuXVG6e" class="link" target="_blank" rel="noopener noreferrer">Join Our Discord</a>
-      <a href="#" class="link" target="_blank" rel="noopener noreferrer">Follow on X <b>(Coming Soon)</b></a>
-    </div>
-
-    <footer>
-      <nav>
-        <a href="https://corrupt.im/">Home</a>
-        <a href="https://corrupt.im/team">Team</a>
-        <a href="https://corrupt.im/tos">ToS</a>
-        <a href="https://corrupt.im/privacy">Privacy</a>
-        <a href="https://corrupt.im/updates">Updates</a>
-      </nav>
-      <p>&copy; 2025 corrupt.im</p>
-    </footer>
-  </main>
-  <script>
-  window.addEventListener('load', () => {
-    const preloader = document.getElementById('preloader');
-    preloader.classList.add('hide');
-    // Optional: remove from DOM after fade out
-    setTimeout(() => preloader.remove(), 600);
-  });
-  </script>
+  <script src="homepage.js"></script>
 </body>
 </html>
