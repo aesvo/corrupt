@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>@KxndaInsane</title>
+  <link rel="icon" href="xray/favicon.ico" type="image/x-icon" />
+  <meta name="description" content="corrupt.im" />
+  <meta property="og:title" content="@KxndaInsane" />
+  <meta property="og:description" content="corrupt.im" />
+  <meta property="og:url" content="https://corrupt.im" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="corrupt.im" />
+  <meta name="twitter:description" content="corrupt.im" />
+  <meta name="twitter:image" content="https://corrupt.im/xray/defaultpfpd.jpg" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZPRG8VDG0Z"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZPRG8VDG0Z');
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+  html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  width: 100%;
+  font-family: system-ui, sans-serif;
+  font-size: 14px;
+  color: #fff;
+  background: #000;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  position: relative;
+  z-index: 0;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  padding-top: 42px;
+}
+
+.topbar {
+  width: 100%;
+  height: 42px;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.topbar-scrollbar-background {
+  position: fixed;
+  top: 42px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.1);
+  z-index: 999;
+  pointer-events: none;
+}
+
+.topbar-scrollbar-bar {
+  position: fixed;
+  top: 42px;
+  left: 0;
+  width: 30%;
+  height: 2px;
+  background-color: white;
+  z-index: 1000;
+  pointer-events: none;
+  transition: width 0.1s ease, left 0.1s ease;
+}
+
+.logo {
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.video-bg,
+.image-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+.container {
+  position: relative;
+  max-width: 800px;
+  margin: 54px auto 10px;
+  padding: 0;
+  border: 1px solid #2c2c2c;
+  border-radius: 12px;
+  background-image: url('https://corrupt.im/xray/defaultbanner.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: visible;
+  z-index: 1;
+}
+
+.container-content {
+  position: relative;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 20px 24px;
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
+}
+
+@media (max-width: 600px) {
+  .container {
+    max-width: 100%;
+    margin: 90px 10px 6px;
+  }
+
+  .container-content {
+    padding: 16px 18px;
+  }
+}
+
+.profile-header {
+  position: relative; 
+  display: flex;
+  gap: 10px;
+  border-radius: 3px;
+  align-items: flex-start;
+  padding: 8px 12px;
+  z-index: 2;
+}
+
+.avatar {
+  width: 133px;
+  height: 133px;
+  margin-right: 10px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5); 
+}
+
+.ghost-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150px;
+  height: 150px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.username-container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex-grow: 1;
+}
+
+.name-row {
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 0;
+}
+
+.bio {
+  color: #ccc;
+  max-width: 600px;
+  font-size: 13px;
+}
+
+.badge-row {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-top: 0px;
+  gap: 6px;
+  background: rgba(50, 50, 50, 0.6);
+  padding: 8px;
+  border-radius: 13px;
+  border: 1px solid rgba(80, 80, 80, 0.7);
+  width: fit-content;
+  max-width: 300px;
+}
+
+.badge-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badge {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  filter: drop-shadow(0 0 4px currentColor);
+}
+
+.badge.staff {
+  color: #e76357;
+}
+
+.tooltip {
+  background: rgba(30, 30, 30, 0.75);
+  backdrop-filter: blur(8px);
+  color: #f0f0f0;
+  text-align: center;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  position: absolute;
+  left: 50%;
+  white-space: nowrap;
+  border: 1px solid rgba(80, 80, 80, 0.7);
+  opacity: 0;
+  pointer-events: none;
+  transition: none !important;
+  max-width: 180px;
+  z-index: 1000;
+  transform: translateX(-50%) translateY(12px);
+}
+
+.badge-wrapper .tooltip {
+  top: 200%;
+}
+
+.name-effect .tooltip {
+  top: 150%;
+}
+
+.badge-wrapper:hover .tooltip,
+.name-effect._hover .tooltip {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(12px);
+}
+
+.badge-wrapper:not(:hover) .tooltip,
+.name-effect:not(._hover) .tooltip {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(12px);
+}
+
+.name-effect {
+  position: relative;
+  cursor: pointer;
+}
+
+
+    .section-header {
+      font-weight: 600;
+      font-size: 15px;
+      margin-bottom: 8px;
+      border-bottom: 1px solid #2c2c2c;
+      padding-bottom: 4px;
+    }
+
+    .info-container {
+      max-width: 800px;
+      margin: 10px auto 14px auto;
+      padding: 9px 18px;
+      border: 1px solid #2c2c2c;
+      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+    }
+
+    @media (max-width: 600px) {
+      .info-container {
+        max-width: 100%;
+        margin: 8px 10px 14px 10px;
+        padding: 12px 16px;
+        border-radius: 12px;
+      }
+    }
+
+    .name-effect {
+      position: relative;
+      display: inline-block;
+      color: white;
+      padding: 0;
+      margin: 0;
+      line-height: 1;
+      z-index: 3;
+      white-space: nowrap;
+    }
+
+    .name-effect::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url('effects/') center center / cover no-repeat;
+      filter: brightness(0.8);
+      z-index: -1;
+      border-radius: 3px;
+    }
+
+    @keyframes blink-caret {
+      0%, 50% { border-color: white; }
+      51%, 100% { border-color: transparent; }
+    }
+
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    body, body * {
+      user-select: none !important;
+      -webkit-user-select: none !important;
+      -moz-user-select: none !important;
+      -ms-user-select: none !important;
+      -webkit-touch-callout: none !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="logo">corrupt.im</div>
+  </div>
+  <div class="topbar-scrollbar-background"></div>
+  <div class="topbar-scrollbar-bar"></div>
+
+  <script>
+    const scrollbarBar = document.querySelector('.topbar-scrollbar-bar');
+    const updateScrollbar = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      scrollbarBar.style.width = scrollPercent + '%';
+    };
+    window.addEventListener('scroll', updateScrollbar);
+    window.addEventListener('resize', updateScrollbar);
+    document.addEventListener('DOMContentLoaded', updateScrollbar);
+  </script>
+  </body>
+  </html>
+
+  <div class="container">
+    <div class="profile-header" style="position:relative;">
+      <img src="https://corrupt.im/xray/defaultpfp.jpg" class="avatar" />
+      <img src="decorations/" alt="decoration" style="position:absolute;top:0;left:0;width:157px;height:150px;z-index:2;pointer-events:none;" onerror="this.style.display='none'" onload="if(!this.src) this.style.display='none'" />
+      <div class="username-container">
+        <div class="name-row">
+          <span class="name-effect" id="main-username">KxndaInsane
+            <span class="tooltip">UID: 4</span>
+		 </span>
+        </div>
+        <div class="bio">No bio yet.</div>
+        <div class="badge-row" id="badge-row"></div>
+      </div>
+    </div>
+  </div>
+  
+  
+  <style>
+    .name-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.4;
+    }
+  
+    .name-effect {
+      position: relative;
+      cursor: pointer;
+      font-size: 1.3rem; 
+      font-weight: 600;
+      line-height: 1.4;
+    }
+  
+    .tooltip {
+  background: rgba(30, 30, 30, 0.75);
+  backdrop-filter: blur(8px);
+  color: #f0f0f0;
+  text-align: center;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  position: absolute;
+  white-space: nowrap;
+  border: 1px solid rgba(80, 80, 80, 0.7);
+  opacity: 0;
+  pointer-events: none;
+  max-width: 180px;
+  z-index: 1000;
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInBottom {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOutRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(8px);
+  }
+}
+
+@keyframes fadeOutBottom {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+.badge-wrapper .tooltip {
+  top: 178%;
+  left: -107%;
+  transform: translateX(-50%);
+  animation: fadeOutBottom 0.25s ease-out forwards;
+}
+
+.badge-wrapper:hover .tooltip {
+  animation: fadeInBottom 0.25s ease-out forwards;
+  pointer-events: auto;
+}
+
+.name-effect .tooltip {
+  top: 3%;
+  left: 102%;
+  transform: translateY(-50%);
+  animation: fadeOutRight 0.25s ease-out forwards;
+}
+
+.name-effect._hover .tooltip {
+  animation: fadeInRight 0.25s ease-out forwards;
+  pointer-events: auto;
+}
+
+
+  
+    .clan-tag {
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      border: 1px solid rgba(80, 80, 80, 0.7);
+      color: #b9bbbe;
+      padding: 0 8px;
+      border-radius: 6px;
+      font-weight: 500;
+      font-size: 0.85rem; 
+      line-height: 1.5;
+      user-select: none;
+    }
+  
+    .clan-tag:empty {
+      display: none;
+    }
+  
+    @media (max-width: 768px) {
+      .clan-tag {
+        display: none;
+      }
+    }
+  </style>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const nameEffect = document.getElementById('main-username');
+      let hoverTimeout = null;
+  
+      function addHover() {
+        clearTimeout(hoverTimeout);
+        nameEffect.classList.add('_hover');
+      }
+      function removeHover() {
+        nameEffect.classList.remove('_hover');
+      }
+      nameEffect.addEventListener('mouseenter', addHover);
+      nameEffect.addEventListener('mouseleave', removeHover);
+      nameEffect.addEventListener('touchstart', function(e) {
+        addHover();
+        e.stopPropagation();
+      });
+      document.addEventListener('touchstart', function(e) {
+        if (!nameEffect.contains(e.target)) {
+          removeHover();
+        }
+      });
+    });
+  </script>
+  
+
+<div id="reveal-screen" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:black;color:white;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;z-index:9999;transition:opacity 0.5s ease, transform 0.5s ease; border-radius:0;" onclick="startMedia(this)">
+  <revealscreen-text id="typewriter-text" style="white-space: nowrap; overflow: hidden; font-size: 1.2rem; opacity: 1; transform: translateY(0); animation-fill-mode: forwards;">[ click ]</revealscreen-text>
+  <div id="icon-container" style="margin-top: 10px; display: flex; align-items: center; overflow: visible; position: relative; width: 24px; justify-content: center; transition: width 0.3s ease;">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;">
+      <path d="M9 18V5l12-2v13"></path>
+      <circle cx="6" cy="18" r="3"></circle>
+      <circle cx="18" cy="16" r="3"></circle>
+    </svg>
+    <input id="volume-bar" type="range" min="0" max="1" step="0.01" value="1" style="
+      width: 0;
+      opacity: 0;
+      cursor: pointer;
+      background: white;
+      height: 4px;
+      border-radius: 2px;
+      accent-color: white;
+      transition: width 0.3s ease, opacity 0.3s ease;
+    ">
+  </div>
+</div>  
+
+<audio id="audio" loop></audio> <video class="video-bg" autoplay loop playsinline style="display:none;"></video>
+
+<div id="background-image" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background-image:url('');background-size:cover;background-position:center;z-index:-1;"></div>
+
+<script>
+const iconContainer = document.getElementById('icon-container');
+const volumeBar = document.getElementById('volume-bar');
+const audio = document.getElementById('audio');
+
+var audioSrc = ""; 
+var videoSrc = "";
+
+function isMobile() {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
+function updateVolumeControlVisibility() {
+  if (isMobile()) {
+    iconContainer.style.display = 'none';
+    return;
+  }
+  if (audioSrc.trim() !== "" || videoSrc.trim() !== "") {
+    iconContainer.style.display = 'flex';
+    iconContainer.style.width = '24px';
+    volumeBar.style.width = '0';
+    volumeBar.style.opacity = '0';
+
+    iconContainer.addEventListener('mouseenter', () => {
+      iconContainer.style.width = '124px';
+      volumeBar.style.width = '100px';
+      volumeBar.style.opacity = '1';
+    });
+    iconContainer.addEventListener('mouseleave', () => {
+      iconContainer.style.width = '24px';
+      volumeBar.style.width = '0';
+      volumeBar.style.opacity = '0';
+    });
+
+    volumeBar.addEventListener('input', () => {
+      audio.volume = volumeBar.value;
+    });
+  } else {
+    iconContainer.style.display = 'none';
+  }
+}
+
+updateVolumeControlVisibility();
+
+function startMedia(revealScreen) {
+  const video = document.querySelector('.video-bg');
+  if (videoSrc.trim() !== "") {
+    video.innerHTML = '<source src="' + videoSrc + '" type="video/mp4">';
+    video.load();
+    video.style.display = 'block';
+  } else {
+    video.innerHTML = '';
+    video.style.display = 'none';
+  }
+
+  if (audioSrc.trim() !== "") {
+    audio.src = audioSrc;
+    audio.volume = volumeBar.value;
+    audio.play();
+  } else {
+    audio.src = "";
+  }
+
+  revealScreen.style.opacity = '0';
+  revealScreen.style.transform = 'translateY(50px)';
+  setTimeout(() => {
+    revealScreen.remove();
+  }, 500);
+}
+</script>
+
+
+
+
+    
+    <div class="info-container">
+      <div class="section-header">
+        About Me
+      </div>
+      <div>No About Me yet.</div>
+    </div>  
+
+    <div class="info-container" id="roblox-presence-container">
+      <div class="section-header" style="display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 1.1em;">
+        Roblox Presence
+      </div>
+      <div id="roblox-presence-data"></div>
+    </div>
+    
+    <style>
+      .roblox-presence-card-wrapper {
+        display: block;
+        width: 100%;
+        margin-top: 6px;
+        border-radius: 6px;
+        text-decoration: none;
+        color: white;
+        transition: background-color 0.2s;
+      }
+    
+      .roblox-presence-card-wrapper:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+    </style>
+    
+    <script>
+      const userId = '';
+    
+      async function fetchRobloxPresence() {
+        const containerWrapper = document.getElementById('roblox-presence-container');
+        if (!userId) {
+          containerWrapper.style.display = 'none';
+          return;
+        }
+    
+        const profileUrl = 'https://www.roblox.com/users/' + userId + '/profile';
+    
+        try {
+          const [userRes, avatarRes, friendsRes, followersRes] = await Promise.all([
+            fetch('https://corsproxy.io/?https://users.roblox.com/v1/users/' + userId),
+            fetch('https://corsproxy.io/?https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=' + userId + '&size=150x150&format=Png&isCircular=false'),
+            fetch('https://corsproxy.io/?https://friends.roblox.com/v1/users/' + userId + '/friends/count'),
+            fetch('https://corsproxy.io/?https://friends.roblox.com/v1/users/' + userId + '/followers/count')
+          ]);
+    
+          const user = await userRes.json();
+          const avatarData = await avatarRes.json();
+          const friendsData = await friendsRes.json();
+          const followersData = await followersRes.json();
+    
+          const avatarUrl = avatarData.data[0].imageUrl || '';
+          const displayName = user.displayName || 'N/A';
+          const friendsCount = typeof friendsData.count === 'number' ? friendsData.count : 'N/A';
+          const followersCount = typeof followersData.count === 'number' ? followersData.count + ' Followers' : 'N/A Followers';
+    
+          const container = document.getElementById('roblox-presence-data');
+          container.innerHTML = 
+            '<a href="' + profileUrl + '" target="_blank" rel="noopener noreferrer" class="roblox-presence-card-wrapper">' +
+              '<div style="display: flex; align-items: center; gap: 14px; padding: 6px 0;">' +
+                '<div style="width: 44px; height: 44px;">' +
+                  '<img src="' + avatarUrl + '" alt="Avatar" style="width: 44px; height: 44px; object-fit: cover;">' +
+                '</div>' +
+                '<div style="display: flex; flex-direction: column; justify-content: center;">' +
+                  '<div style="font-weight: 600; font-size: 1.05em; line-height: 1.2;">' + displayName + '</div>' +
+                  '<div style="display: flex; align-items: center; font-size: 0.9em; color: rgba(255,255,255,0.7); gap: 8px;">' +
+                    '<div style="display: flex; align-items: center; gap: 4px;">' +
+                      '<img src="xray/friends.png" alt="friends icon" style="width: 16px; height: 16px;">' +
+                      '<span>' + friendsCount + '</span>' +
+                    '</div>' +
+                    '<span style="font-size: 14px;">·</span>' +
+                    '<div>' + followersCount + '</div>' +
+                  '</div>' +
+                '</div>' +
+              '</div>' +
+            '</a>';
+    
+        } catch (error) {
+          document.getElementById('roblox-presence-data').innerText = 'failed to load data';
+        }
+      }
+    
+      fetchRobloxPresence();
+    </script>
+    
+<div class="info-container" id="discord-section" style="display: none;">
+  <div class="section-header">
+    Discord Servers
+  </div>
+  
+  <div id="discord-widget"></div>
+</div>
+
+<script>
+  const inviteInput = '';
+  
+  function extractInviteCode(invite) {
+    const regex = /discord(?:app)?.com/invite/([a-zA-Z0-9-]+)|discord.gg/([a-zA-Z0-9-]+)|^([a-zA-Z0-9-]+)$/;
+    const match = invite.match(regex);
+    return (match && (match[1] || match[2] || match[3])) || null;
+  }
+
+  const inviteCode = extractInviteCode(inviteInput);
+  const w = document.getElementById('discord-widget');
+  const discordSection = document.getElementById('discord-section');
+
+  if (!inviteCode) {
+    discordSection.style.display = 'none';
+  } else {
+    discordSection.style.display = 'block';
+    fetch('https://discord.com/api/invites/' + inviteCode + '?with_counts=true')
+      .then(function (r) {
+        return r.ok ? r.json() : Promise.reject();
+      })
+      .then(function (d) {
+        const g = d.guild;
+        let content = '';
+
+        if (g.banner) {
+          content += '<img src="https://cdn.discordapp.com/banners/' + g.id + '/' + g.banner + '.png?size=512" style="width:100%; max-height:150px; border-radius:8px 8px 0 0; object-fit:cover; margin-bottom:15px;">';
+        }
+
+        content += '<div style="display:flex; align-items:center; padding: 0 10px; ' + (g.banner ? 'margin-top: -50px;' : 'margin-top: 10px;') + '">';
+        content += '<img src="' + (g.icon ? 'https://cdn.discordapp.com/icons/' + g.id + '/' + g.icon + '.png?size=128' : 'https://discord.com/assets/6debd47ed13483642cf09e832ed0bc1b.png') + '" style="width:80px; height:80px; border-radius:12px; object-fit:cover;">';
+        content += '<div style="margin-left:15px; color:#fff;">';
+        content += '<h2 style="margin:0 0 6px 0; font-size:24px;">' + g.name + '</h2>';
+        content += '<div style="font-size:14px; line-height:1.4; color:#ccc;">';
+        content += d.approximate_presence_count + ' online / ' + d.approximate_member_count + ' members';
+        content += '</div>';
+        content += '<a href="https://discord.gg/' + d.code + '" target="_blank" class="join-btn" style="margin-top:5px; display:inline-block; padding: 2px 14px;">';
+        content += 'Join Server';
+        content += '</a>';
+        content += '</div>';
+        content += '</div>';
+
+        w.innerHTML = content;
+      })
+      .catch(function () {
+        w.textContent = 'Failed to load data.';
+      });
+  }
+</script>
+
+<style>
+  .join-btn {
+    font-size: 15px;
+    color: #fff;
+    background: transparent;
+    border: 1px solid #fff;
+    padding: 2px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+    line-height: normal;
+  }
+  .join-btn:hover {
+    background-color: #fff;
+    color: #000;
+  }
+</style>
+
+<div class="info-container" id="social-section">
+  <div class="section-header">
+    Socials
+  </div>
+
+
+      <a href="" class="badge-wrapper" title="discord" target="_blank" rel="noopener noreferrer" style="display:inline-block;transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"><svg viewBox="0 0 24 24" class="badge" xmlns="http://www.w3.org/2000/svg" style="color:white"><path fill="currentColor" d="M20.317 4.37a19.8 19.8 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.3 18.3 0 0 0-5.487 0a13 13 0 0 0-.617-1.25a.08.08 0 0 0-.079-.037A19.7 19.7 0 0 0 3.677 4.37a.1.1 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.08.08 0 0 0 .084-.028a14 14 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13 13 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10 10 0 0 0 .372-.292a.07.07 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.07.07 0 0 1 .078.01q.181.149.373.292a.077.077 0 0 1-.006.127a12.3 12.3 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.08.08 0 0 0 .084.028a19.8 19.8 0 0 0 6.002-3.03a.08.08 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 0 0-.031-.03M8.02 15.33c-1.182 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418m7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418"/></svg></a>
+      <a href="" class="badge-wrapper" title="instagram" target="_blank" rel="noopener noreferrer" style="display:inline-block;transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"><svg viewBox="0 0 24 24" class="badge" xmlns="http://www.w3.org/2000/svg" style="color:white"><path fill="currentColor" d="M7.03.084c-1.277.06-2.149.264-2.91.563a5.9 5.9 0 0 0-2.124 1.388a5.9 5.9 0 0 0-1.38 2.127C.321 4.926.12 5.8.064 7.076s-.069 1.688-.063 4.947s.021 3.667.083 4.947c.061 1.277.264 2.149.563 2.911c.308.789.72 1.457 1.388 2.123a5.9 5.9 0 0 0 2.129 1.38c.763.295 1.636.496 2.913.552c1.278.056 1.689.069 4.947.063s3.668-.021 4.947-.082c1.28-.06 2.147-.265 2.91-.563a5.9 5.9 0 0 0 2.123-1.388a5.9 5.9 0 0 0 1.38-2.129c.295-.763.496-1.636.551-2.912c.056-1.28.07-1.69.063-4.948c-.006-3.258-.02-3.667-.081-4.947c-.06-1.28-.264-2.148-.564-2.911a5.9 5.9 0 0 0-1.387-2.123a5.9 5.9 0 0 0-2.128-1.38c-.764-.294-1.636-.496-2.914-.55C15.647.009 15.236-.006 11.977 0S8.31.021 7.03.084m.14 21.693c-1.17-.05-1.805-.245-2.228-.408a3.7 3.7 0 0 1-1.382-.895a3.7 3.7 0 0 1-.9-1.378c-.165-.423-.363-1.058-.417-2.228c-.06-1.264-.072-1.644-.08-4.848c-.006-3.204.006-3.583.061-4.848c.05-1.169.246-1.805.408-2.228c.216-.561.477-.96.895-1.382a3.7 3.7 0 0 1 1.379-.9c.423-.165 1.057-.361 2.227-.417c1.265-.06 1.644-.072 4.848-.08c3.203-.006 3.583.006 4.85.062c1.168.05 1.804.244 2.227.408c.56.216.96.475 1.382.895s.681.817.9 1.378c.165.422.362 1.056.417 2.227c.06 1.265.074 1.645.08 4.848c.005 3.203-.006 3.583-.061 4.848c-.051 1.17-.245 1.805-.408 2.23c-.216.56-.477.96-.896 1.38a3.7 3.7 0 0 1-1.378.9c-.422.165-1.058.362-2.226.418c-1.266.06-1.645.072-4.85.079s-3.582-.006-4.848-.06m9.783-16.192a1.44 1.44 0 1 0 1.437-1.442a1.44 1.44 0 0 0-1.437 1.442M5.839 12.012a6.161 6.161 0 1 0 12.323-.024a6.162 6.162 0 0 0-12.323.024M8 12.008A4 4 0 1 1 12.008 16A4 4 0 0 1 8 12.008"/></svg></a>
+      <a href="" class="badge-wrapper" title="spotify" target="_blank" rel="noopener noreferrer" style="display:inline-block;transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"><svg viewBox="0 0 24 24" class="badge" xmlns="http://www.w3.org/2000/svg" style="color:white"><path fill="currentColor" d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12s12-5.4 12-12S18.66 0 12 0m5.521 17.34c-.24.359-.66.48-1.021.24c-2.82-1.74-6.36-2.101-10.561-1.141c-.418.122-.779-.179-.899-.539c-.12-.421.18-.78.54-.9c4.56-1.021 8.52-.6 11.64 1.32c.42.18.54.6.3.999m1.261-2.88c-.3.42-.839.6-1.319.36c-3.24-1.979-8.181-2.561-11.98-1.38c-.479.121-.899-.119-1.08-.479c-.18-.42 0-.839.42-1.08c4.26-1.26 9.54-.6 13.2 1.62c.479.3.6.839.18 1.319m.18-3.78c-4.02-2.52-10.74-2.7-14.94-1.44c-.6.18-1.2-.18-1.381-.779c-.18-.6.18-1.2.78-1.38c4.92-1.38 12.12-1.14 16.74 1.62c.659.359.899 1.261.539 1.859c-.3.601-1.2.779-1.74.141Z"/></svg></a>
+      <a href="" class="badge-wrapper" title="roblox" target="_blank" rel="noopener noreferrer" style="display:inline-block;transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"><svg viewBox="0 0 24 24" class="badge" xmlns="http://www.w3.org/2000/svg" style="color:white"><path fill="currentColor" d="M18.926 23.998L0 18.892L5.075.002L24 5.108ZM15.348 10.09l-5.282-1.453l-1.414 5.273l5.282 1.453z"/></svg></a>
+      <a href="" class="badge-wrapper" title="tiktok" target="_blank" rel="noopener noreferrer" style="display:inline-block;transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"><svg viewBox="0 0 24 24" class="badge" xmlns="http://www.w3.org/2000/svg" style="color:white"><path fill="currentColor" d="M12.525.02c1.31-.02 2.61-.01 3.91-.02c.08 1.53.63 3.09 1.75 4.17c1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97c-.57-.26-1.1-.59-1.62-.93c-.01 2.92.01 5.84-.02 8.75c-.08 1.4-.54 2.79-1.35 3.94c-1.31 1.92-3.58 3.17-5.91 3.21c-1.43.08-2.86-.31-4.08-1.03c-2.02-1.19-3.44-3.37-3.65-5.71c-.02-.5-.03-1-.01-1.49c.18-1.9 1.12-3.72 2.58-4.96c1.66-1.44 3.98-2.13 6.15-1.72c.02 1.48-.04 2.96-.04 4.44c-.99-.32-2.15-.23-3.02.37c-.63.41-1.11 1.04-1.36 1.75c-.21.51-.15 1.07-.14 1.61c.24 1.64 1.82 3.02 3.5 2.87c1.12-.01 2.19-.66 2.77-1.61c.19-.33.4-.67.41-1.06c.1-1.79.06-3.57.07-5.36c.01-4.03-.01-8.05.02-12.07"/></svg></a>
+      <a href="" class="badge-wrapper" title="paypal" target="_blank" rel="noopener noreferrer" style="display:inline-block;transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"><svg viewBox="0 0 24 24" class="badge" xmlns="http://www.w3.org/2000/svg" style="color:white"><path fill="currentColor" d="M7.016 19.198h-4.2a.562.562 0 0 1-.555-.65L5.093.584A.69.69 0 0 1 5.776 0h7.222c3.417 0 5.904 2.488 5.846 5.5q-.008.376-.066.747A6.794 6.794 0 0 1 12.071 12H8.743a.69.69 0 0 0-.682.583l-.325 2.056l-.013.083l-.692 4.39zM19.79 6.142c-.01.087-.01.175-.023.261a7.76 7.76 0 0 1-7.695 6.598H9.007l-.283 1.795l-.013.083l-.692 4.39l-.134.843l-.014.088H6.86l-.497 3.15a.562.562 0 0 0 .555.65h3.612c.34 0 .63-.249.683-.585l.952-6.031a.69.69 0 0 1 .683-.584h2.126a6.79 6.79 0 0 0 6.707-5.752c.306-1.95-.466-3.744-1.89-4.906z"/></svg></a>
+      <a href="" class="badge-wrapper" title="youtube" target="_blank" rel="noopener noreferrer" style="display:inline-block;transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"><svg viewBox="0 0 24 24" class="badge" xmlns="http://www.w3.org/2000/svg" style="color:white"><path fill="currentColor" d="M23.498 6.186a3.02 3.02 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.02 3.02 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.02 3.02 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.02 3.02 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814M9.545 15.568V8.432L15.818 12z"/></svg></a>
+      <a href="" class="badge-wrapper" title="github" target="_blank" rel="noopener noreferrer" style="display:inline-block;transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"><svg viewBox="0 0 24 24" class="badge" xmlns="http://www.w3.org/2000/svg" style="color:white"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12c0 5.303 3.438 9.8 8.205 11.385c.6.113.82-.258.82-.577c0-.285-.01-1.04-.015-2.04c-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729c1.205.084 1.838 1.236 1.838 1.236c1.07 1.835 2.809 1.305 3.495.998c.108-.776.417-1.305.76-1.605c-2.665-.3-5.466-1.332-5.466-5.93c0-1.31.465-2.38 1.235-3.22c-.135-.303-.54-1.523.105-3.176c0 0 1.005-.322 3.3 1.23c.96-.267 1.98-.399 3-.405c1.02.006 2.04.138 3 .405c2.28-1.552 3.285-1.23 3.285-1.23c.645 1.653.24 2.873.12 3.176c.765.84 1.23 1.91 1.23 3.22c0 4.61-2.805 5.625-5.475 5.92c.42.36.81 1.096.81 2.22c0 1.606-.015 2.896-.015 3.286c0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+      <a href="" class="badge-wrapper" title="cashapp" target="_blank" rel="noopener noreferrer" style="display:inline-block;transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"><svg viewBox="0 0 24 24" class="badge" xmlns="http://www.w3.org/2000/svg" style="color:white"><path fill="currentColor" d="M23.59 3.475a5.1 5.1 0 0 0-3.05-3.05c-1.31-.42-2.5-.42-4.92-.42H8.36c-2.4 0-3.61 0-4.9.4a5.1 5.1 0 0 0-3.05 3.06C0 4.765 0 5.965 0 8.365v7.27c0 2.41 0 3.6.4 4.9a5.1 5.1 0 0 0 3.05 3.05c1.3.41 2.5.41 4.9.41h7.28c2.41 0 3.61 0 4.9-.4a5.1 5.1 0 0 0 3.06-3.06c.41-1.3.41-2.5.41-4.9v-7.25c0-2.41 0-3.61-.41-4.91m-6.17 4.63l-.93.93a.5.5 0 0 1-.67.01a5 5 0 0 0-3.22-1.18c-.97 0-1.94.32-1.94 1.21c0 .9 1.04 1.2 2.24 1.65c2.1.7 3.84 1.58 3.84 3.64c0 2.24-1.74 3.78-4.58 3.95l-.26 1.2a.49.49 0 0 1-.48.39H9.63l-.09-.01a.5.5 0 0 1-.38-.59l.28-1.27a6.54 6.54 0 0 1-2.88-1.57v-.01a.48.48 0 0 1 0-.68l1-.97a.49.49 0 0 1 .67 0c.91.86 2.13 1.34 3.39 1.32c1.3 0 2.17-.55 2.17-1.42s-.88-1.1-2.54-1.72c-1.76-.63-3.43-1.52-3.43-3.6c0-2.42 2.01-3.6 4.39-3.71l.25-1.23a.48.48 0 0 1 .48-.38h1.78l.1.01c.26.06.43.31.37.57l-.27 1.37c.9.3 1.75.77 2.48 1.39l.02.02c.19.2.19.5 0 .68"/></svg></a>
+      <a href="" class="badge-wrapper" title="custom" target="_blank" rel="noopener noreferrer" style="display:inline-block;transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"><svg viewBox="0 0 24 24" class="badge" xmlns="http://www.w3.org/2000/svg" style="color:white"><path fill="currentColor" d="M16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2m-5.15 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 0 1-4.33 3.56M14.34 14H9.66c-.1-.66-.16-1.32-.16-2s.06-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2M12 19.96c-.83-1.2-1.5-2.53-1.91-3.96h3.82c-.41 1.43-1.08 2.76-1.91 3.96M8 8H5.08A7.92 7.92 0 0 1 9.4 4.44C8.8 5.55 8.35 6.75 8 8m-2.92 8H8c.35 1.25.8 2.45 1.4 3.56A8 8 0 0 1 5.08 16m-.82-2C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2M12 4.03c.83 1.2 1.5 2.54 1.91 3.97h-3.82c.41-1.43 1.08-2.77 1.91-3.97M18.92 8h-2.95a15.7 15.7 0 0 0-1.38-3.56c1.84.63 3.37 1.9 4.33 3.56M12 2C6.47 2 2 6.5 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg></a>
+      <script>document.addEventListener("DOMContentLoaded",()=>{const c=document.getElementById("social-section");c.querySelectorAll(".badge-wrapper").forEach(b=>{const h=b.getAttribute("href");if(!h||!h.trim())b.remove()});if(!c.querySelector(".badge-wrapper"))c.remove()});</script>
+        </div>
+
+        <div class="info-container" id="media-container" style="display: none;">
+          <div class="section-header" style="display: flex; align-items: center; gap: 6px; margin-bottom: 8px;">
+            <span>Integrations</span>
+          </div>
+          <div id="media-embeds" style="display: flex; flex-direction: column; gap: 8px;"></div>
+        </div>
+        
+      
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          let linksAdded = 0;
+          const container = document.getElementById('media-embeds');
+          const mediaContainer = document.getElementById('media-container');
+      
+          function embedSpotify(url) {
+            if (!url) return;
+            const baseUrl = url.split('?')[0];
+            if (!baseUrl.startsWith('https://open.spotify.com/')) return;
+      
+            const path = baseUrl.replace('https://open.spotify.com', '');
+            if (!path.startsWith('/track/') && !path.startsWith('/playlist/') && !path.startsWith('/album/')) return;
+      
+            const embedUrl = baseUrl.replace('https://open.spotify.com/', 'https://open.spotify.com/embed/');
+            const iframe = document.createElement('iframe');
+            iframe.style.borderRadius = '12px';
+            iframe.style.border = 'none';
+            iframe.width = '100%';
+      
+            if (path.startsWith('/playlist/') || path.startsWith('/album/')) {
+              iframe.height = '380';
+            } else {
+              iframe.height = '80';
+            }
+      
+            iframe.src = embedUrl;
+            iframe.allow = 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
+            iframe.loading = 'lazy';
+            container.appendChild(iframe);
+            linksAdded++;
+          }
+      
+          function embedSoundcloud(url) {
+            if (!url) return;
+            let trackUrl = url.replace('m.soundcloud.com', 'soundcloud.com').split('?')[0];
+            if (!trackUrl.startsWith('https://soundcloud.com/')) return;
+      
+            const iframe = document.createElement('iframe');
+            iframe.width = '100%';
+            iframe.height = '166';
+            iframe.scrolling = 'no';
+            iframe.frameBorder = 'no';
+            iframe.allow = 'autoplay';
+            iframe.style.borderRadius = '12px';
+            iframe.src = 'https://w.soundcloud.com/player/?url=' + encodeURIComponent(trackUrl) +
+                        '&color=%23ff5500&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true';
+            container.appendChild(iframe);
+            linksAdded++;
+          }
+      
+          function getYouTubeVideoId(url) {
+            try {
+              const parsedUrl = new URL(url);
+              const hostname = parsedUrl.hostname.toLowerCase();
+      
+              if (hostname === 'youtu.be') {
+                return parsedUrl.pathname.slice(1, 12);
+              }
+      
+              if (hostname === 'www.youtube.com' || hostname === 'youtube.com' || hostname.endsWith('.youtube.com')) {
+                if (parsedUrl.pathname === '/watch') {
+                  return parsedUrl.searchParams.get('v');
+                }
+                if (parsedUrl.pathname.startsWith('/embed/')) {
+                  return parsedUrl.pathname.split('/')[2];
+                }
+                if (parsedUrl.pathname.startsWith('/v/')) {
+                  return parsedUrl.pathname.split('/')[2];
+                }
+              }
+      
+              return null;
+            } catch {
+              return null;
+            }
+          }
+      
+          function embedYouTube(url) {
+            if (!url) return;
+            const videoId = getYouTubeVideoId(url);
+            if (!videoId) return;
+      
+            const iframe = document.createElement('iframe');
+            iframe.width = '100%';
+            iframe.height = '180';
+            iframe.style.borderRadius = '12px';
+            iframe.style.border = 'none';
+            iframe.src = 'https://www.youtube.com/embed/' + videoId;
+            iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+            iframe.setAttribute('allowfullscreen', '');
+            iframe.loading = 'lazy';
+            container.appendChild(iframe);
+            linksAdded++;
+          }
+      
+          const spotifyLinks = [];
+          const soundcloudLinks = [];
+          const youtubeLinks = [];
+      
+          spotifyLinks.forEach(embedSpotify);
+          soundcloudLinks.forEach(embedSoundcloud);
+          youtubeLinks.forEach(embedYouTube);
+      
+          if (linksAdded > 0) {
+            mediaContainer.style.display = 'block';
+          }
+        });
+      </script>
+
+<div class="info-container whats-up">
+  <div class="section-header">
+Posts
+  </div>
+
+  <!-- here -->
+   
+  <style>
+    .post {
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 14px 16px;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .post img.post-image,
+    .post video.post-video {
+      max-width: 420px;
+      width: 100%;
+      height: auto;
+      margin-top: 10px;
+      border-radius: 16px;
+      cursor: pointer;
+      display: block;
+      object-fit: contain;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    @media (max-width: 480px) {
+      .post img.post-image,
+      .post video.post-video {
+        max-width: 100%;
+        width: 100%;
+      }
+    }
+
+    .post-content {
+      font-size: 1.05rem;
+      color: #f2f2f2;
+      margin-bottom: 6px;
+      white-space: pre-wrap;
+      line-height: 1.5;
+    }
+
+    .post-content a {
+      color: #3a78ff;
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.3s ease, text-decoration 0.3s ease;
+    }
+
+    .post-content a:hover {
+      color: #6096ff;
+      text-decoration: underline;
+    }
+
+    .post-date {
+      margin-top: 6px;
+      color: #bbb;
+      font-size: 0.85em;
+      font-style: italic;
+    }
+
+    .hidden {
+      opacity: 0;
+      transform: translateY(-10px);
+      height: 0;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+      transition: opacity 0.5s ease, transform 0.5s ease, height 0.5s ease;
+    }
+
+    .join-btn {
+      font-size: 15px;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid #fff;
+      padding: 7px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+      cursor: pointer;
+    }
+
+    .join-btn:hover {
+      background-color: #fff;
+      color: #000;
+      transform: scale(1.04);
+    }
+  </style>
+
+  <script>
+    const whatsUpContainer = document.querySelector('.info-container.whats-up');
+
+    function updateVisibilityAndButton() {
+      const posts = Array.from(whatsUpContainer.querySelectorAll('.post'));
+      if (posts.length === 0) {
+        whatsUpContainer.style.display = 'none';
+        return;
+      } else {
+        whatsUpContainer.style.display = '';
+      }
+
+      posts.forEach(post => post.classList.remove('hidden'));
+    }
+
+    updateVisibilityAndButton();
+  </script>
+</div>
+
+    <script>
+      const badges = [
+        {
+          name: 'Manager',
+          hide: true,
+          color: '#ff4242',
+          path: 'M256 0c4.6 0 9.2 1 13.4 2.9L457.7 82.8c22 9.3 38.4 31 38.3 57.2c-.5 99.2-41.3 280.7-213.6 363.2c-16.7 8-36.1 8-52.8 0C57.3 420.7 16.5 239.2 16 140c-.1-26.2 16.3-47.9 38.3-57.2L242.7 2.9C246.8 1 251.4 0 256 0zm0 66.8l0 378.1C394 378 431.1 230.1 432 141.4L256 66.8s0 0 0 0z'
+        },
+        {
+          name: 'Verified',
+          hide: false,
+          color: '#008ada',
+          path: 'M256 0c36.8 0 68.8 20.7 84.9 51.1C373.8 41 411 49 437 75s34 63.3 23.9 96.1C491.3 187.2 512 219.2 512 256s-20.7 68.8-51.1 84.9C471 373.8 463 411 437 437s-63.3 34-96.1 23.9C324.8 491.3 292.8 512 256 512s-68.8-20.7-84.9-51.1C138.2 471 101 463 75 437s-34-63.3-23.9-96.1C20.7 324.8 0 292.8 0 256s20.7-68.8 51.1-84.9C41 138.2 49 101 75 75s63.3-34 96.1-23.9C187.2 20.7 219.2 0 256 0zM369 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-111 111-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4 9.4 24.6 9.4 33.9 0L369 209z'
+        }
+      ];
+
+
+      
+      const badgeRow = document.getElementById('badge-row');
+      badges.forEach(badge => {
+        if (badge.hide) return;
+        const wrapper = document.createElement('div');
+        wrapper.className = 'badge-wrapper';
+        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.setAttribute('viewBox', '0 0 512 512');
+        svg.classList.add('badge');
+        svg.style.color = badge.color;
+        if (badge.name.toLowerCase() === 'staff') svg.classList.add('staff');
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute('d', badge.path);
+        svg.appendChild(path);
+        const tooltip = document.createElement('div');
+        tooltip.className = 'tooltip';
+        tooltip.textContent = badge.name;
+        wrapper.appendChild(svg);
+        wrapper.appendChild(tooltip);
+        badgeRow.appendChild(wrapper);
+      });
+
+      
+      async function getDominantColor(img) {
+        const c = document.createElement('canvas'), ctx = c.getContext('2d');
+        c.width = c.height = 30;
+        ctx.drawImage(img, 0, 0, 30, 30);
+        const d = ctx.getImageData(0, 0, 30, 30).data;
+        let r = 0, g = 0, b = 0, cnt = 0;
+        for (let i = 0; i < d.length; i += 4)
+          if (d[i + 3] > 125) { r += d[i]; g += d[i + 1]; b += d[i + 2]; cnt++; }
+        return cnt ? [r / cnt | 0, g / cnt | 0, b / cnt | 0] : [60, 60, 60];
+      }
+      
+      fetchSongs();
+    </script>
+  </body>
+  </html>
